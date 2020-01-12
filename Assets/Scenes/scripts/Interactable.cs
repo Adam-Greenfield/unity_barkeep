@@ -21,6 +21,9 @@ public class Interactable : MonoBehaviour
     {
         if (isFocus && !hasInteracted)
         {
+            //Debug.Log(player.position);
+            //Debug.Log(interactionTransform.position);
+
             float distance = Vector3.Distance(player.position, interactionTransform.position);
             if(distance <= radius)
             {
