@@ -11,9 +11,16 @@ public class CameraController : MonoBehaviour
     public float minZoom = 5f;
     public float maxZoom = 15f;
     private float currentZoom = 5f;
+    Transform camTransform;
+
 
 
     float speed = 30.0f;
+
+    void Start()
+    {
+        camTransform = Camera.main.transform;
+    }
 
     void Update()
     {
@@ -24,6 +31,34 @@ public class CameraController : MonoBehaviour
                 -Input.GetAxisRaw("Mouse Y") * Time.deltaTime * speed, 0.0f);
 
         }
+
+        if (Input.GetKey("left"))
+        {
+            Debug.Log("left was pressed");
+            Ray ray = new Ray(camTransform.position, camTransform.forward);
+
+            RaycastHit hit; 
+
+            if(Physics.Raycast (ray, out hit, 500))
+            {
+                transform.RotateAround(hit.point, Vector3.up, 10.0f * Time.deltaTime);
+            }
+        }
+
+        if (Input.GetKey("right"))
+        {
+            Debug.Log("right was pressed");
+            Ray ray = new Ray(camTransform.position, camTransform.forward);
+
+            RaycastHit hit; 
+
+            if(Physics.Raycast (ray, out hit, 500))
+            {
+                transform.RotateAround(hit.point, Vector3.down, 10.0f * Time.deltaTime);
+            }
+
+        }
+
     }
 
 }
