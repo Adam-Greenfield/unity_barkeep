@@ -26,10 +26,12 @@ public class PlayerController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
+            Debug.Log("something's happening");
             
 
-            if (Physics.Raycast(ray, out hit, 100, movementMask))
+            if (Physics.Raycast(ray, out hit))
             {
+                Debug.Log(hit.collider.name);
                 motor.MoveToPoint(hit.point);
                 RemoveFocus();
             }
