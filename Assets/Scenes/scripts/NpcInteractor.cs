@@ -4,7 +4,7 @@ class NpcInteractor : Interactable
 {
     public override void Interact()
     {
-        Debug.Log("I am  interacting with an npc");
+        Debug.Log("I am interacting with an npc");
     }
 }
 
