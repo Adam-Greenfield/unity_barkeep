@@ -13,18 +13,19 @@ public class NpcMotor : MonoBehaviour
 
 
     public GameObject goal;
+    Vector3 target;
 
     // Start is called before the first frame update
-    void Start () {
+    void Start ()
+    {
         agent = GetComponent<NavMeshAgent>();
+        target = goal.transform.position;
+        agent.SetDestination(target); 
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(goal.transform.position);
-        Debug.Log(transform.position);
 
-        agent.SetDestination(GameObject.Find("Chair").transform.position); 
     }
 }
