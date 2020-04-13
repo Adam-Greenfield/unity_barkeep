@@ -4,25 +4,29 @@ using UnityEngine;
 public class SpeechObject : MonoBehaviour
 {
     public GameObject textBox;
-    private Vector3 textPosition;
+    private GameObject instTextBox;
+
     TextMesh instTextMesh;
 
 
-    void start()
+    void Start()
     {
        // textBox = this.gameObject.GetComponent<TextMesh>();
     }
 
-    public void speak(string words)
+    void Update()
     {
-        Debug.Log(textPosition);
-        var instTextBox = Instantiate(textBox, textPosition, Quaternion.Euler(0, 0, 0));
-        instTextMesh = instTextBox.GetComponent<TextMesh>();
-        instTextMesh.text = "Hello World";
+        if (instTextBox)
+        {
+            Debug.Log("I exsit");
+            instTextBox.transform.rotation = Camera.main.transform.rotation;
+        }
     }
 
-    public void setPosition(Vector3 position)
+    public void speak(string words, Vector3 position)
     {
-        textPosition = position;
+        instTextBox = Instantiate(textBox, position, Quaternion.Euler(0, 0, 0));
+        instTextMesh = instTextBox.GetComponent<TextMesh>();
+        instTextMesh.text = "Hello World";
     }
 }
