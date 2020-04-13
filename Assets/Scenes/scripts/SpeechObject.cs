@@ -18,14 +18,21 @@ public class SpeechObject : MonoBehaviour
     {
         if (instTextBox)
         {
-            Debug.Log("I exsit");
             instTextBox.transform.rotation = Camera.main.transform.rotation;
         }
     }
 
-    public void speak(string words, Vector3 position)
+    public void updatePosition(Vector3 position)
     {
-        instTextBox = Instantiate(textBox, position, Quaternion.Euler(0, 0, 0));
+        if (instTextBox)
+        {
+            instTextBox.transform.position = position;
+        }
+    }
+
+    public void speak(string words)
+    {
+        instTextBox = Instantiate(textBox);
         instTextMesh = instTextBox.GetComponent<TextMesh>();
         instTextMesh.text = "Hello World";
     }
