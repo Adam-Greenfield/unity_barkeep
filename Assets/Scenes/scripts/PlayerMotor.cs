@@ -42,6 +42,7 @@ public class PlayerMotor : MonoBehaviour
 
     public void StopFollowingTarget()
     {
+        Debug.Log("stopping");
         agent.stoppingDistance = 0;
         agent.updateRotation = true;
         target = null;

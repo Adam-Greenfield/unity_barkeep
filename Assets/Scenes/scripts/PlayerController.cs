@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 if (interactable != null)
                 {
                     SetFocus(interactable);
-
+                
                 }
             }
         }
@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
 
     void SetFocus(Interactable newFocus)
     {
+        Debug.Log("setting focus");
         if(newFocus != focus)
         {
             if (focus != null)

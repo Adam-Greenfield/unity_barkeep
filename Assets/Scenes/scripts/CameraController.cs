@@ -34,7 +34,6 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKey("left"))
         {
-            Debug.Log("left was pressed");
             Ray ray = new Ray(camTransform.position, camTransform.forward);
 
             RaycastHit hit; 
@@ -47,7 +46,6 @@ public class CameraController : MonoBehaviour
 
         if (Input.GetKey("right"))
         {
-            Debug.Log("right was pressed");
             Ray ray = new Ray(camTransform.position, camTransform.forward);
 
             RaycastHit hit; 
