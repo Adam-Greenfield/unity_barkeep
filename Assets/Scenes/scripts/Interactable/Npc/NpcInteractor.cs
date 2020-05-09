@@ -4,11 +4,13 @@ using UnityEngine;
 class NpcInteractor : Interactable
 {
     private float npcHeight;
+    private Vector3 currentPosition;
     SpeechObject speech;
 
     void Start()
     {
         speech = GetComponent<SpeechObject>();
+        menu = GetComponent<MenuObject>();
     }
 
     public override void Update()
@@ -24,6 +26,15 @@ class NpcInteractor : Interactable
         npcHeight = interactionTransform.localScale.y;
         // here we will lock the camera above the npc and player, and start some dialogue
         speech.speak("Hello world");
+        openMenu();
+    }
+
+    public override void openMenu()
+    {
+        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
+
+        menu.open(currentPosition);
+        //create a menu above the interactable clicked on, with a list of 
     }
 }
 

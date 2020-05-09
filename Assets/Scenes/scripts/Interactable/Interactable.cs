@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class Interactable : MonoBehaviour
+[RequireComponent(typeof(MenuObject))]
+public abstract class Interactable : MonoBehaviour
 {
 
     public float radius = 1.5f;
     public Transform interactionTransform;
+    public MenuObject menu;
 
     bool isFocus = false;
     bool hasInteracted = false;
@@ -53,4 +55,6 @@ public class Interactable : MonoBehaviour
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
+
+    public abstract void openMenu();
 }
