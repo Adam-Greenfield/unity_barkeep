@@ -5,12 +5,12 @@ public class MenuObject : MonoBehaviour
 {
     public GameObject menu;
     private GameObject instMenu;
-    private Camera mainCamera;
     private Vector2 canvasPos;
     private Vector2 screenPoint;
     private RectTransform rectTransform;
     private GameObject instMenuPanel;
-
+    private Vector3 originPosition;
+    
     void Start()
     {
         
@@ -20,21 +20,17 @@ public class MenuObject : MonoBehaviour
     {
         if (instMenu)
         {
-            //instMenu.transform.rotation = Camera.main.transform.rotation * Quaternion.Euler(270, 0, 0);
+            rectTransform = instMenu.GetComponent<RectTransform>();
+            screenPoint = Camera.main.WorldToScreenPoint(originPosition);
+            //get position of object in relation to camera and covert to canvas redable coordinates
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, null, out canvasPos);
+            instMenu.transform.GetChild(0).GetComponent<RectTransform>().localPosition = canvasPos;
         }
     }
 
     public void open(Vector3 parentPosition)
     {
-        
-        Debug.Log("I am the menu, here I open!");
         instMenu = Instantiate(menu);
-
-        rectTransform = instMenu.GetComponent<RectTransform>();
-        mainCamera = Camera.main;
-        screenPoint = Camera.main.WorldToScreenPoint(parentPosition);
-        RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, null, out canvasPos);
-        Debug.Log(canvasPos);
-        instMenu.GetComponentInChildren<RectTransform>().localPosition = canvasPos;
+        originPosition = parentPosition;
     }
 }
