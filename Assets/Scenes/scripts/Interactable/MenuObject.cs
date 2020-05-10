@@ -34,6 +34,7 @@ public class MenuObject : MonoBehaviour
         mainCamera = Camera.main;
         screenPoint = Camera.main.WorldToScreenPoint(parentPosition);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, null, out canvasPos);
+        Debug.Log(canvasPos);
         instMenu.GetComponentInChildren<RectTransform>().localPosition = canvasPos;
     }
 }
