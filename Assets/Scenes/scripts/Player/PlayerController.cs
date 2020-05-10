@@ -50,11 +50,19 @@ public class PlayerController : MonoBehaviour
 
                 if (interactable != null)
                 {
+                    //instead of setting focus here, we're going to open a menu, passing in the interactable
                     SetFocus(interactable);
                 
                 }
             }
         }
+    }
+
+    void openMenu(Interactable interactable)
+    {
+        //generate a menu depending on the interactable options
+        interactable.openMenu();
+
     }
 
     void SetFocus(Interactable newFocus)
