@@ -144,6 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8f6cb7005fc5471da6f93538c4837b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  radius: 1.5
+  interactionTransform: {fileID: 0}
 --- !u!4 &87817089 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8609941986903772672, guid: 672c263acf4b341408d62363a47b3685,
@@ -1257,7 +1259,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: c9b7aa7ffd5fa4d48ba765da36d6ded4,
         type: 3}
       propertyPath: m_Name
-      value: playerGFX.test_v1
+      value: playerGFX_test_v1
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c9b7aa7ffd5fa4d48ba765da36d6ded4,
         type: 3}
@@ -1267,7 +1269,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: c9b7aa7ffd5fa4d48ba765da36d6ded4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: c9b7aa7ffd5fa4d48ba765da36d6ded4,
         type: 3}
@@ -3357,7 +3359,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 9ae7753f27bb6466da65dd169e9c0569,
         type: 3}
       propertyPath: m_Name
-      value: npcGFX.test_v1
+      value: npcGFX_test_v1
       objectReference: {fileID: 0}
     - target: {fileID: -6057140222963153312, guid: 9ae7753f27bb6466da65dd169e9c0569,
         type: 3}
@@ -3372,7 +3374,7 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 9ae7753f27bb6466da65dd169e9c0569,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 9ae7753f27bb6466da65dd169e9c0569,
         type: 3}
