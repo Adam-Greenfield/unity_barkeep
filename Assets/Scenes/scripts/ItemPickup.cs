@@ -7,4 +7,6 @@ public class ItemPickup : Interactable
     {
 
     }
+
+    public override void openMenu() { }
 }
