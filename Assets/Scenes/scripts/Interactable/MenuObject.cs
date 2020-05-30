@@ -30,7 +30,14 @@ public class MenuObject : MonoBehaviour
 
     public void open(Vector3 parentPosition)
     {
+        if (instMenu)
+        {
+            Debug.Log("Menu already instantiated for this object");
+            return;
+        }
+        
         instMenu = Instantiate(menu);
         originPosition = parentPosition;
+        
     }
 }
