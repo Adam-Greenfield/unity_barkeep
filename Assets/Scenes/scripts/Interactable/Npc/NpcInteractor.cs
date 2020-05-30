@@ -25,7 +25,7 @@ class NpcInteractor : Interactable
         Debug.Log("I am interacting with an npc");
         npcHeight = interactionTransform.localScale.y;
         // here we will lock the camera above the npc and player, and start some dialogue
-        speech.speak("Hello world");
+        //speech.speak("Hello world");
         openMenu();
     }
 

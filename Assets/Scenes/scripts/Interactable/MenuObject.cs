@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class MenuObject : MonoBehaviour
@@ -24,7 +26,7 @@ public class MenuObject : MonoBehaviour
             screenPoint = Camera.main.WorldToScreenPoint(originPosition);
             //get position of object in relation to camera and covert to canvas redable coordinates
             RectTransformUtility.ScreenPointToLocalPointInRectangle(rectTransform, screenPoint, null, out canvasPos);
-            instMenu.transform.GetChild(0).GetComponent<RectTransform>().localPosition = canvasPos;
+            instMenuPanel.GetComponent<RectTransform>().localPosition = canvasPos;
         }
     }
 
@@ -37,7 +39,17 @@ public class MenuObject : MonoBehaviour
         }
         
         instMenu = Instantiate(menu);
+        instMenuPanel = instMenu.transform.Find("Panel").gameObject;
         originPosition = parentPosition;
+
+        GameObject textBox = instMenuPanel.transform.Find("TextBox").gameObject;
+        Button button = textBox.AddComponent<Button>();
+        Text buttonText = Button.AddComponent<Text>();
+        Debug.Log(testText);
+
+        testText.text = "testing";
+        testText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");;
+        testText.color = Color.black;
         
     }
 }
