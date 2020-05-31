@@ -42,14 +42,14 @@ public class MenuObject : MonoBehaviour
         instMenuPanel = instMenu.transform.Find("Panel").gameObject;
         originPosition = parentPosition;
 
-        GameObject textBox = instMenuPanel.transform.Find("TextBox").gameObject;
+/*        GameObject textBox = instMenuPanel.transform.Find("TextBox").gameObject;
         Button button = textBox.AddComponent<Button>();
         Text buttonText = Button.AddComponent<Text>();
         Debug.Log(testText);
 
         testText.text = "testing";
         testText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");;
-        testText.color = Color.black;
+        testText.color = Color.black;*/
         
     }
 }

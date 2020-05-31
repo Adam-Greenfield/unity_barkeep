@@ -31,6 +31,7 @@ class NpcInteractor : Interactable
 
     public override void openMenu()
     {
+        //update
         currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
 
         menu.open(currentPosition);
