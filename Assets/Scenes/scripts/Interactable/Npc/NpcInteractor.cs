@@ -8,7 +8,6 @@ class NpcInteractor : Interactable
 
     public override void Start()
     {
-
         base.Start();
         speech = GetComponent<SpeechObject>();
         menu = GetComponent<MenuObject>();
@@ -26,17 +25,8 @@ class NpcInteractor : Interactable
         Debug.Log("I am interacting with an npc");
         npcHeight = interactionTransform.localScale.y;
         // here we will lock the camera above the npc and player, and start some dialogue
-        OpenMenu();
     }
 
-    public new void OpenMenu()
-    {
-        //update
-/*        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
-
-        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);*/
-        //create a menu above the interactable clicked on, with a list of 
-    }
 
     public override void InspectFromMenu()
     {

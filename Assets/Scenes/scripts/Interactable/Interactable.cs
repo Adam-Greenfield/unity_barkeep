@@ -4,15 +4,16 @@
 public abstract class Interactable : MonoBehaviour
 {
 
-    public float radius = 1.5f;
     public Transform interactionTransform;
+    Transform playerTransform;
     public MenuObject menu;
-    private Vector3 currentPosition;
     public PlayerController player;
+    private Vector3 currentPosition;
 
+    public float radius = 1.5f;
     bool isFocus = false;
     bool hasInteracted = false;
-    Transform playerTransform;
+    
 
     public virtual void Start()
     {
