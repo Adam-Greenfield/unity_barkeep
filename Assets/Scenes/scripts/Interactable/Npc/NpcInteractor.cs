@@ -19,7 +19,7 @@ class NpcInteractor : Interactable
         base.Update();
         speech.updatePosition(new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z));
     }
-    
+
     public override void Interact()
     {
         Debug.Log("I am interacting with an npc");
@@ -34,8 +34,18 @@ class NpcInteractor : Interactable
         //update
         currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
 
-        menu.open(currentPosition);
+        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);
         //create a menu above the interactable clicked on, with a list of 
+    }
+
+    private void InspectFromMenu()
+    {
+        Debug.Log("Inspected npc");
+    }
+
+    private void InteractFromMenu()
+    {
+        Debug.Log("Interacted with npc");
     }
 }
 

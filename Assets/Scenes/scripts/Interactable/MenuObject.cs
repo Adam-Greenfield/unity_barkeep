@@ -32,7 +32,12 @@ public class MenuObject : MonoBehaviour
         }
     }
 
-    public void open(Vector3 parentPosition)
+    public delegate void InspectDelegate();
+
+    public delegate void InteractDelegate();
+
+
+    public void open(Vector3 parentPosition, InspectDelegate Inspect, InteractDelegate Interact)
     {
         if (instMenu)
         {
@@ -45,8 +50,8 @@ public class MenuObject : MonoBehaviour
         instMenuInspect = instMenuPanel.transform.Find("TextBox").gameObject.transform.Find("InspectButton").GetComponent<Button>();
         instMenuInteract = instMenuPanel.transform.Find("TextBox").gameObject.transform.Find("InteractButton").GetComponent<Button>();
 
-        instMenuInspect.onClick.AddListener(Inspect);
-        instMenuInteract.onClick.AddListener(Interact);
+        instMenuInspect.onClick.AddListener(delegate { Inspect(); });
+        instMenuInteract.onClick.AddListener(delegate { Interact(); });
 
         originPosition = parentPosition;
 
