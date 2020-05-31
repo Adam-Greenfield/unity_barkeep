@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8229368006555725853}
   - component: {fileID: 8172561805744260796}
   m_Layer: 5
-  m_Name: Button
+  m_Name: InspectButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -510,7 +510,7 @@ GameObject:
   - component: {fileID: 6164285157423080930}
   - component: {fileID: 1433462591377427658}
   m_Layer: 5
-  m_Name: Button
+  m_Name: InteractButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

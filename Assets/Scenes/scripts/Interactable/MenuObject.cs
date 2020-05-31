@@ -11,6 +11,8 @@ public class MenuObject : MonoBehaviour
     private Vector2 screenPoint;
     private RectTransform rectTransform;
     private GameObject instMenuPanel;
+    private Button instMenuInspect;
+    private Button instMenuInteract;
     private Vector3 originPosition;
     
     void Start()
@@ -40,6 +42,12 @@ public class MenuObject : MonoBehaviour
         
         instMenu = Instantiate(menu);
         instMenuPanel = instMenu.transform.Find("Panel").gameObject;
+        instMenuInspect = instMenuPanel.transform.Find("TextBox").gameObject.transform.Find("InspectButton").GetComponent<Button>();
+        instMenuInteract = instMenuPanel.transform.Find("TextBox").gameObject.transform.Find("InteractButton").GetComponent<Button>();
+
+        instMenuInspect.onClick.AddListener(Inspect);
+        instMenuInteract.onClick.AddListener(Interact);
+
         originPosition = parentPosition;
 
 /*        GameObject textBox = instMenuPanel.transform.Find("TextBox").gameObject;
@@ -50,6 +58,15 @@ public class MenuObject : MonoBehaviour
         testText.text = "testing";
         testText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");;
         testText.color = Color.black;*/
-        
+    }
+
+    private void Inspect()
+    {
+
+    }
+
+    private void Interact()
+    {
+
     }
 }
