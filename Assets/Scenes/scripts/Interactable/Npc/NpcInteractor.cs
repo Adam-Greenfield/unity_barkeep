@@ -25,27 +25,27 @@ class NpcInteractor : Interactable
         Debug.Log("I am interacting with an npc");
         npcHeight = interactionTransform.localScale.y;
         // here we will lock the camera above the npc and player, and start some dialogue
-        //speech.speak("Hello world");
-        openMenu();
+        OpenMenu();
     }
 
-    public override void openMenu()
+    public new void OpenMenu()
     {
         //update
-        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
+/*        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
 
-        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);
+        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);*/
         //create a menu above the interactable clicked on, with a list of 
     }
 
-    private void InspectFromMenu()
+    public override void InspectFromMenu()
     {
         Debug.Log("Inspected npc");
     }
 
-    private void InteractFromMenu()
+    public override void InteractFromMenu()
     {
         Debug.Log("Interacted with npc");
+        GameObject.Find("Player").GetComponent<PlayerController>().SetFocus(this);
     }
 }
 

@@ -7,10 +7,11 @@ public abstract class Interactable : MonoBehaviour
     public float radius = 1.5f;
     public Transform interactionTransform;
     public MenuObject menu;
+    private Vector3 currentPosition;
 
     bool isFocus = false;
     bool hasInteracted = false;
-    Transform player;
+    Transform playerTransform;
 
 
     public virtual void Interact()
@@ -23,10 +24,8 @@ public abstract class Interactable : MonoBehaviour
     {
         if (isFocus && !hasInteracted)
         {
-            //Debug.Log(player.position);
-            //Debug.Log(interactionTransform.position);
 
-            float distance = Vector3.Distance(player.position, interactionTransform.position);
+            float distance = Vector3.Distance(playerTransform.position, interactionTransform.position);
             if(distance <= radius)
             {
                 Interact();
@@ -35,10 +34,10 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public void onFocused(Transform playerTransform)
+    public void onFocused(Transform transform)
     {
         isFocus = true;
-        player = playerTransform;
+        playerTransform = transform;
         hasInteracted = false;
 
     }
@@ -46,7 +45,7 @@ public abstract class Interactable : MonoBehaviour
     public void onDefocused()
     {
         isFocus = false;
-        player = null;
+        playerTransform = null;
         hasInteracted = false;
     }
 
@@ -56,5 +55,15 @@ public abstract class Interactable : MonoBehaviour
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
-    public abstract void openMenu();
+    public void OpenMenu()
+    {
+        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
+
+        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);
+    }
+
+    public abstract void InspectFromMenu();
+
+    public abstract void InteractFromMenu();
+
 }
