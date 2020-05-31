@@ -54,24 +54,5 @@ public class MenuObject : MonoBehaviour
         instMenuInteract.onClick.AddListener(delegate { Interact(); });
 
         originPosition = parentPosition;
-
-/*        GameObject textBox = instMenuPanel.transform.Find("TextBox").gameObject;
-        Button button = textBox.AddComponent<Button>();
-        Text buttonText = Button.AddComponent<Text>();
-        Debug.Log(testText);
-
-        testText.text = "testing";
-        testText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");;
-        testText.color = Color.black;*/
-    }
-
-    private void Inspect()
-    {
-
-    }
-
-    private void Interact()
-    {
-
     }
 }

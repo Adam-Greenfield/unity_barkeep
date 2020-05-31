@@ -8,17 +8,17 @@ public abstract class Interactable : MonoBehaviour
     public Transform interactionTransform;
     public MenuObject menu;
     private Vector3 currentPosition;
+    public PlayerController player;
 
     bool isFocus = false;
     bool hasInteracted = false;
     Transform playerTransform;
 
-
-    public virtual void Interact()
+    public virtual void Start()
     {
-        //overwrite in class
-        Debug.Log("Interacting with " + transform.name);
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
+
 
     public virtual void Update()
     {
@@ -32,6 +32,12 @@ public abstract class Interactable : MonoBehaviour
                 hasInteracted = true;
             }
         }
+    }
+
+    public virtual void Interact()
+    {
+        //overwrite in class
+        Debug.Log("Interacting with " + transform.name);
     }
 
     public void onFocused(Transform transform)

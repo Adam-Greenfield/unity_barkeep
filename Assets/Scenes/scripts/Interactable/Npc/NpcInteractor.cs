@@ -4,11 +4,12 @@ using UnityEngine;
 class NpcInteractor : Interactable
 {
     private float npcHeight;
-    private Vector3 currentPosition;
     SpeechObject speech;
 
-    void Start()
+    public override void Start()
     {
+
+        base.Start();
         speech = GetComponent<SpeechObject>();
         menu = GetComponent<MenuObject>();
     }
@@ -45,7 +46,7 @@ class NpcInteractor : Interactable
     public override void InteractFromMenu()
     {
         Debug.Log("Interacted with npc");
-        GameObject.Find("Player").GetComponent<PlayerController>().SetFocus(this);
+        player.SetFocus(this);
     }
 }
 
