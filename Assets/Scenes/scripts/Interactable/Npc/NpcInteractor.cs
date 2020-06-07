@@ -23,8 +23,10 @@ class NpcInteractor : Interactable
     public override void Interact()
     {
         Debug.Log("I am interacting with an npc");
+        menu.close();
         npcHeight = interactionTransform.localScale.y;
-        // here we will lock the camera above the npc and player, and start some dialogue
+/*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
+*/        // here we will lock the camera above the npc and player, and start some dialogue
     }
 
 
