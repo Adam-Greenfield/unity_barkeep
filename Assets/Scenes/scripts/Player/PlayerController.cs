@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
@@ -21,51 +22,46 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!EventSystem.current.IsPointerOverGameObject())
         {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            Debug.Log("something's happening");
-            
-
-            if (Physics.Raycast(ray, out hit))
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(hit.collider.name);
-                motor.MoveToPoint(hit.point);
-                RemoveFocus();
-            }
-        }
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
-        if (Input.GetMouseButtonDown(1))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                Debug.Log("something's happening");
 
-            RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                Debug.Log(hit.collider);
-
-                if (interactable != null)
+                if (Physics.Raycast(ray, out hit))
                 {
-                    //instead of setting focus here, we're going to open a menu, passing in the interactable
-                    SetFocus(interactable);
-                
+                    Debug.Log(hit.collider.name);
+                    motor.MoveToPoint(hit.point);
+                    RemoveFocus();
+                }
+            }
+
+            if (Input.GetMouseButtonDown(1))
+            {
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+                RaycastHit hit;
+
+                if (Physics.Raycast(ray, out hit, 100))
+                {
+                    Interactable interactable = hit.collider.GetComponent<Interactable>();
+                    Debug.Log(hit.collider);
+
+                    if (interactable != null)
+                    {
+                        //instead of setting focus here, we're going to open a menu, passing in the interactable
+                        interactable.OpenMenu();
+                    }
                 }
             }
         }
     }
 
-    void openMenu(Interactable interactable)
-    {
-        //generate a menu depending on the interactable options
-        interactable.openMenu();
-
-    }
-
-    void SetFocus(Interactable newFocus)
+    public void SetFocus(Interactable newFocus)
     {
         Debug.Log("setting focus");
         if(newFocus != focus)

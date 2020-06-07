@@ -4,29 +4,29 @@
 public abstract class Interactable : MonoBehaviour
 {
 
-    public float radius = 1.5f;
     public Transform interactionTransform;
+    Transform playerTransform;
     public MenuObject menu;
+    public PlayerController player;
+    private Vector3 currentPosition;
 
+    public float radius = 1.5f;
     bool isFocus = false;
     bool hasInteracted = false;
-    Transform player;
+    
 
-
-    public virtual void Interact()
+    public virtual void Start()
     {
-        //overwrite in class
-        Debug.Log("Interacting with " + transform.name);
+        player = GameObject.Find("Player").GetComponent<PlayerController>();
     }
+
 
     public virtual void Update()
     {
         if (isFocus && !hasInteracted)
         {
-            //Debug.Log(player.position);
-            //Debug.Log(interactionTransform.position);
 
-            float distance = Vector3.Distance(player.position, interactionTransform.position);
+            float distance = Vector3.Distance(playerTransform.position, interactionTransform.position);
             if(distance <= radius)
             {
                 Interact();
@@ -35,10 +35,16 @@ public abstract class Interactable : MonoBehaviour
         }
     }
 
-    public void onFocused(Transform playerTransform)
+    public virtual void Interact()
+    {
+        //overwrite in class
+        Debug.Log("Interacting with " + transform.name);
+    }
+
+    public void onFocused(Transform transform)
     {
         isFocus = true;
-        player = playerTransform;
+        playerTransform = transform;
         hasInteracted = false;
 
     }
@@ -46,7 +52,7 @@ public abstract class Interactable : MonoBehaviour
     public void onDefocused()
     {
         isFocus = false;
-        player = null;
+        playerTransform = null;
         hasInteracted = false;
     }
 
@@ -56,5 +62,15 @@ public abstract class Interactable : MonoBehaviour
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
 
-    public abstract void openMenu();
+    public void OpenMenu()
+    {
+        currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
+
+        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);
+    }
+
+    public abstract void InspectFromMenu();
+
+    public abstract void InteractFromMenu();
+
 }

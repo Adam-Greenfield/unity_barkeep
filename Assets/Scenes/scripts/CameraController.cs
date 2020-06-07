@@ -5,12 +5,12 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     public Transform target;
-    //public Vector3 offset;
     public float pitch = 1f;
     public float zoomSpeed = 4f;
     public float minZoom = 5f;
     public float maxZoom = 15f;
-    private float currentZoom = 5f;
+    private bool movingTowardsInteraction = false;
+    private Transform interactionLocation;
     Transform camTransform;
 
 
@@ -57,6 +57,21 @@ public class CameraController : MonoBehaviour
 
         }
 
+        if(movingTowardsInteraction)
+        {
+            transform.localPosition = Vector3.MoveTowards(
+                gameObject.transform.localPosition,
+                new Vector3(interactionLocation.localPosition.x, 0f, interactionLocation.localPosition.z),
+                2100
+            );
+            
+        }
+    }
+
+    public void moveTowardsInteraction(Transform location)
+    {
+        movingTowardsInteraction = true;
+        interactionLocation = location;
     }
 
 }
