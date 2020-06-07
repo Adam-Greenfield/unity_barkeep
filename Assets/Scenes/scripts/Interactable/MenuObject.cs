@@ -38,7 +38,7 @@ public class MenuObject : MonoBehaviour
     public delegate void InteractDelegate();
 
 
-    public void open(Vector3 parentPosition, InspectDelegate Inspect, InteractDelegate Interact)
+    public void Open(Vector3 parentPosition, InspectDelegate Inspect, InteractDelegate Interact)
     {
         if (instMenu)
         {
@@ -55,12 +55,12 @@ public class MenuObject : MonoBehaviour
 
         instMenuInspect.onClick.AddListener(delegate { Inspect(); });
         instMenuInteract.onClick.AddListener(delegate { Interact(); });
-        instMenuClose.onClick.AddListener(delegate { close(); });
+        instMenuClose.onClick.AddListener(delegate { Close(); });
 
         originPosition = parentPosition;
     }
 
-    public void close()
+    public void Close()
     {
         if(instMenu)
         {

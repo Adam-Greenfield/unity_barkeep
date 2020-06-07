@@ -66,7 +66,7 @@ public abstract class Interactable : MonoBehaviour
     {
         currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
 
-        menu.open(currentPosition, InspectFromMenu, InteractFromMenu);
+        menu.Open(currentPosition, InspectFromMenu, InteractFromMenu);
     }
 
     public abstract void InspectFromMenu();
