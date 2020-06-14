@@ -22,7 +22,7 @@ public class SpeechObject : MonoBehaviour
         }
     }
 
-    public void updatePosition(Vector3 position)
+    public void UpdatePosition(Vector3 position)
     {
         if (instTextBox)
         {
@@ -30,7 +30,7 @@ public class SpeechObject : MonoBehaviour
         }
     }
 
-    public void speak(string words)
+    public void Speak(string words)
     {
         instTextBox = Instantiate(textBox);
         instTextMesh = instTextBox.GetComponent<TextMesh>();

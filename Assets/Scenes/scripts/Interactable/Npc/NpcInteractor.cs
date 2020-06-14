@@ -4,6 +4,7 @@ using UnityEngine;
 class NpcInteractor : Interactable
 {
     private float npcHeight;
+    private DialogueTrigger dialogueTrigger;
     SpeechObject speech;
 
     public override void Start()
@@ -11,22 +12,24 @@ class NpcInteractor : Interactable
         base.Start();
         speech = GetComponent<SpeechObject>();
         menu = GetComponent<MenuObject>();
+        dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
     public override void Update()
     {
         //take all in base update func, then set speech position to 
         base.Update();
-        speech.updatePosition(new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z));
+        speech.UpdatePosition(new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z));
     }
 
     public override void Interact()
     {
         Debug.Log("I am interacting with an npc");
-        menu.close();
+        menu.Close();
         npcHeight = interactionTransform.localScale.y;
-/*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
-*/        // here we will lock the camera above the npc and player, and start some dialogue
+        /*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
+        */        // here we will lock the camera above the npc and player, and start some dialogue
+        dialogueTrigger.TriggerDialalogue();
     }
 
 
