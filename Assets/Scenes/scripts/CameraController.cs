@@ -68,12 +68,24 @@ public class CameraController : MonoBehaviour
         }
 
         //wsad options
-        float xAxisValue = Input.GetAxis("Horizontal");
-        float yAxisValue = Input.GetAxis("Vertical");
-        if (Camera.current != null)
+        if (Input.GetKey(KeyCode.D))
         {
-            Camera.current.transform.Translate(new Vector3(xAxisValue, yAxisValue, 0.0f));
+            transform.Translate(new Vector3(speed * Time.deltaTime, 0, 0));
         }
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(new Vector3(-speed * Time.deltaTime, 0, 0));
+        }
+        if (Input.GetKey(KeyCode.S))
+        {
+            transform.Translate(new Vector3(0, -speed * Time.deltaTime, 0));
+        }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(new Vector3(0, speed * Time.deltaTime, 0));
+        }
+
+
     }
 
     public void moveTowardsInteraction(Transform location)
