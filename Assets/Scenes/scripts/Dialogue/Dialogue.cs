@@ -9,26 +9,7 @@ public class Dialogue
     [TextArea(3, 10)]
     public string[] introduction;
 
-    public List<Subjects> subjects = new List<Subjects>();
-
-    [System.Serializable]
-    public struct Subjects
-    {
-        //use game objects for enumeration, then pull all npcs who use the object in the game obnject
-
-        public enum SubjectName
-        {
-            Beer,
-            Wine,
-            Barkeeping,
-            Sodomy
-        }
-
-        public SubjectName name;
-        [TextArea(3, 10)]
-        public string[] subjectLines;
-    }
-
+    public List<SubjectList.Subjects> subjects = new List<SubjectList.Subjects>();
 }
 
 

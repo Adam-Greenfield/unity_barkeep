@@ -31,7 +31,7 @@ public class DialogueManager : MonoBehaviour
 
         sentences.Clear();
 
-        foreach (Dialogue.Subjects subject in dialogue.subjects)
+        foreach (SubjectList.Subjects subject in dialogue.subjects)
         {
             subjects.Add(nameof(subject.name));
         }
