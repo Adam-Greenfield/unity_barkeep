@@ -66,6 +66,14 @@ public class CameraController : MonoBehaviour
             );
             
         }
+
+        //wsad options
+        float xAxisValue = Input.GetAxis("Horizontal");
+        float yAxisValue = Input.GetAxis("Vertical");
+        if (Camera.current != null)
+        {
+            Camera.current.transform.Translate(new Vector3(xAxisValue, yAxisValue, 0.0f));
+        }
     }
 
     public void moveTowardsInteraction(Transform location)
