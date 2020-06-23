@@ -21,6 +21,8 @@ public class Dialogue
 [System.Serializable]
 public struct Subjects
 {
+    //use game objects for enumeration, then pull all npcs who use the object in the game obnject
+
     public enum SubjectName
     {
         Beer,
