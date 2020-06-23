@@ -11,9 +11,12 @@ public class DialogueManager : MonoBehaviour
 
 
     public Text nameText;
-    public Text dialogueText;
+    public Text introductionText;
+
+    public GameObject buttonPrefab;
 
     public Animator animator;
+    public RectTransform boxTransform;
 
     void Start()
     {
@@ -27,9 +30,15 @@ public class DialogueManager : MonoBehaviour
 
         nameText.text = dialogue.name;
 
+
         subjects.Clear();
 
         sentences.Clear();
+
+        foreach (string introductionText in dialogue.introduction)
+        {
+            sentences.Enqueue(introductionText);
+        }
 
         foreach (SubjectList.Subjects subject in dialogue.subjects)
         {
@@ -38,28 +47,31 @@ public class DialogueManager : MonoBehaviour
 
         //remember to re enqueue the sentences
 
-        DisplayNextSentence();
+        DisplayNextSentence(dialogue);
     }
 
-    public void DisplayNextSentence()
+    public void DisplayNextSentence(Dialogue dialogue)
     {
         if(sentences.Count == 0)
         {
-            EndDialogue();
+            //when sentences run out, display dialogue menu
+            ShowMenu(dialogue);
+            //EndDialogue();
             return;
         }
 
         string sentence = sentences.Dequeue();
+        Debug.Log(sentence);
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
     IEnumerator TypeSentence(string sentence)
     {
-        dialogueText.text = "";
+        introductionText.text = "";
         foreach (char letter in sentence.ToCharArray())
         {
-            dialogueText.text += letter;
+            introductionText.text += letter;
             yield return null;
         }
     }
@@ -67,6 +79,12 @@ public class DialogueManager : MonoBehaviour
     void EndDialogue()
     {
         animator.SetBool("IsOpen", false);
+    }
+
+    void ShowMenu(Dialogue dialogue)
+    {
+        SpeechOptions speechOptions = new SpeechOptions(dialogue.subjects, buttonPrefab, boxTransform);
+        //build a menu made out of buttons for dialogue choices. Probaly best to put this into a seperate class
     }
 
 
