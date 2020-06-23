@@ -7,6 +7,8 @@ public class DialogueManager : MonoBehaviour
 {
 
     private Queue<string> sentences;
+    private List<string> subjects;
+
 
     public Text nameText;
     public Text dialogueText;
@@ -16,20 +18,25 @@ public class DialogueManager : MonoBehaviour
     void Start()
     {
         sentences = new Queue<string>();
+        subjects = new List<string>();
     }
     
-    public void StartDialogue(Dialogue dialogue)
+    public void StartDialogue(Dialogue dialogue)  
     {
         animator.SetBool("IsOpen", true);
 
         nameText.text = dialogue.name;
 
+        subjects.Clear();
+
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        foreach (Dialogue.Subjects subject in dialogue.subjects)
         {
-            sentences.Enqueue(sentence);
+            subjects.Add(nameof(subject.name));
         }
+
+        //remember to re enqueue the sentences
 
         DisplayNextSentence();
     }
