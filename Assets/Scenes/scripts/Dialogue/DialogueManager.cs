@@ -8,15 +8,19 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private List<string> subjects;
+    private Dialogue this_dialogue;
 
 
     public Text nameText;
     public Text introductionText;
 
     public GameObject buttonPrefab;
+    private List<GameObject> instButtons;
 
     public Animator animator;
     public RectTransform boxTransform;
+
+    public GameObject continueButton;
 
     void Start()
     {
@@ -26,36 +30,36 @@ public class DialogueManager : MonoBehaviour
     
     public void StartDialogue(Dialogue dialogue)  
     {
+        this_dialogue = dialogue;
         animator.SetBool("IsOpen", true);
 
-        nameText.text = dialogue.name;
-
+        nameText.text = this_dialogue.name;
 
         subjects.Clear();
 
         sentences.Clear();
 
-        foreach (string introductionText in dialogue.introduction)
+        foreach (string introductionText in this_dialogue.introduction)
         {
             sentences.Enqueue(introductionText);
         }
 
-        foreach (SubjectList.Subjects subject in dialogue.subjects)
+/*        foreach (SubjectList.Subjects subject in dialogue.subjects)
         {
             subjects.Add(nameof(subject.name));
-        }
+        }*/
 
         //remember to re enqueue the sentences
 
-        DisplayNextSentence(dialogue);
+        DisplayNextSentence();
     }
 
-    public void DisplayNextSentence(Dialogue dialogue)
+    public void DisplayNextSentence()
     {
         if(sentences.Count == 0)
         {
             //when sentences run out, display dialogue menu
-            ShowMenu(dialogue);
+            ShowMenu();
             //EndDialogue();
             return;
         }
@@ -64,6 +68,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log(sentence);
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
+        //continueButton.SetActive(true);
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -81,11 +86,47 @@ public class DialogueManager : MonoBehaviour
         animator.SetBool("IsOpen", false);
     }
 
-    void ShowMenu(Dialogue dialogue)
+    void ShowMenu()
     {
-        SpeechOptions speechOptions = new SpeechOptions(dialogue.subjects, buttonPrefab, boxTransform);
+        /*        SpeechOptions speechOptions = new SpeechOptions(dialogue.subjects, buttonPrefab, boxTransform);
+        */
+        //continueButton.SetActive(false);
+
+        foreach (SubjectList.Subject subject in this_dialogue.subjects)
+        {
+            GameObject goButton = Instantiate(buttonPrefab);
+            goButton.transform.SetParent(boxTransform, false);
+            goButton.transform.localScale = new Vector3(1, 1, 1);
+
+            Text text = goButton.GetComponentInChildren<Text>();
+            text.text = subject.name.ToString();
+
+            goButton.GetComponent<Button>().onClick.AddListener(() => StartSubject(subject));
+
+            instButtons.Add(goButton);
+        }
         //build a menu made out of buttons for dialogue choices. Probaly best to put this into a seperate class
     }
+
+    void StartSubject(SubjectList.Subject subject)
+    {
+        //remove subject buttons
+        foreach(GameObject button in instButtons)
+        {
+            Destroy(button);
+        }
+
+
+        foreach(string sentence in subject.subjectLines)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
+
+    }
+
+    
 
 
 }

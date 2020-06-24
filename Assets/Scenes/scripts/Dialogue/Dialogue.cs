@@ -9,7 +9,7 @@ public class Dialogue
     [TextArea(3, 10)]
     public string[] introduction;
 
-    public List<SubjectList.Subjects> subjects = new List<SubjectList.Subjects>();
+    public List<SubjectList.Subject> subjects = new List<SubjectList.Subject>();
 }
 
 

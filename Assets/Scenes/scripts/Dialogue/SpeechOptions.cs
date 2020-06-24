@@ -1,14 +1,19 @@
-﻿using System.Collections.Generic;
+﻿/*
+ * 
+ * 
+ * TODO figure out if we want this as a seperate class
+ * 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class SpeechOptions : MonoBehaviour
 {
-    public List<SubjectList.Subjects> this_options;
+    public List<SubjectList.Subject> this_options;
     public GameObject this_buttonPrefab;
     public RectTransform this_parentPanel;
     private List<GameObject> instButtons;
 
-    public SpeechOptions(List<SubjectList.Subjects> options, GameObject buttonPrefab, RectTransform parentPanel)
+    public SpeechOptions(List<SubjectList.Subject> options, GameObject buttonPrefab, RectTransform parentPanel)
     {
         this_options = options;
         this_buttonPrefab = buttonPrefab;
@@ -20,7 +25,7 @@ public class SpeechOptions : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        foreach (SubjectList.Subjects option in this_options)
+        foreach (SubjectList.Subject option in this_options)
         {
             GameObject goButton = Instantiate(this_buttonPrefab);
             goButton.transform.SetParent(this_parentPanel, false);
@@ -35,3 +40,4 @@ public class SpeechOptions : MonoBehaviour
         Debug.Log("Button clicked = " + buttonNo);
     }
 }
+*/

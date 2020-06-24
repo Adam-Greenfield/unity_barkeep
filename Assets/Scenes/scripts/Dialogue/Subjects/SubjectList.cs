@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class SubjectList : MonoBehaviour
 {
     [System.Serializable]
-    public struct Subjects
+    public struct Subject
     {
         //use game objects for enumeration, then pull all npcs who use the object in the game object
 
