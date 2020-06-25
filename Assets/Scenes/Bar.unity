@@ -1706,6 +1706,7 @@ MonoBehaviour:
     type: 3}
   animator: {fileID: 1367515913}
   boxTransform: {fileID: 410346781}
+  continueButton: {fileID: 1993986241}
 --- !u!4 &867596652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8609941986903772672, guid: 672c263acf4b341408d62363a47b3685,

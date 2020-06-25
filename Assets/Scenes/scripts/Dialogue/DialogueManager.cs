@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
 
     private Queue<string> sentences;
     private List<string> subjects;
+    private List<GameObject> instButtons;
     private Dialogue this_dialogue;
 
 
@@ -15,7 +16,6 @@ public class DialogueManager : MonoBehaviour
     public Text introductionText;
 
     public GameObject buttonPrefab;
-    private List<GameObject> instButtons;
 
     public Animator animator;
     public RectTransform boxTransform;
@@ -26,6 +26,7 @@ public class DialogueManager : MonoBehaviour
     {
         sentences = new Queue<string>();
         subjects = new List<string>();
+        instButtons = new List<GameObject>();
     }
     
     public void StartDialogue(Dialogue dialogue)  
@@ -44,13 +45,6 @@ public class DialogueManager : MonoBehaviour
             sentences.Enqueue(introductionText);
         }
 
-/*        foreach (SubjectList.Subjects subject in dialogue.subjects)
-        {
-            subjects.Add(nameof(subject.name));
-        }*/
-
-        //remember to re enqueue the sentences
-
         DisplayNextSentence();
     }
 
@@ -68,7 +62,7 @@ public class DialogueManager : MonoBehaviour
         Debug.Log(sentence);
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
-        //continueButton.SetActive(true);
+        continueButton.SetActive(true);
     }
 
     IEnumerator TypeSentence(string sentence)
@@ -90,7 +84,7 @@ public class DialogueManager : MonoBehaviour
     {
         /*        SpeechOptions speechOptions = new SpeechOptions(dialogue.subjects, buttonPrefab, boxTransform);
         */
-        //continueButton.SetActive(false);
+        continueButton.SetActive(false);
 
         foreach (SubjectList.Subject subject in this_dialogue.subjects)
         {
@@ -110,8 +104,9 @@ public class DialogueManager : MonoBehaviour
 
     void StartSubject(SubjectList.Subject subject)
     {
+
         //remove subject buttons
-        foreach(GameObject button in instButtons)
+        foreach (GameObject button in instButtons)
         {
             Destroy(button);
         }
