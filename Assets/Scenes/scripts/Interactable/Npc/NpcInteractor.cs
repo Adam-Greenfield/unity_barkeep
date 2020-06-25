@@ -11,7 +11,6 @@ class NpcInteractor : Interactable
     {
         base.Start();
         speech = GetComponent<SpeechObject>();
-        menu = GetComponent<MenuObject>();
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 

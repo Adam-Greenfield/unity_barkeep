@@ -2,21 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(SceneLoader))]
 public class ItemInteractor : Interactable
 {
-
-
+    private SceneLoader levelLoader;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
+        levelLoader = GetComponent<SceneLoader>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public override void InspectFromMenu()
     {
@@ -25,7 +21,8 @@ public class ItemInteractor : Interactable
 
     public override void InteractFromMenu()
     {
-        throw new System.NotImplementedException();
+        levelLoader.FadeToLevel();
+        //call level script to change level
     }
 
 

@@ -6,9 +6,13 @@ public abstract class Interactable : MonoBehaviour
 
     public Transform interactionTransform;
     Transform playerTransform;
+
+    //TODO remove these from unity editor, make them private yet accessesible, maybe static
     public MenuObject menu;
     public PlayerController player;
+    //end TODO
     private Vector3 currentPosition;
+
 
     public float radius = 1.5f;
     bool isFocus = false;
@@ -18,6 +22,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        menu = GetComponent<MenuObject>();
     }
 
 
@@ -65,7 +70,7 @@ public abstract class Interactable : MonoBehaviour
     public void OpenMenu()
     {
         currentPosition = new Vector3(interactionTransform.position.x, interactionTransform.position.y + 2.5f, interactionTransform.position.z);
-
+        Debug.Log(menu);
         menu.Open(currentPosition, InspectFromMenu, InteractFromMenu);
     }
 
