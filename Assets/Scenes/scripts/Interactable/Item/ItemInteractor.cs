@@ -30,7 +30,9 @@ public class ItemInteractor : Interactable
     {
         Debug.Log("picking up " + item.name);
 
-        Destroy(gameObject);
+        if(Inventory.instance.Add(item))
+            Destroy(gameObject);
+
     }
 
     public override void InspectFromMenu()
