@@ -5,17 +5,32 @@ using UnityEngine;
 public class ItemInteractor : Interactable
 {
 
-
+    public Item item;
     // Start is called before the first frame update
-    void Start()
+    public override void Start()
     {
-        
+        base.Start();
     }
 
     // Update is called once per frame
-    void Update()
+    public override void Update()
     {
-        
+        base.Update();
+    }
+
+    public override void Interact()
+    {
+        base.Interact();
+
+        Pickup();
+
+    }
+
+    public void Pickup()
+    {
+        Debug.Log("picking up " + item.name);
+
+        Destroy(gameObject);
     }
 
     public override void InspectFromMenu()
@@ -25,7 +40,7 @@ public class ItemInteractor : Interactable
 
     public override void InteractFromMenu()
     {
-        throw new System.NotImplementedException();
+        player.SetFocus(this);
     }
 
 
