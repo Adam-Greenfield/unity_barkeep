@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: Beer
   m_EditorClassIdentifier: 
   name: Mug of beer
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: f18d9c1e300623442a963037d24515f6, type: 3}
