@@ -48,7 +48,6 @@ public abstract class Interactable : MonoBehaviour
         isFocus = true;
         playerTransform = transform;
         hasInteracted = false;
-
     }
 
     public void onDefocused()

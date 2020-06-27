@@ -23,7 +23,6 @@ public class ItemInteractor : Interactable
         base.Interact();
 
         Pickup();
-
     }
 
     public void Pickup()
