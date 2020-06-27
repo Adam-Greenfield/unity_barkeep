@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+
+    #region Singleton
     public static Inventory instance;
 
     void Awake()
@@ -14,6 +16,7 @@ public class Inventory : MonoBehaviour
         }
         instance = this;
     }
+    #endregion
 
     public List<Item> items = new List<Item>();
 
