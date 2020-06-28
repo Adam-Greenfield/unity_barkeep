@@ -71,7 +71,6 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        Debug.Log(sentence);
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
         continueButton.SetActive(true);
@@ -89,6 +88,7 @@ public class DialogueManager : MonoBehaviour
 
     void EndDialogue()
     {
+        ClearMenu();
         animator.SetBool("IsOpen", false);
     }
 
@@ -108,7 +108,6 @@ public class DialogueManager : MonoBehaviour
             instButtons.Add(goButton);
         }
 
-        //add a button to close the menu
         GameObject exitButton = CreateButton();
 
         Text exitText = exitButton.GetComponentInChildren<Text>();
@@ -117,7 +116,14 @@ public class DialogueManager : MonoBehaviour
         exitButton.GetComponent<Button>().onClick.AddListener(() => EndDialogue());
 
         instButtons.Add(exitButton);
-        //build a menu made out of buttons for dialogue choices. Probaly best to put this into a seperate class
+    }
+
+    void ClearMenu()
+    {
+        foreach (GameObject button in instButtons)
+        {
+            Destroy(button);
+        }
     }
 
     GameObject CreateButton()
@@ -131,14 +137,9 @@ public class DialogueManager : MonoBehaviour
     void StartSubject(SubjectList.Subject subject)
     {
 
-        //remove subject buttons
-        foreach (GameObject button in instButtons)
-        {
-            Destroy(button);
-        }
+        ClearMenu();
 
-
-        foreach(string sentence in subject.subjectLines)
+        foreach (string sentence in subject.subjectLines)
         {
             sentences.Enqueue(sentence);
         }
@@ -146,8 +147,4 @@ public class DialogueManager : MonoBehaviour
         DisplayNextSentence();
 
     }
-
-    
-
-
 }
