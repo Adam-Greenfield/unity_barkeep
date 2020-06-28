@@ -18,21 +18,21 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
-    private Queue<string> sentences;
-    private List<string> subjects;
-    private List<GameObject> instButtons;
-    private Dialogue this_dialogue;
+    Queue<string> sentences;
+    List<string> subjects;
+    List<GameObject> instButtons;
+    Dialogue this_dialogue;
 
 
     public Text nameText;
     public Text introductionText;
 
     public GameObject buttonPrefab;
+    public GameObject continueButton;
 
     public Animator animator;
     public RectTransform boxTransform;
 
-    public GameObject continueButton;
 
     void Start()
     {
@@ -94,24 +94,38 @@ public class DialogueManager : MonoBehaviour
 
     void ShowMenu()
     {
-        /*        SpeechOptions speechOptions = new SpeechOptions(dialogue.subjects, buttonPrefab, boxTransform);
-        */
         continueButton.SetActive(false);
 
         foreach (SubjectList.Subject subject in this_dialogue.subjects)
         {
-            GameObject goButton = Instantiate(buttonPrefab);
-            goButton.transform.SetParent(boxTransform, false);
-            goButton.transform.localScale = new Vector3(1, 1, 1);
+            GameObject goButton = CreateButton();
 
-            Text text = goButton.GetComponentInChildren<Text>();
-            text.text = subject.name.ToString();
+            Text goButtonText = goButton.GetComponentInChildren<Text>();
+            goButtonText.text = subject.name.ToString();
 
             goButton.GetComponent<Button>().onClick.AddListener(() => StartSubject(subject));
 
             instButtons.Add(goButton);
         }
+
+        //add a button to close the menu
+        GameObject exitButton = CreateButton();
+
+        Text exitText = exitButton.GetComponentInChildren<Text>();
+        exitText.text = "Goodbye";
+
+        exitButton.GetComponent<Button>().onClick.AddListener(() => EndDialogue());
+
+        instButtons.Add(exitButton);
         //build a menu made out of buttons for dialogue choices. Probaly best to put this into a seperate class
+    }
+
+    GameObject CreateButton()
+    {
+        GameObject button = Instantiate(buttonPrefab);
+        button.transform.SetParent(boxTransform, false);
+        button.transform.localScale = new Vector3(1, 1, 1);
+        return button;
     }
 
     void StartSubject(SubjectList.Subject subject)
