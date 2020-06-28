@@ -13,7 +13,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         dialogueManager = DialogueManager.instance;
     }
-    public void TriggerDialalogue()
+    public void TriggerDialogue()
     {
         dialogueManager.StartDialogue(dialogue);
     }
