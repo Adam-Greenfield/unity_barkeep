@@ -6,7 +6,7 @@ public abstract class Interactable : MonoBehaviour
 
     public Transform interactionTransform;
     Transform playerTransform;
-    public MenuObject menu;
+    private MenuObject menu;
     public PlayerController player;
     private Vector3 currentPosition;
 
@@ -18,6 +18,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Start()
     {
         player = GameObject.Find("Player").GetComponent<PlayerController>();
+        menu = GetComponent<MenuObject>();
     }
 
 
@@ -38,6 +39,7 @@ public abstract class Interactable : MonoBehaviour
     public virtual void Interact()
     {
         //overwrite in class
+        menu.Close();
         Debug.Log("Interacting with " + transform.name);
     }
 
@@ -46,7 +48,6 @@ public abstract class Interactable : MonoBehaviour
         isFocus = true;
         playerTransform = transform;
         hasInteracted = false;
-
     }
 
     public void onDefocused()
@@ -58,6 +59,9 @@ public abstract class Interactable : MonoBehaviour
 
     void OnDrawGizmosSelected()
     {
+        if (!interactionTransform)
+            interactionTransform = transform;
+
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }

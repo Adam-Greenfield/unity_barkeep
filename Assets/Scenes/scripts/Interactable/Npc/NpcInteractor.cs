@@ -11,7 +11,6 @@ class NpcInteractor : Interactable
     {
         base.Start();
         speech = GetComponent<SpeechObject>();
-        menu = GetComponent<MenuObject>();
         dialogueTrigger = GetComponent<DialogueTrigger>();
     }
 
@@ -25,10 +24,10 @@ class NpcInteractor : Interactable
     public override void Interact()
     {
         Debug.Log("I am interacting with an npc");
-        menu.Close();
+        base.Interact();
         npcHeight = interactionTransform.localScale.y;
         /*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
-        */        // here we will lock the camera above the npc and player, and start some dialogue
+        */        //here we will lock the camera above the npc and player, and start some dialogue
         dialogueTrigger.TriggerDialalogue();
     }
 
