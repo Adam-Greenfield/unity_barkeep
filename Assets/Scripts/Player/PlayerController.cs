@@ -6,6 +6,19 @@ using UnityEngine.EventSystems;
 [RequireComponent(typeof(PlayerMotor))]
 public class PlayerController : MonoBehaviour
 {
+    #region Singleton
+    public static PlayerController instance;
+
+    void Awake()
+    {
+        if (instance != null)
+        {
+            Debug.LogWarning("More than one instance of player controller found");
+        }
+        instance = this;
+    }
+    #endregion
+
     public LayerMask movementMask;
     public Interactable focus;
 

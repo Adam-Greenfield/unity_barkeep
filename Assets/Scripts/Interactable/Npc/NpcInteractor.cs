@@ -23,7 +23,6 @@ class NpcInteractor : Interactable
 
     public override void Interact()
     {
-        Debug.Log("I am interacting with an npc");
         base.Interact();
         npcHeight = interactionTransform.localScale.y;
         /*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
@@ -39,7 +38,6 @@ class NpcInteractor : Interactable
 
     public override void InteractFromMenu()
     {
-        Debug.Log("Interacted with npc");
         player.SetFocus(this);
     }
 }

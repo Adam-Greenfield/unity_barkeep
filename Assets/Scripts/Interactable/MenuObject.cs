@@ -6,16 +6,18 @@ using UnityEngine.UI;
 public class MenuObject : MonoBehaviour
 {
     public GameObject menu;
-    private GameObject instMenu;
-    private Vector2 canvasPos;
-    private Vector2 screenPoint;
-    private RectTransform rectTransform;
-    private GameObject instMenuPanel;
-    private Button instMenuInspect;
-    private Button instMenuInteract;
-    private Button instMenuClose;
-    private Vector3 originPosition;
-    
+
+    GameObject instMenu;
+    RectTransform rectTransform;
+    GameObject instMenuPanel;
+    Button instMenuInspect;
+    Button instMenuInteract;
+    Button instMenuClose;
+
+    Vector2 canvasPos;
+    Vector2 screenPoint;
+    Vector3 originPosition;
+
     void Start()
     {
         

@@ -5,10 +5,11 @@ public abstract class Interactable : MonoBehaviour
 {
 
     public Transform interactionTransform;
+    protected PlayerController player;
+
     Transform playerTransform;
-    private MenuObject menu;
-    public PlayerController player;
-    private Vector3 currentPosition;
+    MenuObject menu;
+    Vector3 currentPosition;
 
     public float radius = 1.5f;
     bool isFocus = false;
@@ -17,7 +18,7 @@ public abstract class Interactable : MonoBehaviour
 
     public virtual void Start()
     {
-        player = GameObject.Find("Player").GetComponent<PlayerController>();
+        player = PlayerController.instance;
         menu = GetComponent<MenuObject>();
     }
 
