@@ -24,12 +24,16 @@ public class Journal : MonoBehaviour
     public List<string> characters;
     public List<string> events;
 
+    Quest[] quests;
+
     // Use this for initialization
     void Start()
     {
         TextAsset asset = Resources.Load<TextAsset>("quests");
-        Quests quests = JsonUtility.FromJson<Quests>(asset.text);
-        foreach(Quest quest in quests.quests)
+        QuestData questData = JsonUtility.FromJson<QuestData>(asset.text);
+        quests = questData.items;
+        Debug.Log(questData.items);
+        foreach (Quest quest in quests)
         {
             //populate journal with quests
             Debug.Log(quest.name);
@@ -42,5 +46,12 @@ public class Journal : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void ActivateQuest(string questId)
+    {
+        //set quest where questId to active
+        Quest questToActivate = Array.Find(quests, quest => quest.id == questId);
+        Debug.Log(questToActivate.name);
     }
 }

@@ -3,13 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class Quests
+public class QuestData
 {
-    public Quest[] quests;
+    public Quest[] items;
 }
 
 [System.Serializable]
-public struct Quest
+public class Quest
 {
     public string id;
     public string name;
@@ -28,11 +28,6 @@ public struct Stage
     public string id;
     public string description;
     public bool completed;
-}
-
-public struct Reward
-{
-    public string name;
 }
 
 

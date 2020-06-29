@@ -15,11 +15,16 @@ public class SubjectList : MonoBehaviour
             Beer,
             Wine,
             Barkeeping,
-            Sodomy
+            Sodomy,
+            Closing_time
         }
 
         public SubjectName name;
         [TextArea(3, 10)]
         public string[] subjectLines;
+
+        public string questId;
+
+        //TODO make a private var called active/discovered, which governs if the player can ask about the subject or not
     }
 }
