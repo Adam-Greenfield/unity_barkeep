@@ -31,6 +31,7 @@ public class Journal : MonoBehaviour
         Quests quests = JsonUtility.FromJson<Quests>(asset.text);
         foreach(Quest quest in quests.quests)
         {
+            //populate journal with quests
             Debug.Log(quest.name);
         }
 

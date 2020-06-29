@@ -1471,7 +1471,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 839165254}
-  player: {fileID: 0}
   radius: 1.5
   item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
 --- !u!114 &839165250
@@ -1717,9 +1716,9 @@ MonoBehaviour:
   introductionText: {fileID: 978076024}
   buttonPrefab: {fileID: 81808103868015367, guid: f25b5b02bbb599f47bf1f9b5230b1cfe,
     type: 3}
+  continueButton: {fileID: 1993986241}
   animator: {fileID: 1367515913}
   boxTransform: {fileID: 410346781}
-  continueButton: {fileID: 1993986241}
 --- !u!4 &867596652 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8609941986903772672, guid: 672c263acf4b341408d62363a47b3685,
@@ -1736,6 +1735,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907478866}
   - component: {fileID: 907478865}
+  - component: {fileID: 907478867}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1771,6 +1771,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907478867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907478864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84e64b53b83360246b64e9ebaa2eb6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters: []
+  events: []
 --- !u!1001 &910979715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2185,7 +2199,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 1184888899}
-  player: {fileID: 0}
   radius: 1.5
   item: {fileID: 11400000, guid: 672cdc16bca3bec40ace925846832e0d, type: 2}
 --- !u!114 &1184888895
@@ -3903,7 +3916,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 1854839687}
-  player: {fileID: 0}
   radius: 1.5
   item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
 --- !u!114 &1854839683
@@ -4550,7 +4562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 1982168820}
-  player: {fileID: 0}
   radius: 1.5
 --- !u!114 &1982168822
 MonoBehaviour:
@@ -4940,7 +4951,7 @@ PrefabInstance:
     - target: {fileID: 3428192651326103778, guid: 9dead6643af1f024ca8996399d00e2b3,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -476
+      value: -469
       objectReference: {fileID: 0}
     - target: {fileID: 3428192651326103778, guid: 9dead6643af1f024ca8996399d00e2b3,
         type: 3}

@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
+public class Quests
+{
+    public Quest[] quests;
+}
+
+[System.Serializable]
 public struct Quest
 {
     public string id;
@@ -29,10 +35,6 @@ public struct Reward
     public string name;
 }
 
-[System.Serializable]
-public class Quests
-{
-    public Quest[] quests;
-}
+
 
 
