@@ -5055,22 +5055,22 @@ PrefabInstance:
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -127.5
+      value: -181.6
       objectReference: {fileID: 0}
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 139.5
+      value: 138.5
       objectReference: {fileID: 0}
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_SizeDelta.x
-      value: 193.62634
+      value: 301.9257
       objectReference: {fileID: 0}
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_SizeDelta.y
-      value: 246.87482
+      value: 244.81201
       objectReference: {fileID: 0}
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
@@ -5105,11 +5105,6 @@ PrefabInstance:
     - target: {fileID: 6565654116918917198, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_Name
-      value: Journal
-      objectReference: {fileID: 0}
-    - target: {fileID: 6565654118777371202, guid: 57b8bfa6013285640b57cb4e923a20bc,
-        type: 3}
-      propertyPath: m_Text
       value: Journal
       objectReference: {fileID: 0}
     m_RemovedComponents: []
