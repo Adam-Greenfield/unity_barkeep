@@ -1591,12 +1591,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 839165248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bf2b2ee38d59d408c7c2117a46e076, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a2218dbb1fef924b955ef36701c8a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 839165254}
   radius: 1.5
   item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
+  questId: thirst_mingus
+  stepId: mingus_get_beer
+  startQuest: 0
 --- !u!114 &839165250
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -64,7 +64,7 @@ public class Journal : MonoBehaviour
     {
         int questToActivateIndex = Array.FindIndex(quests, item => item.id == questId);
         Quest quest = quests[questToActivateIndex];
-        int stepToActivateIndex = quest.steps.FindIndex(step => step.id == stepId);
+        int stepToActivateIndex = quest.steps.FindIndex(item => item.id == stepId);
 
         if(stepToActivateIndex > 0)
         {
@@ -74,8 +74,10 @@ public class Journal : MonoBehaviour
             if (!quest.steps[stepToActivateIndex - 1].completed)
                 Debug.LogWarning("The prior step has not been completed, not updating quest");
         }
-        
 
+        Step step = quest.steps[stepToActivateIndex];
+        quests[questToActivateIndex].steps[stepToActivateIndex].completed = true;
+        quests[questToActivateIndex].steps[stepToActivateIndex + 1].obtained = true;
 
 
     }
