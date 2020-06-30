@@ -15,7 +15,6 @@ public class JournalUI : MonoBehaviour
     void Start()
     {
         journal = Journal.instance;
-
     }
 
     // Update is called once per frame
@@ -23,6 +22,7 @@ public class JournalUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Journal"))
         {
+            UpdateUI();
             journalUI.SetActive(!journalUI.activeSelf);
         }
     }
@@ -35,12 +35,13 @@ public class JournalUI : MonoBehaviour
             GameObject goJournalEntry = Instantiate(journalEntryPrefab);
             goJournalEntry.transform.SetParent(entriesParent);
             JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
+/*            Debug.Log(quest.steps);
 
             foreach (Step step in quest.steps)
             {
                 GameObject stepEntry = Instantiate(stepPrefab);
                 stepEntry.transform.SetParent(journalEntry.stepsParent);
-            }
+            }*/
         }
     }
 }

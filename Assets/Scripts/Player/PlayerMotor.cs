@@ -29,7 +29,6 @@ public class PlayerMotor : MonoBehaviour
 
     public void MoveToPoint(Vector3 point)
     {
-        Debug.Log("I am reaching here");
         agent.SetDestination(point);
     }
 
@@ -42,7 +41,6 @@ public class PlayerMotor : MonoBehaviour
 
     public void StopFollowingTarget()
     {
-        Debug.Log("stopping");
         agent.stoppingDistance = 0;
         agent.updateRotation = true;
         target = null;

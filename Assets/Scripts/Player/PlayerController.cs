@@ -43,8 +43,6 @@ public class PlayerController : MonoBehaviour
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
 
             RaycastHit hit;
-            Debug.Log("something's happening");
-
 
             if (Physics.Raycast(ray, out hit))
             {

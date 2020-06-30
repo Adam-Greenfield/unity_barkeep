@@ -35,7 +35,7 @@ public class Journal : MonoBehaviour
         foreach (Quest quest in quests)
         {
             //populate journal with quests
-            Debug.Log(quest.name);
+            Debug.Log(quest.steps);
         }
 
     }

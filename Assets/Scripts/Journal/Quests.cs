@@ -18,7 +18,7 @@ public class Quest
     public bool active;
     public bool obtained;
     public bool completed;
-    public List<Step> steps;
+    public Step[] steps;
 }
 
 public class Step
