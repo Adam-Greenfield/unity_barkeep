@@ -4,7 +4,7 @@ using System.Collections;
 public class JournalUI : MonoBehaviour
 {
     public Transform entriesParent;
-    public Transform stepsParent;
+
     public GameObject journalUI;
     public GameObject journalEntryPrefab;
     public GameObject stepPrefab;
@@ -31,14 +31,15 @@ public class JournalUI : MonoBehaviour
     {
         foreach(Quest quest in journal.quests)
         {
-            //instantiate each quest in the journal
-            GameObject journalEntry = Instantiate(journalEntryPrefab);
-            journalEntry.transform.SetParent(entriesParent);
+            
+            GameObject goJournalEntry = Instantiate(journalEntryPrefab);
+            goJournalEntry.transform.SetParent(entriesParent);
+            JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
 
-            foreach(Step step in quest.steps)
+            foreach (Step step in quest.steps)
             {
                 GameObject stepEntry = Instantiate(stepPrefab);
-                stepEntry.transform.SetParent(stepsParent);
+                stepEntry.transform.SetParent(journalEntry.stepsParent);
             }
         }
     }

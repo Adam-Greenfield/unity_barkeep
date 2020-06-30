@@ -4,15 +4,6 @@ using System.Collections;
 public class JournalEntry : MonoBehaviour
 {
 
-    // Use this for initialization
-    void Start()
-    {
+    public Transform stepsParent;
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 }
