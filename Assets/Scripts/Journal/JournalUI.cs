@@ -54,7 +54,14 @@ public class JournalUI : MonoBehaviour
                         GameObject goStepEntry = Instantiate(stepPrefab);
                         goStepEntry.transform.SetParent(journalEntry.stepsParent);
                         JournalEntryStep journalEntryStep = goStepEntry.GetComponent<JournalEntryStep>();
-                        journalEntryStep.stepText.GetComponent<Text>().text = step.description;
+                        Text text = journalEntryStep.stepText.GetComponent<Text>();
+                        text.text = step.description;
+
+                        if(step.completed)
+                        {
+                            text.text += "... COMPLETE!";
+
+                        }
                     }
                 }
             }
