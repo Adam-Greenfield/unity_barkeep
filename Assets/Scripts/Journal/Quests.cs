@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
-public class QuestData
+public class Quests
 {
     public Quest[] items;
 }
@@ -18,12 +18,10 @@ public class Quest
     public bool active;
     public bool obtained;
     public bool completed;
-    public List<Stage> stages;
-
-
+    public List<Step> steps;
 }
 
-public struct Stage
+public class Step
 {
     public string id;
     public string description;

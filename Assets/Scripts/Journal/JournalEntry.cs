@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NewBehaviourScript1 : MonoBehaviour
+public class JournalEntry : MonoBehaviour
 {
 
     // Use this for initialization

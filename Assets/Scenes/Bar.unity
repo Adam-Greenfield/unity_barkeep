@@ -297,7 +297,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28a6defaa76dd124da67f184256d8b8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  journalUI: {fileID: 0}
+  entriesParent: {fileID: 7644207456208736988}
+  stepsParent: {fileID: 7644207456208736990}
+  journalUI: {fileID: 823810104}
+  journalEntryPrefab: {fileID: 1894965323422429649, guid: bb7067447eb03c643921cb6c124a690a,
+    type: 3}
+  stepPrefab: {fileID: 7644207456208736989}
 --- !u!114 &81428248
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,6 +1555,12 @@ Transform:
   m_Father: {fileID: 971028038}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &823810104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6565654116918917198, guid: 57b8bfa6013285640b57cb4e923a20bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7644207456208736986}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &839165248
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,6 +1909,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characters: []
   events: []
+  quests: []
 --- !u!1001 &910979715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4776,17 +4788,17 @@ MonoBehaviour:
     - name: 0
       subjectLines:
       - Beer's fine, i guess
-      quest_id: 
+      questId: 
     - name: 1
       subjectLines:
       - Wine's a good drink to get the people going
       - That's what I say anyway
-      quest_id: 
+      questId: 
     - name: 4
       subjectLines:
       - What are you saying, it's closing time!
       - One more beer, then I'm outta here, I promise
-      quest_id: thirst_mingus
+      questId: thirst_mingus
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,
@@ -5246,22 +5258,22 @@ PrefabInstance:
     - target: {fileID: 1746023525173783078, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1746023525173783078, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1746023525173783078, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1746023525173783078, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -146.22466
       objectReference: {fileID: 0}
     - target: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
@@ -5373,31 +5385,54 @@ PrefabInstance:
       propertyPath: m_Name
       value: Journal
       objectReference: {fileID: 0}
+    - target: {fileID: 6565654116918917198, guid: 57b8bfa6013285640b57cb4e923a20bc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7877507854458489303, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877507854458489303, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7877507854458489303, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 98.7683
       objectReference: {fileID: 0}
     - target: {fileID: 7877507854458489303, guid: 57b8bfa6013285640b57cb4e923a20bc,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -9.9015255
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 57b8bfa6013285640b57cb4e923a20bc, type: 3}
 --- !u!224 &7644207456208736987 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6565654116918917197, guid: 57b8bfa6013285640b57cb4e923a20bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7644207456208736986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7644207456208736988 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6565654117292763046, guid: 57b8bfa6013285640b57cb4e923a20bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7644207456208736986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7644207456208736989 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8040085882050620855, guid: 57b8bfa6013285640b57cb4e923a20bc,
+    type: 3}
+  m_PrefabInstance: {fileID: 7644207456208736986}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &7644207456208736990 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 937266525432486077, guid: 57b8bfa6013285640b57cb4e923a20bc,
     type: 3}
   m_PrefabInstance: {fileID: 7644207456208736986}
   m_PrefabAsset: {fileID: 0}

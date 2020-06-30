@@ -3,10 +3,18 @@ using System.Collections;
 
 public class JournalUI : MonoBehaviour
 {
+    public Transform entriesParent;
+    public Transform stepsParent;
     public GameObject journalUI;
-    // Use this for initialization
+    public GameObject journalEntryPrefab;
+    public GameObject stepPrefab;
+
+    Journal journal;
+
+    JournalEntry[] entires;
     void Start()
     {
+        journal = Journal.instance;
 
     }
 
@@ -16,6 +24,22 @@ public class JournalUI : MonoBehaviour
         if (Input.GetButtonDown("Journal"))
         {
             journalUI.SetActive(!journalUI.activeSelf);
+        }
+    }
+
+    void UpdateUI()
+    {
+        foreach(Quest quest in journal.quests)
+        {
+            //instantiate each quest in the journal
+            GameObject journalEntry = Instantiate(journalEntryPrefab);
+            journalEntry.transform.SetParent(entriesParent);
+
+            foreach(Step step in quest.steps)
+            {
+                GameObject stepEntry = Instantiate(stepPrefab);
+                stepEntry.transform.SetParent(stepsParent);
+            }
         }
     }
 }
