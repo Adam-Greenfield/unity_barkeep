@@ -32,7 +32,7 @@
             "steps": [
                 {
                     "id": "mingus_get_beer",
-                    "description": "Go to the bar, grab a beer"
+                    "description": "trick McMingus into leaving"
                 }
             ]
         }

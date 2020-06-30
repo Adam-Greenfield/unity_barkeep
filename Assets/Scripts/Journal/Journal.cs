@@ -16,6 +16,10 @@ public class Journal : MonoBehaviour
             Debug.LogWarning("More than one instance of journal found");
         }
         instance = this;
+
+        TextAsset asset = Resources.Load<TextAsset>("quests");
+        Quests questData = JsonUtility.FromJson<Quests>(asset.text);
+        quests = questData.items;
     }
     #endregion
 
@@ -29,9 +33,7 @@ public class Journal : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        TextAsset asset = Resources.Load<TextAsset>("quests");
-        Quests questData = JsonUtility.FromJson<Quests>(asset.text);
-        quests = questData.items;
+        
         foreach (Quest quest in quests)
         {
             //populate journal with quests
@@ -50,8 +52,49 @@ public class Journal : MonoBehaviour
     public void ActivateQuest(string questId)
     {
         //set quest where questId to active
-        Quest questToActivate = Array.Find(quests, quest => quest.id == questId);
-        questToActivate.obtained = true;
-        Debug.Log(questToActivate.name);
+        int questToActivateIndex = Array.FindIndex(quests, quest => quest.id == questId);
+        quests[questToActivateIndex].obtained = true;
+        //activate first step also
+        quests[questToActivateIndex].steps[0].obtained = true;
+
+
+    }
+
+    public void UpdateQuest(string questId, string stepId)
+    {
+        int questToActivateIndex = Array.FindIndex(quests, item => item.id == questId);
+        Quest quest = quests[questToActivateIndex];
+        int stepToActivateIndex = quest.steps.FindIndex(step => step.id == stepId);
+
+        if(stepToActivateIndex > 0)
+        {
+            if (!quest.steps[stepToActivateIndex - 1].obtained)
+                Debug.LogWarning("The prior step has not been obtained, not updating quest");
+
+            if (!quest.steps[stepToActivateIndex - 1].completed)
+                Debug.LogWarning("The prior step has not been completed, not updating quest");
+        }
+        
+
+
+
+    }
+
+    public bool CheckIfQuestStepIsCurrent(string questId, string stepId)
+    {
+        int questToActivateIndex = Array.FindIndex(quests, item => item.id == questId);
+        Quest quest = quests[questToActivateIndex];
+        //If the quest has not been obtained, or has been completed, return false
+        if (!quest.obtained || quest.completed)
+            return false;
+
+        //If the step has not been reached or has been completed, return false
+        int stepToActivateIndex = quest.steps.FindIndex(item => item.id == stepId);
+        Step step = quest.steps[stepToActivateIndex];
+
+        if (!step.obtained || step.completed)
+            return false;
+
+        return true;
     }
 }

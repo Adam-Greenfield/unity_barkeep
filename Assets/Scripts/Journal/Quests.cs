@@ -18,13 +18,15 @@ public class Quest
     public bool active;
     public bool obtained;
     public bool completed;
-    public Step[] steps;
+    public List<Step> steps;
 }
 
+[System.Serializable]
 public class Step
 {
     public string id;
     public string description;
+    public bool obtained;
     public bool completed;
 }
 

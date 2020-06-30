@@ -73,8 +73,6 @@ public class DialogueManager : MonoBehaviour
                 journal.ActivateQuest(questId);
             
 
-
-
             ShowMenu();
             return;
         }

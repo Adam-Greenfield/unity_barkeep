@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class JournalUI : MonoBehaviour
 {
@@ -9,9 +11,11 @@ public class JournalUI : MonoBehaviour
     public GameObject journalEntryPrefab;
     public GameObject stepPrefab;
 
+
     Journal journal;
 
-    JournalEntry[] entires;
+    List<GameObject> instJournalEntries = new List<GameObject>();
+
     void Start()
     {
         journal = Journal.instance;
@@ -22,26 +26,51 @@ public class JournalUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Journal"))
         {
-            UpdateUI();
+            if (!journalUI.activeSelf)
+                BuildJournal();
+            else
+                ClearJournal();
+
             journalUI.SetActive(!journalUI.activeSelf);
+        }
+    }
+
+    public void BuildJournal()
+    {
+        foreach (Quest quest in journal.quests)
+        {
+            if(quest.obtained)
+            {
+                GameObject goJournalEntry = Instantiate(journalEntryPrefab);
+                goJournalEntry.transform.SetParent(entriesParent);
+                JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
+                journalEntry.journalTitle.GetComponent<Text>().text = quest.name;
+                instJournalEntries.Add(goJournalEntry);
+
+                foreach (Step step in quest.steps)
+                {
+                    if(step.obtained)
+                    {
+                        GameObject goStepEntry = Instantiate(stepPrefab);
+                        goStepEntry.transform.SetParent(journalEntry.stepsParent);
+                        JournalEntryStep journalEntryStep = goStepEntry.GetComponent<JournalEntryStep>();
+                        journalEntryStep.stepText.GetComponent<Text>().text = step.description;
+                    }
+                }
+            }
+        }
+    }
+
+    public void ClearJournal()
+    {
+        foreach(GameObject instJournalEntry in instJournalEntries)
+        {
+            Destroy(instJournalEntry);
         }
     }
 
     void UpdateUI()
     {
-        foreach(Quest quest in journal.quests)
-        {
-            
-            GameObject goJournalEntry = Instantiate(journalEntryPrefab);
-            goJournalEntry.transform.SetParent(entriesParent);
-            JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
-/*            Debug.Log(quest.steps);
-
-            foreach (Step step in quest.steps)
-            {
-                GameObject stepEntry = Instantiate(stepPrefab);
-                stepEntry.transform.SetParent(journalEntry.stepsParent);
-            }*/
-        }
+        
     }
 }
