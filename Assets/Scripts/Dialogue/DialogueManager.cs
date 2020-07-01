@@ -105,7 +105,7 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
 
-        foreach (SubjectList.Subject subject in this_dialogue.subjects)
+        foreach (Subject subject in this_dialogue.subjects)
         {
             GameObject goButton = CreateButton();
 
@@ -143,7 +143,7 @@ public class DialogueManager : MonoBehaviour
         return button;
     }
 
-    void StartSubject(SubjectList.Subject subject)
+    void StartSubject(Subject subject)
     {
 
         ClearMenu();
@@ -151,6 +151,11 @@ public class DialogueManager : MonoBehaviour
         if (subject.questId != "")
         {
             questId = subject.questId;
+        }
+
+        if (subject.stepId != "")
+        {
+            stepId = subject.stepId;
         }
 
 

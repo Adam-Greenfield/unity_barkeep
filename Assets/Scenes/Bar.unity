@@ -4787,36 +4787,28 @@ MonoBehaviour:
     - I'm ah hanging about the bar baby
     - I'm a real expert in alcohol, just ask me I'll tell ya
     subjects:
-    - name: 0
+    - name: Beer
       subjectLines:
       - Beer's fine, i guess
-      startQuest: 0
-      progressQuest: 0
       questId: 
       stepId: 
-    - name: 1
+    - name: Wine
       subjectLines:
       - Wine's a good drink to get the people going
       - That's what I say anyway
-      startQuest: 0
-      progressQuest: 0
       questId: 
       stepId: 
-    - name: 4
+    - name: Closing Time
       subjectLines:
       - What are you saying, it's closing time!
       - One more beer, then I'm outta here, I promise
-      startQuest: 1
-      progressQuest: 0
       questId: thirst_mingus
       stepId: 
-    - name: 5
+    - name: Okay, here's a beer
       subjectLines:
       - Oh boy you brought me a beer, thanks!
       - That's nearly done it you know, but now prehaps I'd like a wine to see me
         off
-      startQuest: 0
-      progressQuest: 1
       questId: thirst_mingus
       stepId: mingus_get_wine
 --- !u!1 &1993986241 stripped
