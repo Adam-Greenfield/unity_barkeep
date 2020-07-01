@@ -30,73 +30,71 @@ public class Journal : MonoBehaviour
 
     public Quest[] quests;
 
-    // Use this for initialization
-    void Start()
+
+    public void ObtainOrUpdateQuest(string questId, string stepId = null)
     {
-        
-        foreach (Quest quest in quests)
+        int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
+        Quest quest = quests[questToObtainOrProgressIndex];
+
+        if (quest.completed)
         {
-            //populate journal with quests
-            Debug.Log(quest.steps);
+            Debug.LogWarning("This quest has already been completed");
+            return;
         }
 
-    }
-
-
-// Update is called once per frame
-    void Update()
-    {
-
-    }
-
-    public void ActivateQuest(string questId)
-    {
-        //set quest where questId to active
-        int questToActivateIndex = Array.FindIndex(quests, quest => quest.id == questId);
-        quests[questToActivateIndex].obtained = true;
-        //activate first step also
-        quests[questToActivateIndex].steps[0].obtained = true;
-
-
-    }
-
-    public void UpdateQuest(string questId, string stepId)
-    {
-        int questToActivateIndex = Array.FindIndex(quests, item => item.id == questId);
-        Quest quest = quests[questToActivateIndex];
-        int stepToActivateIndex = quest.steps.FindIndex(item => item.id == stepId);
-
-        if(stepToActivateIndex > 0)
+        //If the player has not obtained the quest
+        if(!quest.obtained)
         {
-            if (!quest.steps[stepToActivateIndex - 1].obtained)
+            //If no step has been passed and quest is unobtained, assume we want to obtain the quest at the first step, or...
+            //...If the step matches the first step of the quest
+            if (stepId == null ||
+                quest.steps[0].id == stepId)
+            {
+                //We can assign the quest and first step
+                quests[questToObtainOrProgressIndex].obtained = true;
+                quests[questToObtainOrProgressIndex].steps[0].obtained = true;
+                return;
+            } else
+            {
+                Debug.LogWarning("A later step of an un-obtained quest is attempting to be prgressed!");
+                return;
+            }            
+        }
+
+        //The quest has been obtained, now make sure the step is the next step to progress
+        int stepToProgressIndex = quest.steps.FindIndex(item => item.id == stepId);
+
+        //Check the previous steps are completed, for safety, may not need this if CheckIfQuestStepIsCurrent works as intended
+        if (stepToProgressIndex > 0)
+        {
+            if (!quest.steps[stepToProgressIndex - 1].obtained)
+            {
                 Debug.LogWarning("The prior step has not been obtained, not updating quest");
+                return;
+            }
+                
 
-            if (!quest.steps[stepToActivateIndex - 1].completed)
+            if (!quest.steps[stepToProgressIndex - 1].completed)
+            {
                 Debug.LogWarning("The prior step has not been completed, not updating quest");
+                return;
+            }
         }
 
-        Step step = quest.steps[stepToActivateIndex];
-        quests[questToActivateIndex].steps[stepToActivateIndex].completed = true;
-        quests[questToActivateIndex].steps[stepToActivateIndex + 1].obtained = true;
+        //set step to complete and obtain the next step
+        Step step = quest.steps[stepToProgressIndex];
 
+        //last checks to see if the step has been obtained, and has not already been completed
+        if (!step.obtained)
+        {
+            Debug.LogWarning("The step has not been obtained");
+        } else if (step.completed)
+        {
+            Debug.LogWarning("The step has already been completed");
+        }
 
-    }
+        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex].completed = true;
+        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex + 1].obtained = true;
 
-    public bool CheckIfQuestStepIsCurrent(string questId, string stepId)
-    {
-        int questToActivateIndex = Array.FindIndex(quests, item => item.id == questId);
-        Quest quest = quests[questToActivateIndex];
-        //If the quest has not been obtained, or has been completed, return false
-        if (!quest.obtained || quest.completed)
-            return false;
-
-        //If the step has not been reached or has been completed, return false
-        int stepToActivateIndex = quest.steps.FindIndex(item => item.id == stepId);
-        Step step = quest.steps[stepToActivateIndex];
-
-        if (!step.obtained || step.completed)
-            return false;
-
-        return true;
     }
 }

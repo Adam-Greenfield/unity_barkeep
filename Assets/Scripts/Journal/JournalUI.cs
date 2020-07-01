@@ -41,6 +41,7 @@ public class JournalUI : MonoBehaviour
         {
             if(quest.obtained)
             {
+                //if the quest has been obtained, instatiate the prefab to the journal UI
                 GameObject goJournalEntry = Instantiate(journalEntryPrefab);
                 goJournalEntry.transform.SetParent(entriesParent);
                 JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
@@ -51,12 +52,13 @@ public class JournalUI : MonoBehaviour
                 {
                     if(step.obtained)
                     {
+                        //if the step has been obtained, instatiate the prefab to the journal UI
                         GameObject goStepEntry = Instantiate(stepPrefab);
                         goStepEntry.transform.SetParent(journalEntry.stepsParent);
                         JournalEntryStep journalEntryStep = goStepEntry.GetComponent<JournalEntryStep>();
                         Text text = journalEntryStep.stepText.GetComponent<Text>();
                         text.text = step.description;
-
+                        //if the step has been completed, udpate the step
                         if(step.completed)
                         {
                             text.text += "... COMPLETE!";

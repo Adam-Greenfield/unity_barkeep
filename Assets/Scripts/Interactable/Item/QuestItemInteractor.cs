@@ -7,7 +7,6 @@ public class QuestItemInteractor : ItemInteractor
     Journal journal;
     public string questId;
     public string stepId;
-    public bool startQuest = false;
 
 
     public override void Start()
@@ -20,13 +19,7 @@ public class QuestItemInteractor : ItemInteractor
     {
         base.Interact();
 
-
-        if (startQuest)
-            journal.ActivateQuest(questId);
-        else if (journal.CheckIfQuestStepIsCurrent(questId, stepId))
-            journal.UpdateQuest(questId, stepId);
-
-        Pickup();
+        journal.ObtainOrUpdateQuest(questId, stepId);
 
     }
 }

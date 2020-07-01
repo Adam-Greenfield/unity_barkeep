@@ -1598,8 +1598,7 @@ MonoBehaviour:
   radius: 1.5
   item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
   questId: thirst_mingus
-  stepId: mingus_get_beer
-  startQuest: 0
+  stepId: mingus_give_beer
 --- !u!114 &839165250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1681,7 +1680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839165248}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.4555135, y: 5.64, z: 11.9903755}
+  m_LocalPosition: {x: -7.4555135, y: 5.64, z: 11.12}
   m_LocalScale: {x: 0.57476, y: 0.46526822, z: 0.57476}
   m_Children: []
   m_Father: {fileID: 242628459}
@@ -4791,17 +4790,35 @@ MonoBehaviour:
     - name: 0
       subjectLines:
       - Beer's fine, i guess
+      startQuest: 0
+      progressQuest: 0
       questId: 
+      stepId: 
     - name: 1
       subjectLines:
       - Wine's a good drink to get the people going
       - That's what I say anyway
+      startQuest: 0
+      progressQuest: 0
       questId: 
+      stepId: 
     - name: 4
       subjectLines:
       - What are you saying, it's closing time!
       - One more beer, then I'm outta here, I promise
+      startQuest: 1
+      progressQuest: 0
       questId: thirst_mingus
+      stepId: 
+    - name: 5
+      subjectLines:
+      - Oh boy you brought me a beer, thanks!
+      - That's nearly done it you know, but now prehaps I'd like a wine to see me
+        off
+      startQuest: 0
+      progressQuest: 1
+      questId: thirst_mingus
+      stepId: mingus_get_wine
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,
