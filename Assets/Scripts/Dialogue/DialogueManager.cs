@@ -73,8 +73,9 @@ public class DialogueManager : MonoBehaviour
             //check if the subject has a quest attached, if it does, issue quest
             if (questId != null)
                 journal.ObtainOrUpdateQuest(questId, stepId);
-            
 
+            questId = null;
+            stepId = null;
             ShowMenu();
             return;
         }

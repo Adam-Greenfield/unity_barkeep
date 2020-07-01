@@ -1598,7 +1598,7 @@ MonoBehaviour:
   radius: 1.5
   item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
   questId: thirst_mingus
-  stepId: mingus_give_beer
+  stepId: mingus_get_beer
 --- !u!114 &839165250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4810,7 +4810,7 @@ MonoBehaviour:
       - That's nearly done it you know, but now prehaps I'd like a wine to see me
         off
       questId: thirst_mingus
-      stepId: mingus_get_wine
+      stepId: mingus_give_beer
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,
