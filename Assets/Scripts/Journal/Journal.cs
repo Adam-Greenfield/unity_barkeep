@@ -30,7 +30,8 @@ public class Journal : MonoBehaviour
 
     public Quest[] quests;
 
-
+    //A function to start and progress quests, in the case that this quest returns a warning it means that either... 
+    //...something in our quest design has gone wrong, or a prior step of the quest has not been completed
     public void ObtainOrUpdateQuest(string questId, string stepId = null)
     {
         int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
@@ -56,7 +57,7 @@ public class Journal : MonoBehaviour
                 return;
             } else
             {
-                Debug.LogWarning("A later step of an un-obtained quest is attempting to be prgressed!");
+                Debug.LogWarning("A later step of an un-obtained quest is attempting to be progressed!");
                 return;
             }            
         }
@@ -64,7 +65,7 @@ public class Journal : MonoBehaviour
         //The quest has been obtained, now make sure the step is the next step to progress
         int stepToProgressIndex = quest.steps.FindIndex(item => item.id == stepId);
 
-        //Check the previous steps are completed, for safety, may not need this if CheckIfQuestStepIsCurrent works as intended
+        //Check the previous steps are completed
         if (stepToProgressIndex > 0)
         {
             if (!quest.steps[stepToProgressIndex - 1].obtained)
@@ -88,11 +89,14 @@ public class Journal : MonoBehaviour
         if (!step.obtained)
         {
             Debug.LogWarning("The step has not been obtained");
+            return;
         } else if (step.completed)
         {
             Debug.LogWarning("The step has already been completed");
+            return;
         }
 
+        //set the step to completed and the next step to obtained
         quests[questToObtainOrProgressIndex].steps[stepToProgressIndex].completed = true;
         quests[questToObtainOrProgressIndex].steps[stepToProgressIndex + 1].obtained = true;
 
