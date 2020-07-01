@@ -21,10 +21,17 @@ public class Quest
     public bool completed;
     public List<Step> steps;
 
+    public int GetStepIndexById(string stepId)
+    {
+        return steps.FindIndex(item => item.id == stepId);
+    }
+
     public Step GetStepById(string stepId)
     {
-
+        return steps[GetStepIndexById(stepId)];
     }
+
+    
 }
 
 [System.Serializable]
