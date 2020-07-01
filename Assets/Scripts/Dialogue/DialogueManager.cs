@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -35,7 +36,6 @@ public class DialogueManager : MonoBehaviour
 
     public Animator animator;
     public RectTransform boxTransform;
-
 
     void Start()
     {
@@ -106,6 +106,8 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
 
+
+
         foreach (Subject subject in this_dialogue.subjects)
         {
             GameObject goButton = CreateButton();
@@ -114,6 +116,19 @@ public class DialogueManager : MonoBehaviour
             goButtonText.text = subject.name.ToString();
 
             goButton.GetComponent<Button>().onClick.AddListener(() => StartSubject(subject));
+
+            instButtons.Add(goButton);
+        }
+
+        //only show the subject if it has been obtained
+        foreach (QuestSubject questSubject in this_dialogue.questSubjects)
+        {
+            GameObject goButton = CreateButton();
+
+            Text goButtonText = goButton.GetComponentInChildren<Text>();
+            goButtonText.text = questSubject.name.ToString();
+
+            goButton.GetComponent<Button>().onClick.AddListener(() => StartQuestSubject(questSubject));
 
             instButtons.Add(goButton);
         }
@@ -127,6 +142,7 @@ public class DialogueManager : MonoBehaviour
 
         instButtons.Add(exitButton);
     }
+
 
     void ClearMenu()
     {
@@ -146,19 +162,21 @@ public class DialogueManager : MonoBehaviour
 
     void StartSubject(Subject subject)
     {
-
         ClearMenu();
 
-        if (subject.questId != "")
+        foreach (string sentence in subject.subjectLines)
         {
-            questId = subject.questId;
+            sentences.Enqueue(sentence);
         }
 
-        if (subject.stepId != "")
-        {
-            stepId = subject.stepId;
-        }
+        DisplayNextSentence();
 
+    }
+
+    void StartQuestSubject(QuestSubject subject)
+    {
+        
+        ClearMenu();
 
         foreach (string sentence in subject.subjectLines)
         {
@@ -167,6 +185,5 @@ public class DialogueManager : MonoBehaviour
 
         //If the subject has an associated quest id, at the end of the last sentence, activate the quest
         DisplayNextSentence();
-
     }
 }

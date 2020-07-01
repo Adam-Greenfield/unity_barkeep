@@ -4783,34 +4783,31 @@ MonoBehaviour:
   dialogue:
     name: Sleezy McMingus
     introduction:
-    - Heya, it's a me, sleezy boi
-    - I'm ah hanging about the bar baby
-    - I'm a real expert in alcohol, just ask me I'll tell ya
+    - Ah hey there Ahm sleezy McMingus and boy do I know a lot of facts
+    - Just ask me I'll tell ya
     subjects:
     - name: Beer
       subjectLines:
-      - Beer's fine, i guess
-      questId: 
-      stepId: 
+      - Yeah Beer's a good drink
     - name: Wine
       subjectLines:
-      - Wine's a good drink to get the people going
-      - That's what I say anyway
-      questId: 
-      stepId: 
-    - name: Closing Time
+      - Wine really get's me going oh yis
+      - Lemme tell you all this talk's getting me thirsty
+    questSubjects:
+    - name: Um sir, it's closing time
       subjectLines:
-      - What are you saying, it's closing time!
-      - One more beer, then I'm outta here, I promise
+      - What, closing time!
+      - Get me  a beer, then I'll go
       questId: thirst_mingus
       stepId: 
-    - name: Okay, here's a beer
+      stepRequirement: 
+    - name: Okay then sir, here's your beer
       subjectLines:
-      - Oh boy you brought me a beer, thanks!
-      - That's nearly done it you know, but now prehaps I'd like a wine to see me
-        off
+      - Oh wow, a beer!
+      - Lemme crack down this beer, then talk to me again
       questId: thirst_mingus
       stepId: mingus_give_beer
+      stepRequirement: 
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,

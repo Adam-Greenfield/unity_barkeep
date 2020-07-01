@@ -16,10 +16,6 @@ public class Journal : MonoBehaviour
             Debug.LogWarning("More than one instance of journal found");
         }
         instance = this;
-
-        TextAsset asset = Resources.Load<TextAsset>("quests");
-        Quests questData = JsonUtility.FromJson<Quests>(asset.text);
-        quests = questData.items;
     }
     #endregion
 
@@ -34,8 +30,10 @@ public class Journal : MonoBehaviour
     //...something in our quest design has gone wrong, or a prior step of the quest has not been completed
     public void ObtainOrUpdateQuest(string questId, string stepId = null)
     {
-        int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
-        Quest quest = quests[questToObtainOrProgressIndex];
+        /*int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
+        Quest quest = quests[questToObtainOrProgressIndex];*/
+        Quest quest = QuestHelper.GetQuestById(questId);
+        int questIndex = QuestHelper.GetQuestIndexById(questId);
 
         if (quest.completed)
         {
@@ -50,8 +48,8 @@ public class Journal : MonoBehaviour
             if (stepId == null)
             {
                 //We can assign the quest and first step
-                quests[questToObtainOrProgressIndex].obtained = true;
-                quests[questToObtainOrProgressIndex].steps[0].obtained = true;
+                quests[questIndex].obtained = true;
+                quests[questIndex].steps[0].obtained = true;
                 return;
             } else
             {
@@ -100,10 +98,10 @@ public class Journal : MonoBehaviour
         }
 
         //set the step to completed and the next step to obtained
-        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex].completed = true;
+        quests[questIndex].steps[stepToProgressIndex].completed = true;
 
         //TODO check all prior steps have been completed before issuing a new step, then we can obtain multiple steps at once
-        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex + 1].obtained = true;
+        quests[questIndex].steps[stepToProgressIndex + 1].obtained = true;
 
     }
 }
