@@ -78,7 +78,6 @@ public class Journal : MonoBehaviour
                 return;
             }
                 
-
             if (!quest.steps[stepToProgressIndex - 1].completed)
             {
                 Debug.LogWarning("The prior step has not been completed, not updating quest");
@@ -102,6 +101,8 @@ public class Journal : MonoBehaviour
 
         //set the step to completed and the next step to obtained
         quests[questToObtainOrProgressIndex].steps[stepToProgressIndex].completed = true;
+
+        //TODO check all prior steps have been completed before issuing a new step, then we can obtain multiple steps at once
         quests[questToObtainOrProgressIndex].steps[stepToProgressIndex + 1].obtained = true;
 
     }
