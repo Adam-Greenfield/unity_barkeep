@@ -46,10 +46,8 @@ public class Journal : MonoBehaviour
         //If the player has not obtained the quest
         if(!quest.obtained)
         {
-            //If no step has been passed and quest is unobtained, assume we want to obtain the quest at the first step, or...
-            //...If the step matches the first step of the quest
-            if (stepId == null ||
-                quest.steps[0].id == stepId)
+            //If no step has been passed and quest is unobtained, assume we want to obtain the quest at the first step
+            if (stepId == null)
             {
                 //We can assign the quest and first step
                 quests[questToObtainOrProgressIndex].obtained = true;
@@ -60,6 +58,12 @@ public class Journal : MonoBehaviour
                 Debug.LogWarning("A later step of an un-obtained quest is attempting to be progressed!");
                 return;
             }            
+        }
+
+        if(stepId == null)
+        {
+            Debug.LogWarning("Trying to obtain already obtained quest");
+            return;
         }
 
         //The quest has been obtained, now make sure the step is the next step to progress
