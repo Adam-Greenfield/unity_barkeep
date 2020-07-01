@@ -1,0 +1,40 @@
+﻿{
+    "items": [
+        {
+            "id": "thirst_mingus",
+            "name": "Quench the ever lasting thirst of McMingus",
+            "overview": "This customer seems a bit off kilter, and I'm meant to be closing! maybe if I bring him a drink it'll sort him out and he'll go away",
+            "on_complete": "Okay wow this guy seems to be insatiable, and we are not getting on to option 3, time to switch gears",
+            "steps": [
+                {
+                    "id": "mingus_get_beer",
+                    "description": "Go to the bar, grab a beer"
+                },
+                {
+                    "id": "mingus_give_beer",
+                    "description": "I've got the beer, now to deliver it to McMingus, who has become visibly exited"
+                },
+                {
+                    "id": "mingus_get_wine",
+                    "description": "Go to the bar, grab a wine"
+                },
+                {
+                    "id": "mingus_give_wine",
+                    "description": "Okay, got the wine, let's take it to McMingus, who is absolutely losing it with glee"
+                }
+            ]
+        },
+        {
+            "id": "rid_of_mingus",
+            "name": "get rid of McMingus",
+            "overview": "Okay this character is never going to leave, maybe I can trick him out the door so I can close up",
+            "on_complete": "Wow okay thank god for that",
+            "steps": [
+                {
+                    "id": "mingus_get_beer",
+                    "description": "trick McMingus into leaving"
+                }
+            ]
+        }
+    ]
+}

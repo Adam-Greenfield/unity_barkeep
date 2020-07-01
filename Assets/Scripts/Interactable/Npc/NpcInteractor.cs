@@ -27,7 +27,7 @@ class NpcInteractor : Interactable
         npcHeight = interactionTransform.localScale.y;
         /*        Camera.main.GetComponent<CameraController>().moveTowardsInteraction(interactionTransform);
         */        //here we will lock the camera above the npc and player, and start some dialogue
-        dialogueTrigger.TriggerDialalogue();
+        dialogueTrigger.TriggerDialogue();
     }
 
 

@@ -18,11 +18,14 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
+    Journal journal;
+
     Queue<string> sentences;
     List<string> subjects;
     List<GameObject> instButtons;
     Dialogue this_dialogue;
-
+    string questId;
+    string stepId;
 
     public Text nameText;
     public Text introductionText;
@@ -36,9 +39,12 @@ public class DialogueManager : MonoBehaviour
 
     void Start()
     {
+        journal = Journal.instance;
         sentences = new Queue<string>();
         subjects = new List<string>();
         instButtons = new List<GameObject>();
+        questId = null;
+        stepId = null;
     }
     
     public void StartDialogue(Dialogue dialogue)  
@@ -64,9 +70,12 @@ public class DialogueManager : MonoBehaviour
     {
         if(sentences.Count == 0)
         {
-            //when sentences run out, display dialogue menu
+            //check if the subject has a quest attached, if it does, issue quest
+            if (questId != null)
+                journal.ObtainOrUpdateQuest(questId, stepId);
+            
+
             ShowMenu();
-            //EndDialogue();
             return;
         }
 
@@ -96,7 +105,7 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
 
-        foreach (SubjectList.Subject subject in this_dialogue.subjects)
+        foreach (Subject subject in this_dialogue.subjects)
         {
             GameObject goButton = CreateButton();
 
@@ -134,16 +143,28 @@ public class DialogueManager : MonoBehaviour
         return button;
     }
 
-    void StartSubject(SubjectList.Subject subject)
+    void StartSubject(Subject subject)
     {
 
         ClearMenu();
+
+        if (subject.questId != "")
+        {
+            questId = subject.questId;
+        }
+
+        if (subject.stepId != "")
+        {
+            stepId = subject.stepId;
+        }
+
 
         foreach (string sentence in subject.subjectLines)
         {
             sentences.Enqueue(sentence);
         }
 
+        //If the subject has an associated quest id, at the end of the last sentence, activate the quest
         DisplayNextSentence();
 
     }
