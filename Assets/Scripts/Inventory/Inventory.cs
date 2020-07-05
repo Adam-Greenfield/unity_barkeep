@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,5 +49,10 @@ public class Inventory : MonoBehaviour
 
         if (onItemChangedCallback != null)
             onItemChangedCallback.Invoke();
+    }
+
+    public bool CheckPresence(Item item)
+    {
+        return items.Contains(item);
     }
 }

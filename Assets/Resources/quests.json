@@ -15,12 +15,8 @@
                     "description": "I've got the beer, now to deliver it to McMingus, who has become visibly exited"
                 },
                 {
-                    "id": "mingus_get_wine",
-                    "description": "Go to the bar, grab a wine"
-                },
-                {
-                    "id": "mingus_give_wine",
-                    "description": "Okay, got the wine, let's take it to McMingus, who is absolutely losing it with glee"
+                    "id": "mingus_get_and_give_wine",
+                    "description": "Go to the bar, grab a wine, give it to Mingus. But this time, I wint tell you when you've aquired it, you have to figure it out!"
                 }
             ]
         },

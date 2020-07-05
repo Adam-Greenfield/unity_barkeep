@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,8 +25,6 @@ public class DialogueManager : MonoBehaviour
     List<string> subjects;
     List<GameObject> instButtons;
     Dialogue this_dialogue;
-    string questId;
-    string stepId;
 
     public Text nameText;
     public Text introductionText;
@@ -36,15 +35,12 @@ public class DialogueManager : MonoBehaviour
     public Animator animator;
     public RectTransform boxTransform;
 
-
     void Start()
     {
         journal = Journal.instance;
         sentences = new Queue<string>();
         subjects = new List<string>();
         instButtons = new List<GameObject>();
-        questId = null;
-        stepId = null;
     }
     
     public void StartDialogue(Dialogue dialogue)  
@@ -71,11 +67,6 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             //check if the subject has a quest attached, if it does, issue quest
-            if (questId != null)
-                journal.ObtainOrUpdateQuest(questId, stepId);
-
-            questId = null;
-            stepId = null;
             ShowMenu();
             return;
         }
@@ -106,6 +97,8 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
 
+
+
         foreach (Subject subject in this_dialogue.subjects)
         {
             GameObject goButton = CreateButton();
@@ -118,6 +111,22 @@ public class DialogueManager : MonoBehaviour
             instButtons.Add(goButton);
         }
 
+        //only show the subject if it has been obtained
+        foreach (QuestSubject questSubject in this_dialogue.questSubjects)
+        {
+            if (questSubject.CheckIfSubjectAvailable())
+            {
+                GameObject goButton = CreateButton();
+
+                Text goButtonText = goButton.GetComponentInChildren<Text>();
+                goButtonText.text = questSubject.name.ToString();
+
+                goButton.GetComponent<Button>().onClick.AddListener(() => StartQuestSubject(questSubject));
+
+                instButtons.Add(goButton);
+            }
+        }
+
         GameObject exitButton = CreateButton();
 
         Text exitText = exitButton.GetComponentInChildren<Text>();
@@ -127,6 +136,7 @@ public class DialogueManager : MonoBehaviour
 
         instButtons.Add(exitButton);
     }
+
 
     void ClearMenu()
     {
@@ -146,27 +156,34 @@ public class DialogueManager : MonoBehaviour
 
     void StartSubject(Subject subject)
     {
-
         ClearMenu();
-
-        if (subject.questId != "")
-        {
-            questId = subject.questId;
-        }
-
-        if (subject.stepId != "")
-        {
-            stepId = subject.stepId;
-        }
-
 
         foreach (string sentence in subject.subjectLines)
         {
             sentences.Enqueue(sentence);
         }
 
-        //If the subject has an associated quest id, at the end of the last sentence, activate the quest
         DisplayNextSentence();
+    }
 
+    void StartQuestSubject(QuestSubject subject)
+    {
+        
+        ClearMenu();
+        
+        journal.ObtainOrUpdateQuest(subject.questId, subject.stepId);
+
+        if(subject.stepItemRequirement)
+        {
+            //remove required item from inventory
+            Inventory.instance.Remove(subject.stepItemRequirement);
+        }
+
+        foreach (string sentence in subject.subjectLines)
+        {
+            sentences.Enqueue(sentence);
+        }
+
+        DisplayNextSentence();
     }
 }

@@ -19,6 +19,7 @@ public class JournalUI : MonoBehaviour
     void Start()
     {
         journal = Journal.instance;
+        journal.onJournalUpdateCallback += BuildJournal;
     }
 
     // Update is called once per frame
@@ -26,17 +27,13 @@ public class JournalUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Journal"))
         {
-            if (!journalUI.activeSelf)
-                BuildJournal();
-            else
-                ClearJournal();
-
             journalUI.SetActive(!journalUI.activeSelf);
         }
     }
 
-    public void BuildJournal()
+    void BuildJournal()
     {
+        ClearJournal();
         foreach (Quest quest in journal.quests)
         {
             if(quest.obtained)
@@ -47,6 +44,10 @@ public class JournalUI : MonoBehaviour
                 JournalEntry journalEntry = goJournalEntry.GetComponent<JournalEntry>();
                 journalEntry.journalTitle.GetComponent<Text>().text = quest.name;
                 instJournalEntries.Add(goJournalEntry);
+
+                if (quest.completed)
+                    journalEntry.journalTitle.GetComponent<Text>().text += "... COMPLETE!";
+
 
                 foreach (Step step in quest.steps)
                 {

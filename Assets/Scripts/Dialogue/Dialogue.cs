@@ -10,6 +10,7 @@ public class Dialogue
     public string[] introduction;
 
     public List<Subject> subjects = new List<Subject>();
+    public List<QuestSubject> questSubjects = new List<QuestSubject>();
 }
 
 

@@ -41,7 +41,6 @@ public abstract class Interactable : MonoBehaviour
     {
         //overwrite in class
         menu.Close();
-        Debug.Log("Interacting with " + transform.name);
     }
 
     public void onFocused(Transform transform)

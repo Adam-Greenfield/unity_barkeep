@@ -1,12 +1,8 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
-[System.Serializable]
-public class Quests
-{
-    public Quest[] items;
-}
 
 [System.Serializable]
 public class Quest
@@ -19,17 +15,15 @@ public class Quest
     public bool obtained;
     public bool completed;
     public List<Step> steps;
+
+    public int GetStepIndexById(string stepId)
+    {
+        Debug.Log(stepId);
+        return steps.FindIndex(item => item.id == stepId);
+    }
+
+    public Step GetStepById(string stepId)
+    {
+        return steps[GetStepIndexById(stepId)];
+    }
 }
-
-[System.Serializable]
-public class Step
-{
-    public string id;
-    public string description;
-    public bool obtained;
-    public bool completed;
-}
-
-
-
-

@@ -9,6 +9,9 @@ public class Journal : MonoBehaviour
     #region Singleton
     public static Journal instance;
 
+    public delegate void OnJournalUpdate();
+    public OnJournalUpdate onJournalUpdateCallback;
+
     void Awake()
     {
         if (instance != null)
@@ -16,10 +19,6 @@ public class Journal : MonoBehaviour
             Debug.LogWarning("More than one instance of journal found");
         }
         instance = this;
-
-        TextAsset asset = Resources.Load<TextAsset>("quests");
-        Quests questData = JsonUtility.FromJson<Quests>(asset.text);
-        quests = questData.items;
     }
     #endregion
 
@@ -30,12 +29,22 @@ public class Journal : MonoBehaviour
 
     public Quest[] quests;
 
+    void Start()
+    {
+        quests = QuestHelper.GetQuestData();
+    }
+
     //A function to start and progress quests, in the case that this quest returns a warning it means that either... 
     //...something in our quest design has gone wrong, or a prior step of the quest has not been completed
     public void ObtainOrUpdateQuest(string questId, string stepId = null)
     {
-        int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
-        Quest quest = quests[questToObtainOrProgressIndex];
+        if (stepId == "")
+            stepId = null;
+
+        /*int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
+        Quest quest = quests[questToObtainOrProgressIndex];*/
+        Quest quest = QuestHelper.GetQuestById(questId, quests);
+        int questIndex = QuestHelper.GetQuestIndexById(questId, quests);
 
         if (quest.completed)
         {
@@ -50,8 +59,10 @@ public class Journal : MonoBehaviour
             if (stepId == null)
             {
                 //We can assign the quest and first step
-                quests[questToObtainOrProgressIndex].obtained = true;
-                quests[questToObtainOrProgressIndex].steps[0].obtained = true;
+                quests[questIndex].obtained = true;
+                quests[questIndex].steps[0].obtained = true;
+                if (onJournalUpdateCallback != null)
+                    onJournalUpdateCallback.Invoke();
                 return;
             } else
             {
@@ -67,7 +78,7 @@ public class Journal : MonoBehaviour
         }
 
         //The quest has been obtained, now make sure the step is the next step to progress
-        int stepToProgressIndex = quest.steps.FindIndex(item => item.id == stepId);
+        int stepToProgressIndex = quest.GetStepIndexById(stepId);
 
         //Check the previous steps are completed
         if (stepToProgressIndex > 0)
@@ -86,7 +97,7 @@ public class Journal : MonoBehaviour
         }
 
         //set step to complete and obtain the next step
-        Step step = quest.steps[stepToProgressIndex];
+        Step step = quest.GetStepById(stepId);
 
         //last checks to see if the step has been obtained, and has not already been completed
         if (!step.obtained)
@@ -100,10 +111,22 @@ public class Journal : MonoBehaviour
         }
 
         //set the step to completed and the next step to obtained
-        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex].completed = true;
+        quests[questIndex].steps[stepToProgressIndex].completed = true;
+
+        //check to see if last step has been completed
+        if (step == quest.steps[quest.steps.Count - 1])
+        {
+            quests[questIndex].completed = true;
+            if (onJournalUpdateCallback != null)
+                onJournalUpdateCallback.Invoke();
+            return;
+        }
 
         //TODO check all prior steps have been completed before issuing a new step, then we can obtain multiple steps at once
-        quests[questToObtainOrProgressIndex].steps[stepToProgressIndex + 1].obtained = true;
+        quests[questIndex].steps[stepToProgressIndex + 1].obtained = true;
+
+        if (onJournalUpdateCallback != null)
+            onJournalUpdateCallback.Invoke();
 
     }
 }
