@@ -108,6 +108,13 @@ public class Journal : MonoBehaviour
         //set the step to completed and the next step to obtained
         quests[questIndex].steps[stepToProgressIndex].completed = true;
 
+        //check to see if last step has been completed
+        if (step == quest.steps[quest.steps.Count - 1])
+        {
+            Debug.Log("Quest has been completed!");
+            return;
+        }
+
         //TODO check all prior steps have been completed before issuing a new step, then we can obtain multiple steps at once
         quests[questIndex].steps[stepToProgressIndex + 1].obtained = true;
 

@@ -173,6 +173,12 @@ public class DialogueManager : MonoBehaviour
         
         journal.ObtainOrUpdateQuest(subject.questId, subject.stepId);
 
+        if(subject.stepItemRequirement)
+        {
+            //remove required item from inventory
+            Inventory.instance.Remove(subject.stepItemRequirement);
+        }
+
         foreach (string sentence in subject.subjectLines)
         {
             sentences.Enqueue(sentence);

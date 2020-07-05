@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 1184888895}
   - component: {fileID: 1184888894}
   m_Layer: 0
-  m_Name: QuestWine
+  m_Name: Wine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2323,14 +2323,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184888893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a2218dbb1fef924b955ef36701c8a1d, type: 3}
+  m_Script: {fileID: 11500000, guid: e1bf2b2ee38d59d408c7c2117a46e076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 1184888899}
   radius: 1.5
-  item: {fileID: 11400000, guid: 73f7649dd84939743a7feb964377255a, type: 2}
-  questId: thirst_mingus
-  stepId: mingus_get_wine
+  item: {fileID: 11400000, guid: 672cdc16bca3bec40ace925846832e0d, type: 2}
 --- !u!114 &1184888895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2375,7 +2373,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a49d31fa1727e83488f2fac2829e909b, type: 2}
+  - {fileID: 2100000, guid: 262c01da245a02d4eb55d135a2486aa5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4821,7 +4819,8 @@ MonoBehaviour:
         for a final quest
       questId: thirst_mingus
       stepId: mingus_get_and_give_wine
-      stepItemRequirement: {fileID: 0}
+      stepItemRequirement: {fileID: 11400000, guid: 672cdc16bca3bec40ace925846832e0d,
+        type: 2}
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,

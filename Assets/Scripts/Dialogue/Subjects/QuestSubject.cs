@@ -20,7 +20,7 @@ public class QuestSubject : Subject
 
         Quest quest = QuestHelper.GetQuestById(questId, journal.quests);
         if (stepId == "")
-            return !quest.completed;
+            return !quest.completed && !quest.obtained;
 
 
         Step step = quest.GetStepById(stepId);
