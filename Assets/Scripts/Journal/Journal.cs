@@ -9,6 +9,9 @@ public class Journal : MonoBehaviour
     #region Singleton
     public static Journal instance;
 
+    public delegate void OnJournalUpdate();
+    public OnJournalUpdate onJournalUpdateCallback;
+
     void Awake()
     {
         if (instance != null)
@@ -58,6 +61,8 @@ public class Journal : MonoBehaviour
                 //We can assign the quest and first step
                 quests[questIndex].obtained = true;
                 quests[questIndex].steps[0].obtained = true;
+                if (onJournalUpdateCallback != null)
+                    onJournalUpdateCallback.Invoke();
                 return;
             } else
             {
@@ -112,11 +117,15 @@ public class Journal : MonoBehaviour
         if (step == quest.steps[quest.steps.Count - 1])
         {
             Debug.Log("Quest has been completed!");
+            quests[questIndex].completed = true;
             return;
         }
 
         //TODO check all prior steps have been completed before issuing a new step, then we can obtain multiple steps at once
         quests[questIndex].steps[stepToProgressIndex + 1].obtained = true;
+
+        if (onJournalUpdateCallback != null)
+            onJournalUpdateCallback.Invoke();
 
     }
 }
