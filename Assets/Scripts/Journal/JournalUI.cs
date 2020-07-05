@@ -45,7 +45,7 @@ public class JournalUI : MonoBehaviour
                 journalEntry.journalTitle.GetComponent<Text>().text = quest.name;
                 instJournalEntries.Add(goJournalEntry);
 
-                if(quest.completed)
+                if (quest.completed)
                     journalEntry.journalTitle.GetComponent<Text>().text += "... COMPLETE!";
 
 

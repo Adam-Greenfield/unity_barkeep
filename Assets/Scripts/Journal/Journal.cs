@@ -116,8 +116,9 @@ public class Journal : MonoBehaviour
         //check to see if last step has been completed
         if (step == quest.steps[quest.steps.Count - 1])
         {
-            Debug.Log("Quest has been completed!");
             quests[questIndex].completed = true;
+            if (onJournalUpdateCallback != null)
+                onJournalUpdateCallback.Invoke();
             return;
         }
 
