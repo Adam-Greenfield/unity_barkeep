@@ -12,10 +12,16 @@ public class QuestSubject : Subject
 
 
 
-    public void CheckIfSubjectAvailable()
+    public bool CheckIfSubjectAvailable()
     {
         Quest quest = QuestHelper.GetQuestById(questId);
-        Step step = quest.GetStepById()
+        if (stepId == "")
+            return !quest.completed;
+
+
+        Step step = quest.GetStepById(stepId);
+
         //check if quest is obtained and if the step is obtained
+        return step.obtained && !step.completed;
     }
 }

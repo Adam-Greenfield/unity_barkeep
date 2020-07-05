@@ -65,7 +65,7 @@ public class Journal : MonoBehaviour
         }
 
         //The quest has been obtained, now make sure the step is the next step to progress
-        int stepToProgressIndex = quest.steps.FindIndex(item => item.id == stepId);
+        int stepToProgressIndex = quest.GetStepIndexById(stepId);
 
         //Check the previous steps are completed
         if (stepToProgressIndex > 0)
@@ -84,7 +84,7 @@ public class Journal : MonoBehaviour
         }
 
         //set step to complete and obtain the next step
-        Step step = quest.steps[stepToProgressIndex];
+        Step step = quest.GetStepById(stepId);
 
         //last checks to see if the step has been obtained, and has not already been completed
         if (!step.obtained)

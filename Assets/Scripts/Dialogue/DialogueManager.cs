@@ -123,14 +123,17 @@ public class DialogueManager : MonoBehaviour
         //only show the subject if it has been obtained
         foreach (QuestSubject questSubject in this_dialogue.questSubjects)
         {
-            GameObject goButton = CreateButton();
+            if (questSubject.CheckIfSubjectAvailable())
+            {
+                GameObject goButton = CreateButton();
 
-            Text goButtonText = goButton.GetComponentInChildren<Text>();
-            goButtonText.text = questSubject.name.ToString();
+                Text goButtonText = goButton.GetComponentInChildren<Text>();
+                goButtonText.text = questSubject.name.ToString();
 
-            goButton.GetComponent<Button>().onClick.AddListener(() => StartQuestSubject(questSubject));
+                goButton.GetComponent<Button>().onClick.AddListener(() => StartQuestSubject(questSubject));
 
-            instButtons.Add(goButton);
+                instButtons.Add(goButton);
+            }
         }
 
         GameObject exitButton = CreateButton();
