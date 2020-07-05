@@ -26,14 +26,22 @@ public class Journal : MonoBehaviour
 
     public Quest[] quests;
 
+    void Start()
+    {
+        quests = QuestHelper.GetQuestData();
+    }
+
     //A function to start and progress quests, in the case that this quest returns a warning it means that either... 
     //...something in our quest design has gone wrong, or a prior step of the quest has not been completed
     public void ObtainOrUpdateQuest(string questId, string stepId = null)
     {
+        if (stepId == "")
+            stepId = null;
+
         /*int questToObtainOrProgressIndex = Array.FindIndex(quests, item => item.id == questId);
         Quest quest = quests[questToObtainOrProgressIndex];*/
-        Quest quest = QuestHelper.GetQuestById(questId);
-        int questIndex = QuestHelper.GetQuestIndexById(questId);
+        Quest quest = QuestHelper.GetQuestById(questId, quests);
+        int questIndex = QuestHelper.GetQuestIndexById(questId, quests);
 
         if (quest.completed)
         {

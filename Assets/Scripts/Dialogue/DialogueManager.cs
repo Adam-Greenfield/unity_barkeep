@@ -25,8 +25,6 @@ public class DialogueManager : MonoBehaviour
     List<string> subjects;
     List<GameObject> instButtons;
     Dialogue this_dialogue;
-    string questId;
-    string stepId;
 
     public Text nameText;
     public Text introductionText;
@@ -43,8 +41,6 @@ public class DialogueManager : MonoBehaviour
         sentences = new Queue<string>();
         subjects = new List<string>();
         instButtons = new List<GameObject>();
-        questId = null;
-        stepId = null;
     }
     
     public void StartDialogue(Dialogue dialogue)  
@@ -71,11 +67,6 @@ public class DialogueManager : MonoBehaviour
         if(sentences.Count == 0)
         {
             //check if the subject has a quest attached, if it does, issue quest
-            if (questId != null)
-                journal.ObtainOrUpdateQuest(questId, stepId);
-
-            questId = null;
-            stepId = null;
             ShowMenu();
             return;
         }
@@ -173,20 +164,20 @@ public class DialogueManager : MonoBehaviour
         }
 
         DisplayNextSentence();
-
     }
 
     void StartQuestSubject(QuestSubject subject)
     {
         
         ClearMenu();
+        
+        journal.ObtainOrUpdateQuest(subject.questId, subject.stepId);
 
         foreach (string sentence in subject.subjectLines)
         {
             sentences.Enqueue(sentence);
         }
 
-        //If the subject has an associated quest id, at the end of the last sentence, activate the quest
         DisplayNextSentence();
     }
 }

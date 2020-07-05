@@ -1596,7 +1596,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 839165254}
   radius: 1.5
-  item: {fileID: 11400000, guid: 7f80f9d319c567b49afeb2fe75d3dde2, type: 2}
+  item: {fileID: 11400000, guid: 04336be0718755b488cb2aed936b3fe5, type: 2}
   questId: thirst_mingus
   stepId: mingus_get_beer
 --- !u!114 &839165250
@@ -2308,7 +2308,7 @@ GameObject:
   - component: {fileID: 1184888895}
   - component: {fileID: 1184888894}
   m_Layer: 0
-  m_Name: Wine
+  m_Name: QuestWine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2323,12 +2323,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1184888893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1bf2b2ee38d59d408c7c2117a46e076, type: 3}
+  m_Script: {fileID: 11500000, guid: 0a2218dbb1fef924b955ef36701c8a1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 1184888899}
   radius: 1.5
-  item: {fileID: 11400000, guid: 672cdc16bca3bec40ace925846832e0d, type: 2}
+  item: {fileID: 11400000, guid: 73f7649dd84939743a7feb964377255a, type: 2}
+  questId: thirst_mingus
+  stepId: mingus_get_wine
 --- !u!114 &1184888895
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2373,7 +2375,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 262c01da245a02d4eb55d135a2486aa5, type: 2}
+  - {fileID: 2100000, guid: a49d31fa1727e83488f2fac2829e909b, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2401,7 +2403,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184888893}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1184888899
 Transform:
   m_ObjectHideFlags: 0
@@ -2410,7 +2412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1184888893}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.5055134, y: 5.559291, z: 15.760376}
+  m_LocalPosition: {x: -2.5055134, y: 5.93, z: 15.760376}
   m_LocalScale: {x: 0.57476, y: 0.46526822, z: 0.57476}
   m_Children: []
   m_Father: {fileID: 242628459}
@@ -4797,17 +4799,29 @@ MonoBehaviour:
     - name: Um sir, it's closing time
       subjectLines:
       - What, closing time!
-      - Get me  a beer, then I'll go
+      - Get me  a beer, then I'll go. But not any beer
+      - It has to be a quest beer
       questId: thirst_mingus
       stepId: 
-      stepRequirement: 
+      stepItemRequirement: {fileID: 0}
     - name: Okay then sir, here's your beer
       subjectLines:
       - Oh wow, a beer!
-      - Lemme crack down this beer, then talk to me again
+      - Lemme crack down this beer. I will abolutely leave now...
+      - ...maybe after a crisp wine. But this time, any wine will do, you figure
+        it out!
       questId: thirst_mingus
       stepId: mingus_give_beer
-      stepRequirement: 
+      stepItemRequirement: {fileID: 11400000, guid: 04336be0718755b488cb2aed936b3fe5,
+        type: 2}
+    - name: Okay I got you wine, please now will you leave?
+      subjectLines:
+      - Oh wow wine!
+      - I will drink this wine so you can complete your quest, thentalk to me again
+        for a final quest
+      questId: thirst_mingus
+      stepId: mingus_get_and_give_wine
+      stepItemRequirement: {fileID: 0}
 --- !u!1 &1993986241 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3428192652659683753, guid: 9dead6643af1f024ca8996399d00e2b3,
@@ -5136,6 +5150,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 867574897}
+    - target: {fileID: 3428192652659683755, guid: 9dead6643af1f024ca8996399d00e2b3,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: DisplayNextSentence
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dead6643af1f024ca8996399d00e2b3, type: 3}
 --- !u!1001 &3638101299896419421
