@@ -1174,7 +1174,6 @@ GameObject:
   - component: {fileID: 488829461}
   - component: {fileID: 488829460}
   - component: {fileID: 488829459}
-  - component: {fileID: 488829458}
   - component: {fileID: 488829455}
   - component: {fileID: 488829454}
   - component: {fileID: 488829453}
@@ -1195,50 +1194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 488829451}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8fd921d5f560b3744be35ab4ce30261a, type: 3}
+  m_Script: {fileID: 11500000, guid: c4ca6ab6ae5818a4e9835e62f6bb899a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue:
-    name: Sleezy McMingus
-    introduction:
-    - Ah hey there Ahm sleezy McMingus and boy do I know a lot of facts
-    - Just ask me I'll tell ya
-    subjects:
-    - name: Beer
-      subjectLines:
-      - Yeah Beer's a good drink
-    - name: Wine
-      subjectLines:
-      - Wine really get's me going oh yis
-      - Lemme tell you all this talk's getting me thirsty
-    questSubjects:
-    - name: Um sir, it's closing time
-      subjectLines:
-      - What, closing time!
-      - Get me  a beer, then I'll go. But not any beer
-      - It has to be a quest beer
-      questId: thirst_mingus
-      stepId: 
-      stepItemRequirement: {fileID: 0}
-    - name: Okay then sir, here's your beer
-      subjectLines:
-      - Oh wow, a beer!
-      - Lemme crack down this beer. I will abolutely leave now...
-      - ...maybe after a crisp wine. But this time, any wine will do, you figure
-        it out!
-      questId: thirst_mingus
-      stepId: mingus_give_beer
-      stepItemRequirement: {fileID: 11400000, guid: 04336be0718755b488cb2aed936b3fe5,
-        type: 2}
-    - name: Okay I got you wine, please now will you leave?
-      subjectLines:
-      - Oh wow wine!
-      - I will drink this wine so you can complete your quest, thentalk to me again
-        for a final quest
-      questId: thirst_mingus
-      stepId: mingus_get_and_give_wine
-      stepItemRequirement: {fileID: 11400000, guid: 672cdc16bca3bec40ace925846832e0d,
-        type: 2}
+  lookRadius: 10
 --- !u!114 &488829453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1303,22 +1262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   menu: {fileID: 4315093416703086009, guid: 3690e3f2a2b4e2f4ab758eecc3b233af, type: 3}
---- !u!114 &488829458
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 488829451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d399b6f61f1d6774f9c5a80c7440114c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementMask:
-    serializedVersion: 2
-    m_Bits: 256
-  goal: {fileID: 487147635}
 --- !u!136 &488829459
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1342,7 +1285,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 488829451}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.4
+  m_Radius: 0.2
   m_Speed: 3
   m_Acceleration: 20
   avoidancePriority: 50
@@ -2216,6 +2159,7 @@ GameObject:
   - component: {fileID: 907478866}
   - component: {fileID: 907478865}
   - component: {fileID: 907478867}
+  - component: {fileID: 907478868}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2266,6 +2210,19 @@ MonoBehaviour:
   characters: []
   events: []
   quests: []
+--- !u!114 &907478868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907478864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaa255c69bad3564f8729cfddc52ef1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1318897168}
 --- !u!1001 &910979715
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2724,6 +2681,7 @@ GameObject:
   - component: {fileID: 1126636399}
   - component: {fileID: 1126636398}
   - component: {fileID: 1126636397}
+  - component: {fileID: 1126636402}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -2739,7 +2697,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126636395}
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 14.15, y: 0.72, z: 6.16}
+  m_LocalPosition: {x: 14.15, y: 0.46, z: 6.16}
   m_LocalScale: {x: 0.5, y: 4, z: 6}
   m_Children: []
   m_Father: {fileID: 487803497}
@@ -2832,6 +2790,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1126636395}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!208 &1126636402
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1126636395}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &1136952589 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3638101298851742032, guid: aa183042200d01f4aba30ebbbab8dd62,
@@ -3151,6 +3125,7 @@ GameObject:
   - component: {fileID: 1318897170}
   - component: {fileID: 1318897169}
   - component: {fileID: 1318897174}
+  - component: {fileID: 1318897175}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3230,7 +3205,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318897168}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.53, y: 1.74, z: 8.24}
+  m_LocalPosition: {x: 8.75, y: 1.74, z: -2.53}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 258407752}
@@ -3249,6 +3224,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6041d27539d604d7e8911adf426e2e60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &1318897175
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1318897168}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!4 &1338944347 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4332630164278541551, guid: 1222f01942cfe47b38be8ad669a0e7bd,
