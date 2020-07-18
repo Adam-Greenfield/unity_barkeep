@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FeatureInteractor : MonoBehaviour
+public class FeatureInteractor : Interactable
 {
-    // Start is called before the first frame update
-    void Start()
+    public override void InspectFromMenu()
     {
-        
+        throw new System.NotImplementedException();
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void InteractFromMenu()
     {
-        
+        Open();
+    }
+
+    void Open()
+    {
+        transform.position += new Vector3(0, 4, 0);
     }
 }
