@@ -25,7 +25,21 @@ public class EnemyController : MonoBehaviour
         if(distance <= lookRadius)
         {
             agent.SetDestination(target.position);
+
+            if(distance <= agent.stoppingDistance)
+            {
+                FaceTarget();
+                //to attack, start animation, have box collider on attacking part, register a hit and cause animation on enemy
+            }
+
         }
+    }
+
+    void FaceTarget()
+    {
+        Vector3 direction = (target.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.y));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
     }
 
     void OnDrawGizmosSelected()
