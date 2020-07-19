@@ -9,9 +9,14 @@ public class PlayerCombat : MonoBehaviour
 
     public Animator animator;
     PlayerMotor motor;
+    PlayerManager playerManager;
+    Weapon equippedWeapon;
+    GameObject instWeapon;
+
     // Use this for initialization
     void Start()
     {
+        playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
         animationLocked = false;
     }
@@ -21,7 +26,7 @@ public class PlayerCombat : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(!animationLocked)
+            if(!animationLocked && playerManager.equippedWeapon != null)
                 Attack();
         }
     }
@@ -33,17 +38,24 @@ public class PlayerCombat : MonoBehaviour
 
     void Attack()
     {
+        instWeapon = playerManager.GetInstWeapon();
+        Debug.Log("Atacking with " + playerManager.equippedWeapon);
         motor.DisableMoving();
-        StartCoroutine(PlayAnimation("Attack", "Attack_punch", ResumeMoving));
+        StartCoroutine(PlayAttackAnimation("Attack", "Attack_punch", ResumeMoving));
     }
 
     delegate void OnFinishDelegate();
 
-    IEnumerator PlayAnimation(string trigger, string animation, OnFinishDelegate OnFinish = null)
+    IEnumerator PlayAttackAnimation(string trigger, string animation, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
-        animator.SetTrigger("Attack");
+        animator.SetTrigger(trigger);
+
+        //turn on hitbox
+        HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
+
+        hitBox.onTriggerActivatedCallback += HitTarget;
 
         while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + animation))
         {
@@ -65,6 +77,11 @@ public class PlayerCombat : MonoBehaviour
         animationLocked = false;
 
         if (OnFinish != null)
-            OnFinish();
+            OnFinish.Invoke();
+    }
+
+    void HitTarget(Collider entity)
+    {
+        Debug.Log("entity recieved in the combat controller as " + entity);
     }
 }
