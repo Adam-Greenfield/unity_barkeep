@@ -40,7 +40,10 @@ public class PlayerCombat : MonoBehaviour
     {
         instWeapon = playerManager.GetInstWeapon();
         Debug.Log("Atacking with " + playerManager.equippedWeapon);
+
         motor.DisableMoving();
+        motor.FaceMouse();
+
         StartCoroutine(PlayAttackAnimation("Attack", "Attack_punch", ResumeMoving));
     }
 
@@ -54,6 +57,7 @@ public class PlayerCombat : MonoBehaviour
 
         //turn on hitbox
         HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
+        Debug.Log("got to hitbox");
 
         hitBox.onTriggerActivatedCallback += HitTarget;
 
@@ -70,9 +74,6 @@ public class PlayerCombat : MonoBehaviour
             counter += Time.deltaTime;
             yield return null;
         }
-
-        //Done playing. Do something below!
-        Debug.Log("Done Playing");
 
         animationLocked = false;
 

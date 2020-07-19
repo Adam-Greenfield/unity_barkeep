@@ -8,12 +8,13 @@ public class PlayerMotor : MonoBehaviour
 {
 
     NavMeshAgent agent;
-
+    Camera cam;
     Transform target;
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        cam = Camera.main;
     }
 
 
@@ -49,6 +50,7 @@ public class PlayerMotor : MonoBehaviour
     public void DisableMoving()
     {
         agent.isStopped = true;
+        agent.ResetPath();
     }
 
     public void EnableMoving()
@@ -61,5 +63,17 @@ public class PlayerMotor : MonoBehaviour
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0f, direction.y));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+    }
+
+    public void FaceMouse()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            transform.LookAt(hit.point);
+        }
     }
 }
