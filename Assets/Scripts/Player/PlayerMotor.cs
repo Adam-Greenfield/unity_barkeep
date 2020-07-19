@@ -46,6 +46,16 @@ public class PlayerMotor : MonoBehaviour
         target = null;
     }
 
+    public void DisableMoving()
+    {
+        agent.isStopped = true;
+    }
+
+    public void EnableMoving()
+    {
+        agent.isStopped = false;
+    }
+
     void FaceTarget()
     {
         Vector3 direction = (target.position - transform.position).normalized;

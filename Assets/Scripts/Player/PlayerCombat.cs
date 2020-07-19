@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
+[RequireComponent(typeof(PlayerMotor))]
 public class PlayerCombat : MonoBehaviour
 {
     bool animationLocked;
 
     public Animator animator;
+    PlayerMotor motor;
     // Use this for initialization
     void Start()
     {
+        motor = GetComponent<PlayerMotor>();
         animationLocked = false;
     }
 
@@ -22,18 +26,26 @@ public class PlayerCombat : MonoBehaviour
         }
     }
 
-    void Attack()
+    void ResumeMoving()
     {
-        StartCoroutine(PlayAnimation("Attack"));
+        motor.EnableMoving();
     }
 
-    IEnumerator PlayAnimation(string trigger)
+    void Attack()
+    {
+        motor.DisableMoving();
+        StartCoroutine(PlayAnimation("Attack", "Attack_punch", ResumeMoving));
+    }
+
+    delegate void OnFinishDelegate();
+
+    IEnumerator PlayAnimation(string trigger, string animation, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
         animator.SetTrigger("Attack");
 
-        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer.Attack_punch"))
+        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + animation))
         {
             yield return null;
         }
@@ -51,5 +63,8 @@ public class PlayerCombat : MonoBehaviour
         Debug.Log("Done Playing");
 
         animationLocked = false;
+
+        if (OnFinish != null)
+            OnFinish();
     }
 }
