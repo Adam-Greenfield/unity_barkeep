@@ -51,6 +51,7 @@ public class PlayerMotor : MonoBehaviour
     {
         agent.isStopped = true;
         agent.ResetPath();
+        agent.velocity = Vector3.zero;
     }
 
     public void EnableMoving()

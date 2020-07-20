@@ -1,16 +1,14 @@
-﻿/*
- * TODO abstract comabt out into player and Enemy combat
- * 
- * using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
-public class Combat : MonoBehaviour
+public abstract class Combat : MonoBehaviour
 {
+    protected bool animationLocked;
 
     // Use this for initialization
     void Start()
     {
-
+        animationLocked = false;
     }
 
     // Update is called once per frame
@@ -19,20 +17,12 @@ public class Combat : MonoBehaviour
 
     }
 
-    void Attack()
-    {
-        instWeapon = playerManager.GetInstWeapon();
-        Debug.Log("Atacking with " + playerManager.equippedWeapon);
+    public abstract void Attack();
 
-        motor.DisableMoving();
-        motor.FaceMouse();
 
-        StartCoroutine(PlayAttackAnimation("Attack", "Attack_punch", ResumeMoving));
-    }
+    protected delegate void OnFinishDelegate();
 
-    delegate void OnFinishDelegate();
-
-    IEnumerator PlayAttackAnimation(string trigger, string animation, OnFinishDelegate OnFinish = null)
+    protected IEnumerator PlayAttackAnimation(string trigger, string animation, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
@@ -69,4 +59,3 @@ public class Combat : MonoBehaviour
         Debug.Log("entity recieved in the combat controller as " + entity);
     }
 }
-*/

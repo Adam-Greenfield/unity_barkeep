@@ -3051,11 +3051,11 @@ GameObject:
   - component: {fileID: 1318897173}
   - component: {fileID: 1318897172}
   - component: {fileID: 1318897171}
+  - component: {fileID: 1318897175}
   - component: {fileID: 1318897170}
   - component: {fileID: 1318897169}
   - component: {fileID: 1318897174}
   - component: {fileID: 1318897176}
-  - component: {fileID: 1318897175}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -3179,7 +3179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1318897168}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 24e794b51b55f844693ac4b9330c91c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 7c3f22ac5a36f0a44b5023193b0475a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1646559453}
