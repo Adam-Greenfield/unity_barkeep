@@ -6,17 +6,18 @@ using System;
 public class PlayerCombat : Combat
 {
 
-    public Animator animator;
     PlayerMotor motor;
     PlayerManager playerManager;
-    Weapon equippedWeapon;
-    GameObject instWeapon;
+
+
 
     // Use this for initialization
     void Start()
     {
         playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
+        equippedWeapon = playerManager.GetWeapon();
+        InstantiateWeapon(equippedWeapon);
     }
 
     // Update is called once per frame
@@ -24,7 +25,7 @@ public class PlayerCombat : Combat
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(!animationLocked && playerManager.equippedWeapon != null)
+            if(!animationLocked && equippedWeapon != null)
                 Attack();
         }
     }
@@ -36,8 +37,8 @@ public class PlayerCombat : Combat
 
     public override void Attack()
     {
-        instWeapon = playerManager.GetInstWeapon();
-        Debug.Log("Atacking with " + playerManager.equippedWeapon);
+        //every time we attack, we need to check which weapon is equipped
+        Debug.Log("Atacking with " + equippedWeapon);
 
         motor.DisableMoving();
         motor.FaceMouse();
@@ -45,8 +46,5 @@ public class PlayerCombat : Combat
         StartCoroutine(PlayAttackAnimation("Attack", "Attack_punch", animator, instWeapon, ResumeMoving));
     }
 
-    void HitTarget(Collider entity)
-    {
-        Debug.Log("entity recieved in the combat controller as " + entity);
-    }
+
 }

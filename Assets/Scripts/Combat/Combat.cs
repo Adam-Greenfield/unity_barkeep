@@ -5,6 +5,12 @@ public abstract class Combat : MonoBehaviour
 {
     protected bool animationLocked;
 
+    public Animator animator;
+    public Weapon equippedWeapon;
+    public GameObject rightHandObject;
+
+    protected GameObject instWeapon;
+
     // Use this for initialization
     void Start()
     {
@@ -15,6 +21,20 @@ public abstract class Combat : MonoBehaviour
     void Update()
     {
 
+    }
+
+    public void EquipWeapon(Weapon weapon)
+    {
+        Debug.Log("Equipping weapon " + weapon);
+        equippedWeapon = weapon;
+        InstantiateWeapon(weapon);
+    }
+
+    public void InstantiateWeapon(Weapon weapon)
+    {
+        Debug.Log("Creating weapon as " + weapon.name);
+        instWeapon = Instantiate(weapon.prefab);
+        instWeapon.transform.SetParent(rightHandObject.transform, false);
     }
 
     public abstract void Attack();
