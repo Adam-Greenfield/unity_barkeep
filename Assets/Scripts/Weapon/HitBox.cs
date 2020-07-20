@@ -21,6 +21,7 @@ public class HitBox : MonoBehaviour
     void OnTriggerEnter(Collider entity)
     {
         Debug.Log("Hitbox is colliding with " + entity);
-        onTriggerActivatedCallback.Invoke(entity);
+        if(onTriggerActivatedCallback != null)
+            onTriggerActivatedCallback.Invoke(entity);
     }
 }
