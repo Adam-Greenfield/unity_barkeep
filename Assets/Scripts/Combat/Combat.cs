@@ -46,6 +46,8 @@ public abstract class Combat : MonoBehaviour
     {
         animationLocked = true;
 
+        
+
         animator.SetTrigger(trigger);
 
         //turn on hitbox

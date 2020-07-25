@@ -4788,10 +4788,15 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2846814562060321896, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2846814562060321897, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.27
+      value: -2.19
       objectReference: {fileID: 0}
     - target: {fileID: 2846814562060321897, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
         type: 3}
@@ -4801,7 +4806,7 @@ PrefabInstance:
     - target: {fileID: 2846814562060321897, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 11.17
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 2846814562060321897, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
         type: 3}
@@ -4852,6 +4857,11 @@ PrefabInstance:
         type: 3}
       propertyPath: orthographic size
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2846814562060321902, guid: 6bef3ce14003dbe45bbc831d8a5fca03,
+        type: 3}
+      propertyPath: orthographic
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bef3ce14003dbe45bbc831d8a5fca03, type: 3}
@@ -5970,6 +5980,7 @@ MonoBehaviour:
     introduction:
     - Ah hey there Ahm sleezy McMingus and boy do I know a lot of facts
     - Just ask me I'll tell ya
+    - I have added more dialogu
     subjects:
     - name: Beer
       subjectLines:
