@@ -10,7 +10,7 @@ public class EnemyCombat : Combat
     void Start()
     {
         //instantiate the weapon
-        InstantiateWeapon(equippedWeapon);
+        //InstantiateWeapon(equippedWeapon);
 
     }
 

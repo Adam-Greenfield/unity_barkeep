@@ -3,8 +3,6 @@ using System.Collections;
 using UnityEditor;
 
 [CreateAssetMenu(fileName = "New Weapon", menuName = "Inventory/Equipment/Weapon")]
-public class Weapon : Item
+public class Weapon : Equipment
 {
-    public int damage;
-    public GameObject prefab;
 }

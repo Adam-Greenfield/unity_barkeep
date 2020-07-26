@@ -22,6 +22,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask movementMask;
     public Interactable focus;
 
+    public GOEquipmentSlot[] gOEquipmentSlots;
+
     Camera cam;
     PlayerMotor motor;
     

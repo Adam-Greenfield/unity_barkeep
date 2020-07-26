@@ -2,7 +2,7 @@
 using System.Collections;
 using UnityEngine.AI;
 
-public class EnemyController : MonoBehaviour
+public class EnemyController : MonoBehaviour, IInstantiateEquipment
 {
 
     public float lookRadius = 10f;
@@ -46,5 +46,10 @@ public class EnemyController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
+    }
+
+    public void InstantiateEquipmentOnCharacter(Equipment equipment)
+    {
+        throw new System.NotImplementedException();
     }
 }

@@ -4,7 +4,7 @@ using System.Collections;
 [CreateAssetMenu(fileName = "New Equiptment", menuName = "Inventory/Equipment")]
 public class Equipment : Item
 {
-
+    public GameObject prefab;
     public EquipmentSlot equipSlot;
 
     public int armourMod;
@@ -16,7 +16,11 @@ public class Equipment : Item
         EquipmentManager.instance.Equip(this);
         RemoveFromInventory();
     }
-
 }
 
 public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet }
+
+interface IInstantiateEquipment
+{
+    void InstantiateEquipmentOnCharacter(Equipment equipment);
+}

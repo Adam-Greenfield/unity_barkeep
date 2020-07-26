@@ -6,7 +6,6 @@ public abstract class Combat : MonoBehaviour
 
     public Animator animator;
     public Weapon equippedWeapon;
-    public GameObject rightHandObject;
 
     protected GameObject instWeapon;
     protected bool animationLocked;
@@ -24,20 +23,6 @@ public abstract class Combat : MonoBehaviour
     void Update()
     {
 
-    }
-
-    public void EquipWeapon(Weapon weapon)
-    {
-        Debug.Log("Equipping weapon " + weapon);
-        equippedWeapon = weapon;
-        InstantiateWeapon(weapon);
-    }
-
-    public void InstantiateWeapon(Weapon weapon)
-    {
-        Debug.Log("Creating weapon as " + weapon.name);
-        instWeapon = Instantiate(weapon.prefab);
-        instWeapon.transform.SetParent(rightHandObject.transform, false);
     }
 
     public abstract void Attack();
@@ -83,7 +68,7 @@ public abstract class Combat : MonoBehaviour
     {
         Debug.Log("entity recieved in the combat controller as " + entity);
         Combat entityComabt = entity.GetComponent<Combat>();
-        entityComabt.RecieveHit(stats.damage.GetValue() + equippedWeapon.damage);
+        //entityComabt.RecieveHit(stats.damage.GetValue() + equippedWeapon.damage);
     }
 
     public void RecieveHit(int damage)

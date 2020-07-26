@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Runtime.ExceptionServices;
+using System.Linq;
 
-public class EquipmentManager : MonoBehaviour
+public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
 {
     #region Singleton
     public static EquipmentManager instance;
@@ -18,6 +19,7 @@ public class EquipmentManager : MonoBehaviour
     #endregion
     // Use this for initialization
     Equipment[] currentEquipment;
+    public PlayerController playerController;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
     public OnEquipmentChanged onEquipmentChanged;
@@ -31,6 +33,8 @@ public class EquipmentManager : MonoBehaviour
 
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
+
+        //Instantiate any equipped equipment
     }
 
     void Update()
@@ -57,6 +61,9 @@ public class EquipmentManager : MonoBehaviour
             onEquipmentChanged.Invoke(newItem, oldItem);
 
         currentEquipment[slotIndex] = newItem;
+
+        //instantiate the equipment
+        InstantiateEquipmentOnCharacter(newItem);
     }
 
     public void Unequip (int slotIndex)
@@ -78,6 +85,23 @@ public class EquipmentManager : MonoBehaviour
         for(int i = 0; i < currentEquipment.Length; i ++)
         {
             Unequip(i);
+        }
+    }
+
+    public void InstantiateEquipmentOnCharacter(Equipment equipment)
+    {
+        Debug.Log("Creating equipment as " + equipment.name);
+        GameObject instEquipment = null;
+
+        if (equipment.prefab != null)
+        {
+
+            //check currentEquipment[slotIndex] in array of goEquipmentSlots
+            GOEquipmentSlot equipSlot = playerController.gOEquipmentSlots.FirstOrDefault(x => x.equipSlot == equipment.equipSlot);
+
+
+            instEquipment = Instantiate(equipment.prefab);
+            instEquipment.transform.SetParent(equipSlot.gObodyPart.transform, false);
         }
     }
 }

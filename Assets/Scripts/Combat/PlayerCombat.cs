@@ -16,8 +16,6 @@ public class PlayerCombat : Combat
     {
         playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
-        equippedWeapon = playerManager.GetWeapon();
-        InstantiateWeapon(equippedWeapon);
     }
 
     // Update is called once per frame
