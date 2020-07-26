@@ -3,13 +3,16 @@ using System.Collections;
 
 public abstract class Combat : MonoBehaviour
 {
-    protected bool animationLocked;
 
     public Animator animator;
     public Weapon equippedWeapon;
     public GameObject rightHandObject;
 
     protected GameObject instWeapon;
+    protected bool animationLocked;
+
+    [SerializeField]
+    CharacterStats stats;
 
     // Use this for initialization
     void Start()
@@ -79,5 +82,12 @@ public abstract class Combat : MonoBehaviour
     void HitTarget(Collider entity)
     {
         Debug.Log("entity recieved in the combat controller as " + entity);
+        Combat entityComabt = entity.GetComponent<Combat>();
+        entityComabt.RecieveHit(stats.damage.GetValue() + equippedWeapon.damage);
+    }
+
+    public void RecieveHit(int damage)
+    {
+        Debug.Log(transform.name + " has been hit, taking " + damage + " damage");
     }
 }

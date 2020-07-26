@@ -120,7 +120,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 999e0b43fefbf194397dbeae7e253c3c, type: 2}
 --- !u!1 &81428245
 GameObject:
   m_ObjectHideFlags: 0
@@ -517,12 +517,12 @@ GameObject:
   - component: {fileID: 1318897173}
   - component: {fileID: 1318897172}
   - component: {fileID: 1318897171}
-  - component: {fileID: 1318897177}
   - component: {fileID: 1318897175}
   - component: {fileID: 1318897170}
   - component: {fileID: 1318897169}
   - component: {fileID: 1318897174}
   - component: {fileID: 1318897176}
+  - component: {fileID: 1318897177}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -652,45 +652,24 @@ MonoBehaviour:
   animator: {fileID: 1646559453}
   equippedWeapon: {fileID: 0}
   rightHandObject: {fileID: 1986535286}
---- !u!23 &1318897177
-MeshRenderer:
+  damage: 7
+--- !u!114 &1318897177
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1318897168}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: d17eb4f83a5b840008c750675dc01ed5, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633095c22cca5194ba5f7c5c43b06b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  damage:
+    baseValue: 0
+  armour:
+    baseValue: 0
 --- !u!1 &1356925490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1024,6 +1003,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: xbot
       objectReference: {fileID: 0}
+    - target: {fileID: 1127413562660826936, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: b4eab07b78a8d4b4f90c58f28f2b0323, type: 2}
+    - target: {fileID: 2135624897131870642, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: d17eb4f83a5b840008c750675dc01ed5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe, type: 3}
 --- !u!4 &1646559451 stripped
