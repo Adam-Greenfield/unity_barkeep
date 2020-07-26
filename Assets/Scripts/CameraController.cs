@@ -13,7 +13,7 @@ public class CameraController : MonoBehaviour
 
 
 
-    float speed = 30.0f;
+    float speed = 45.0f;
 
     void Start()
     {
