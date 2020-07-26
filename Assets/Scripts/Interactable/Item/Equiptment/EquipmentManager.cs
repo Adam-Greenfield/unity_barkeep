@@ -19,6 +19,10 @@ public class EquipmentManager : MonoBehaviour
     // Use this for initialization
     Equipment[] currentEquipment;
 
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
+    public OnEquipmentChanged onEquipmentChanged;
+
+
     Inventory inventory;
 
     void Start()
@@ -49,6 +53,9 @@ public class EquipmentManager : MonoBehaviour
             inventory.Add(oldItem);
         }
 
+        if (onEquipmentChanged != null)
+            onEquipmentChanged.Invoke(newItem, oldItem);
+
         currentEquipment[slotIndex] = newItem;
     }
 
@@ -60,6 +67,9 @@ public class EquipmentManager : MonoBehaviour
             inventory.Add(oldItem);
 
             currentEquipment[slotIndex] = null;
+
+            if (onEquipmentChanged != null)
+                onEquipmentChanged.Invoke(null, oldItem);
         }
     }
 
