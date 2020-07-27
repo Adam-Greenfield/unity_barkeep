@@ -27,13 +27,13 @@ public abstract class Combat : MonoBehaviour
 
     protected delegate void OnFinishDelegate();
 
-    protected IEnumerator PlayAttackAnimation(string trigger, string animation, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
+    protected IEnumerator PlayAttackAnimation(Weapon weapon, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
         
 
-        animator.SetTrigger(trigger);
+        animator.SetTrigger(weapon.attackAnimation);
 
         //turn on hitbox
         HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
@@ -41,7 +41,7 @@ public abstract class Combat : MonoBehaviour
 
         hitBox.onTriggerActivatedCallback += HitTarget;
 
-        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + animation))
+        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + weapon.attackAnimation))
         {
             yield return null;
         }

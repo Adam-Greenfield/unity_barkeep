@@ -10,7 +10,7 @@ public class PlayerCombat : Combat
     PlayerMotor motor;
     PlayerManager playerManager;
 
-    Equipment weapon;
+    Weapon weapon;
     GameObject instWeapon;
 
 
@@ -21,7 +21,7 @@ public class PlayerCombat : Combat
         equipmentManager = EquipmentManager.instance;
         playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
-        weapon = equipmentManager.GetWeapon();
+        weapon = (Weapon)equipmentManager.GetWeapon();
         instWeapon = equipmentManager.GetInstWeapon();
 
         equipmentManager.onEquipmentChangedCallback += UpdateWeapon;
@@ -40,7 +40,7 @@ public class PlayerCombat : Combat
 
     void UpdateWeapon(Equipment newWeapon, Equipment oldItem, GameObject newInstWeapon)
     {
-        weapon = newWeapon;
+        weapon = (Weapon)newWeapon;
         instWeapon = newInstWeapon;
     }
 
@@ -57,7 +57,7 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        StartCoroutine(PlayAttackAnimation("Attack", "Attack_punch", animator, instWeapon, ResumeMoving));
+        StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
     }
 
 
