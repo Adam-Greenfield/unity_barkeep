@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 
-    public void InstantiateEquipmentOnCharacter(Equipment equipment)
+    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex)
     {
         throw new System.NotImplementedException();
     }

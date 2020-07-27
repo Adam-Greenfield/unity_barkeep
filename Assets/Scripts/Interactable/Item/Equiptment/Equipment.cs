@@ -22,5 +22,5 @@ public enum EquipmentSlot { Head, Chest, Legs, Weapon, Shield, Feet }
 
 interface IInstantiateEquipment
 {
-    void InstantiateEquipmentOnCharacter(Equipment equipment);
+    GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex);
 }

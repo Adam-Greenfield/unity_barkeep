@@ -6,16 +6,25 @@ using System;
 public class PlayerCombat : Combat
 {
 
+    EquipmentManager equipmentManager;
     PlayerMotor motor;
     PlayerManager playerManager;
+
+    Equipment weapon;
+    GameObject instWeapon;
 
 
 
     // Use this for initialization
     void Start()
     {
+        equipmentManager = EquipmentManager.instance;
         playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
+        weapon = equipmentManager.GetWeapon();
+        instWeapon = equipmentManager.GetInstWeapon();
+
+        equipmentManager.onEquipmentChangedCallback += UpdateWeapon;
     }
 
     // Update is called once per frame
@@ -23,9 +32,16 @@ public class PlayerCombat : Combat
     {
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            if(!animationLocked && equippedWeapon != null)
+            Debug.Log("Weapon is " + weapon);
+            if(!animationLocked && weapon != null)
                 Attack();
         }
+    }
+
+    void UpdateWeapon(Equipment newWeapon, Equipment oldItem, GameObject newInstWeapon)
+    {
+        weapon = newWeapon;
+        instWeapon = newInstWeapon;
     }
 
     void ResumeMoving()
@@ -36,7 +52,7 @@ public class PlayerCombat : Combat
     public override void Attack()
     {
         //every time we attack, we need to check which weapon is equipped
-        Debug.Log("Atacking with " + equippedWeapon);
+        Debug.Log("Atacking with " + weapon);
 
         motor.DisableMoving();
         motor.FaceMouse();

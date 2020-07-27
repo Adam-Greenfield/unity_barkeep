@@ -5,9 +5,6 @@ public abstract class Combat : MonoBehaviour
 {
 
     public Animator animator;
-    public Weapon equippedWeapon;
-
-    protected GameObject instWeapon;
     protected bool animationLocked;
 
     [SerializeField]

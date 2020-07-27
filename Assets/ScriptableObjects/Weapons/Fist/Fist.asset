@@ -14,5 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Fist
   icon: {fileID: 0}
-  damage: 10
   prefab: {fileID: 4750492154551420175, guid: c5144f65ad9d05f4b8a8b2f265014c12, type: 3}
+  equipSlot: 0
+  armourMod: 0
+  damageMod: 0
+  attackAnimation: Attack_punch

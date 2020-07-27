@@ -19,10 +19,11 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
     #endregion
     // Use this for initialization
     Equipment[] currentEquipment;
+    GameObject[] currentInstEquipment;
     public PlayerController playerController;
 
-    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);
-    public OnEquipmentChanged onEquipmentChanged;
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instEquipment);
+    public OnEquipmentChanged onEquipmentChangedCallback;
 
 
     Inventory inventory;
@@ -33,8 +34,10 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
 
         int numSlots = System.Enum.GetNames(typeof(EquipmentSlot)).Length;
         currentEquipment = new Equipment[numSlots];
+        //include an array of instantiated equipment so we can deal with things like hitboxes
+        currentInstEquipment = new GameObject[numSlots];
 
-        //Instantiate any equipped equipment
+        //TODO Instantiate any equipped equipment
     }
 
     void Update()
@@ -57,13 +60,14 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
             inventory.Add(oldItem);
         }
 
-        if (onEquipmentChanged != null)
-            onEquipmentChanged.Invoke(newItem, oldItem);
-
         currentEquipment[slotIndex] = newItem;
 
         //instantiate the equipment
-        InstantiateEquipmentOnCharacter(newItem);
+        GameObject instEquipment = InstantiateEquipmentOnCharacter(newItem, slotIndex);
+        currentInstEquipment[slotIndex] = instEquipment;
+
+        if (onEquipmentChangedCallback != null)
+            onEquipmentChangedCallback.Invoke(newItem, oldItem, instEquipment);
     }
 
     public void Unequip (int slotIndex)
@@ -75,8 +79,8 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
 
             currentEquipment[slotIndex] = null;
 
-            if (onEquipmentChanged != null)
-                onEquipmentChanged.Invoke(null, oldItem);
+            if (onEquipmentChangedCallback != null)
+                onEquipmentChangedCallback.Invoke(null, oldItem, null);
         }
     }
 
@@ -88,7 +92,19 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         }
     }
 
-    public void InstantiateEquipmentOnCharacter(Equipment equipment)
+    public Equipment GetWeapon()
+    {
+        int slot = (int)EquipmentSlot.Weapon;
+        return currentEquipment[slot];
+    }
+
+    public GameObject GetInstWeapon()
+    {
+        int slot = (int)EquipmentSlot.Weapon;
+        return currentInstEquipment[slot];
+    }
+
+    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex)
     {
         Debug.Log("Creating equipment as " + equipment.name);
         GameObject instEquipment = null;
@@ -102,6 +118,11 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
 
             instEquipment = Instantiate(equipment.prefab);
             instEquipment.transform.SetParent(equipSlot.gObodyPart.transform, false);
+
+            return instEquipment;
         }
+
+        return null;
+
     }
 }
