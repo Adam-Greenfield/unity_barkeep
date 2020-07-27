@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class CharacterStats : MonoBehaviour
 {
+    public Animator animator;
+
     public int maxHealth = 100;
     public int currentHealth { get; private set; }
 
@@ -39,5 +41,8 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         Debug.Log(transform.name + " dies");
+        //Play death animation
+        animator.SetTrigger("Death");
+
     }
 }
