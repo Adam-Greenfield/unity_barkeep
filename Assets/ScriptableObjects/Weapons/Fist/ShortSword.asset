@@ -17,5 +17,5 @@ MonoBehaviour:
   prefab: {fileID: 4750492154551420175, guid: ba85a4bc55337a743b8c0d23624af86f, type: 3}
   equipSlot: 3
   armourMod: 0
-  damageMod: 2
+  damageMod: 3
   attackAnimation: Attack_sword

@@ -6,8 +6,8 @@ public class CharacterStats : MonoBehaviour
     public int maxHealth = 100;
     public int currentHealth { get; private set; }
 
-    public Stat damage;
     public Stat armour;
+    public Stat damage;
     // Start is called before the first frame update
     void Awake()
     {
@@ -38,6 +38,6 @@ public class CharacterStats : MonoBehaviour
 
     public virtual void Die()
     {
-        Debug.Log(transform.name = " dies");
+        Debug.Log(transform.name + " dies");
     }
 }

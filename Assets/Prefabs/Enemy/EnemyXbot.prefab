@@ -34,6 +34,7 @@ GameObject:
   - component: {fileID: 5115931412543553950}
   - component: {fileID: 5115931412543553951}
   - component: {fileID: 5115931412543553948}
+  - component: {fileID: 8848904184021815386}
   m_Layer: 0
   m_Name: EnemyXbot
   m_TagString: Untagged
@@ -143,9 +144,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5115931413133287913}
-  equippedWeapon: {fileID: 11400000, guid: 0e0ec6eeb156ed14a9136c81265a8f2c, type: 2}
-  rightHandObject: {fileID: 5732260748298605385}
-  damage: 5
+  stats: {fileID: 0}
+--- !u!114 &8848904184021815386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115931412543553949}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 633095c22cca5194ba5f7c5c43b06b36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  armour:
+    baseValue: 0
+  damage:
+    baseValue: 0
 --- !u!1001 &5115931413133287909
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -255,12 +271,6 @@ GameObject:
 --- !u!4 &253824790325611263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
-    type: 3}
-  m_PrefabInstance: {fileID: 5115931413133287909}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &5732260748298605385 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -8542655298583481684, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
     type: 3}
   m_PrefabInstance: {fileID: 5115931413133287909}
   m_PrefabAsset: {fileID: 0}

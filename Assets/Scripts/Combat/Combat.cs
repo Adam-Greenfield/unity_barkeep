@@ -5,15 +5,15 @@ public abstract class Combat : MonoBehaviour
 {
 
     public Animator animator;
-    protected bool animationLocked;
+    protected bool animationLocked = false;
+    protected bool hitTargetInAnimation;
 
     [SerializeField]
     CharacterStats stats;
-
     // Use this for initialization
     void Start()
     {
-        animationLocked = false;
+
     }
 
     // Update is called once per frame
@@ -30,14 +30,12 @@ public abstract class Combat : MonoBehaviour
     protected IEnumerator PlayAttackAnimation(Weapon weapon, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
-
-        
+        hitTargetInAnimation = false;
 
         animator.SetTrigger(weapon.attackAnimation);
 
         //turn on hitbox
         HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
-        Debug.Log("got to hitbox");
 
         hitBox.onTriggerActivatedCallback += HitTarget;
 
@@ -63,13 +61,17 @@ public abstract class Combat : MonoBehaviour
 
     void HitTarget(Collider entity)
     {
-        Debug.Log("entity recieved in the combat controller as " + entity);
-        Combat entityComabt = entity.GetComponent<Combat>();
-        //entityComabt.RecieveHit(stats.damage.GetValue() + equippedWeapon.damage);
+        if (!hitTargetInAnimation)
+        {
+            Combat entityComabt = entity.GetComponent<Combat>();
+            entityComabt.RecieveHit(stats.damage.GetValue());
+        }
+        hitTargetInAnimation = true;
     }
 
     public void RecieveHit(int damage)
     {
         Debug.Log(transform.name + " has been hit, taking " + damage + " damage");
+        stats.TakeDamage(damage);
     }
 }

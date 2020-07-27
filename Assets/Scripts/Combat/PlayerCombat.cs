@@ -23,7 +23,6 @@ public class PlayerCombat : Combat
         motor = GetComponent<PlayerMotor>();
         weapon = (Weapon)equipmentManager.GetWeapon();
         instWeapon = equipmentManager.GetInstWeapon();
-
         equipmentManager.onEquipmentChangedCallback += UpdateWeapon;
     }
 

@@ -20,8 +20,10 @@ public class HitBox : MonoBehaviour
 
     void OnTriggerEnter(Collider entity)
     {
-        Debug.Log("Hitbox is colliding with " + entity);
         if(onTriggerActivatedCallback != null)
+        {
             onTriggerActivatedCallback.Invoke(entity);
+            onTriggerActivatedCallback = delegate { };
+        }
     }
 }
