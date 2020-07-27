@@ -111,10 +111,7 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
 
         if (equipment.prefab != null)
         {
-
-            //check currentEquipment[slotIndex] in array of goEquipmentSlots
             GOEquipmentSlot equipSlot = playerController.gOEquipmentSlots.FirstOrDefault(x => x.equipSlot == equipment.equipSlot);
-
 
             instEquipment = Instantiate(equipment.prefab);
             instEquipment.transform.SetParent(equipSlot.gObodyPart.transform, false);

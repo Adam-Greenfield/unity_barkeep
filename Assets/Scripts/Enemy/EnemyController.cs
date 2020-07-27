@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
     Transform target;
     NavMeshAgent agent;
 
+    public GOEquipmentSlot[] gOEquipmentSlots;
 
     // Use this for initialization
     void Start()
@@ -50,6 +51,19 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
 
     public GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Creating equipment as " + equipment.name);
+        GameObject instEquipment = null;
+
+        if (equipment.prefab != null)
+        {
+            GOEquipmentSlot equipSlot = gOEquipmentSlots.FirstOrDefault(x => x.equipSlot == equipment.equipSlot);
+
+            instEquipment = Instantiate(equipment.prefab);
+            instEquipment.transform.SetParent(equipSlot.gObodyPart.transform, false);
+
+            return instEquipment;
+        }
+
+        return null;
     }
 }
