@@ -8,12 +8,11 @@ public abstract class Combat : MonoBehaviour
     protected bool animationLocked = false;
     protected bool hitTargetInAnimation;
 
-    [SerializeField]
-    CharacterStats stats;
+    protected CharacterStats stats;
     // Use this for initialization
-    void Start()
+    protected virtual void Start()
     {
-
+        SetStats();
     }
 
     // Update is called once per frame
@@ -22,8 +21,11 @@ public abstract class Combat : MonoBehaviour
 
     }
 
+
     public abstract void Attack();
 
+    //get stats depending on class
+    protected abstract void SetStats();
 
     protected delegate void OnFinishDelegate();
 
@@ -63,8 +65,9 @@ public abstract class Combat : MonoBehaviour
     {
         if (!hitTargetInAnimation)
         {
-            Combat entityComabt = entity.GetComponent<Combat>();
-            entityComabt.RecieveHit(stats.damage.GetValue());
+            Debug.Log(stats);
+            Combat entityCombat = entity.GetComponent<Combat>();
+            entityCombat.RecieveHit(stats.damage.GetValue());
         }
         hitTargetInAnimation = true;
     }

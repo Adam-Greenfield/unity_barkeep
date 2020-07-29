@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using System.Linq;
 
 public class EnemyController : MonoBehaviour, IInstantiateEquipment
 {

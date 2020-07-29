@@ -16,8 +16,10 @@ public class PlayerCombat : Combat
 
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         equipmentManager = EquipmentManager.instance;
         playerManager = PlayerManager.instance;
         motor = GetComponent<PlayerMotor>();
@@ -57,6 +59,12 @@ public class PlayerCombat : Combat
         motor.FaceMouse();
 
         StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
+    }
+
+    protected override void SetStats()
+    {
+        Debug.Log("setting");
+        stats = GetComponent<PlayerStats>();
     }
 
 

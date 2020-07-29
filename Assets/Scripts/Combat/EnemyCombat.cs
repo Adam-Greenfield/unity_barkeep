@@ -7,11 +7,9 @@ public class EnemyCombat : Combat
 
 
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
-        //instantiate the weapon
-        //InstantiateWeapon(equippedWeapon);
-
+        base.Start();
     }
 
     // Update is called once per frame
@@ -25,4 +23,9 @@ public class EnemyCombat : Combat
         throw new System.NotImplementedException();
     }
 
+    protected override void SetStats()
+    {
+        stats = GetComponent<CharacterStats>();
+
+    }
 }
