@@ -63,7 +63,7 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         currentEquipment[slotIndex] = newItem;
 
         //instantiate the equipment
-        GameObject instEquipment = InstantiateEquipmentOnCharacter(newItem, slotIndex);
+        GameObject instEquipment = InstantiateEquipmentOnCharacter(newItem);
         currentInstEquipment[slotIndex] = instEquipment;
 
         if (onEquipmentChangedCallback != null)
@@ -104,7 +104,7 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         return currentInstEquipment[slot];
     }
 
-    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex)
+    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment)
     {
         Debug.Log("Creating equipment as " + equipment.name);
         GameObject instEquipment = null;

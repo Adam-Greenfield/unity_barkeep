@@ -7,17 +7,22 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
 {
 
     public float lookRadius = 10f;
+    public GOEquipmentSlot[] gOEquipmentSlots;
+    public Weapon weapon;
+
+    [System.NonSerialized]
+    public GameObject instWeapon;
 
     Transform target;
     NavMeshAgent agent;
-
-    public GOEquipmentSlot[] gOEquipmentSlots;
 
     // Use this for initialization
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         target = PlayerManager.instance.player.transform;
+        if(weapon != null)
+            instWeapon = InstantiateEquipmentOnCharacter(weapon);
     }
 
     // Update is called once per frame
@@ -32,6 +37,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
             {
                 FaceTarget();
                 //to attack, start animation, have box collider on attacking part, register a hit and cause animation on enemy
+
             }
 
         }
@@ -50,7 +56,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 
-    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment, int slotIndex)
+    public GameObject InstantiateEquipmentOnCharacter(Equipment equipment)
     {
         Debug.Log("Creating equipment as " + equipment.name);
         GameObject instEquipment = null;

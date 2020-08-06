@@ -24,6 +24,7 @@ public abstract class Combat : MonoBehaviour
 
     public abstract void Attack();
 
+
     //get stats depending on class
     protected abstract void SetStats();
 

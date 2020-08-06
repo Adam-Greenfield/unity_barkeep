@@ -28,4 +28,16 @@ public class EnemyMotor : MonoBehaviour
     {
 
     }
+
+    public void DisableMoving()
+    {
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+    }
+
+    public void EnableMoving()
+    {
+        agent.isStopped = false;
+    }
 }
