@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
 
     Transform target;
     EnemyCombat combat;
+    PlayerManager playerManager;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instEquipment);
     public OnEquipmentChanged onEquipmentChangedCallback;
@@ -26,9 +27,11 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
     // Use this for initialization
     void Start()
     {
+        playerManager = PlayerManager.instance;
         agent = GetComponent<NavMeshAgent>();
-        target = PlayerManager.instance.player.transform;
+        target = playerManager.player.transform;
         combat = GetComponent<EnemyCombat>();
+        Debug.Log(combat);
         if (weapon != null)
         {
             instWeapon = InstantiateEquipmentOnCharacter(weapon);
@@ -52,6 +55,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
             {
                 FaceTarget();
                 //to attack, start animation, have box collider on attacking part, register a hit and cause animation on enemy
+                //playerManager
                 combat.Attack();
 
             }

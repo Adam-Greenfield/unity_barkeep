@@ -52,9 +52,6 @@ public class PlayerCombat : Combat
 
     public override void Attack()
     {
-        //every time we attack, we need to check which weapon is equipped
-        Debug.Log("Atacking with " + weapon);
-
         motor.DisableMoving();
         motor.FaceMouse();
 

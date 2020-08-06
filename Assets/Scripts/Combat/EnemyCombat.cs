@@ -18,8 +18,6 @@ public class EnemyCombat : Combat
         base.Start();
         controller = GetComponent<EnemyController>();
         agent = GetComponent<NavMeshAgent>();
-
-        //TODO this should be made a proper delegate
     }
 
     // Update is called once per frame
@@ -32,7 +30,7 @@ public class EnemyCombat : Combat
     {
         weapon = controller.weapon;
         instWeapon = controller.instWeapon;
-        Debug.Log("ememy attacking");
+
         DisableMoving();
 
         StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));

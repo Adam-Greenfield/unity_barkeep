@@ -18,6 +18,7 @@ public class PlayerManager : MonoBehaviour
 
     public Weapon equippedWeapon;
     public GameObject player;
+    //TODO get player stats to check if dead
 
     // Use this for initialization
     void Start()
