@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(PlayerMotor))]
+[RequireComponent(typeof(PlayerStats))]
+
 public class PlayerController : MonoBehaviour
 {
     #region Singleton
@@ -26,18 +28,20 @@ public class PlayerController : MonoBehaviour
 
     Camera cam;
     PlayerMotor motor;
-    
+    PlayerStats stats;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         motor = GetComponent<PlayerMotor>();
+        stats = GetComponent<PlayerStats>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (EventSystem.current.IsPointerOverGameObject())
+        if (EventSystem.current.IsPointerOverGameObject() || stats.currentHealth <= 0)
             return;
         
         if (Input.GetMouseButtonDown(0))

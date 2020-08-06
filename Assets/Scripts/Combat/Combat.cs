@@ -5,7 +5,10 @@ public abstract class Combat : MonoBehaviour
 {
 
     public Animator animator;
-    protected bool animationLocked = false;
+
+    [System.NonSerialized]
+    public bool animationLocked = false;
+
     protected bool hitTargetInAnimation;
 
     protected CharacterStats stats;

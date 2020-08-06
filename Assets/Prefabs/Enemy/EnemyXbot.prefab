@@ -131,6 +131,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookRadius: 7
+  gOEquipmentSlots:
+  - equipSlot: 3
+    gObodyPart: {fileID: 5732260748298605385}
+  weapon: {fileID: 11400000, guid: c7214f4439627e44b8f03d55d4ec8236, type: 2}
 --- !u!114 &5115931412543553948
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -144,7 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5115931413133287913}
-  stats: {fileID: 8848904184021815386}
+  gOEquipmentSlots: []
 --- !u!114 &8848904184021815386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,7 +162,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5115931413133287913}
-  maxHealth: 10
+  maxHealth: 5
   armour:
     baseValue: 2
   damage:
@@ -272,6 +276,12 @@ GameObject:
 --- !u!4 &253824790325611263 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -4216859302048453862, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
+    type: 3}
+  m_PrefabInstance: {fileID: 5115931413133287909}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5732260748298605385 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -8542655298583481684, guid: e4a6b53dcf9e8524d8bb70a18fa0b5fe,
     type: 3}
   m_PrefabInstance: {fileID: 5115931413133287909}
   m_PrefabAsset: {fileID: 0}

@@ -208,6 +208,30 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 25560578696582509}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &275411104 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5115931412543553949, guid: b6ad3c655c3ca274192a68e69459a6ce,
+    type: 3}
+  m_PrefabInstance: {fileID: 668019134}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &275411105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275411104}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bdca4dde4f4b5047bd6fbd5edacafe1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 946187045}
+  maxHealth: 5
+  armour:
+    baseValue: 1
+  damage:
+    baseValue: 1
 --- !u!1 &404608225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4750492154551420175, guid: ba85a4bc55337a743b8c0d23624af86f,
@@ -300,33 +324,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: EnemyXbot
       objectReference: {fileID: 0}
-    - target: {fileID: 5115931412543553951, guid: b6ad3c655c3ca274192a68e69459a6ce,
-        type: 3}
-      propertyPath: gOEquipmentSlots.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5115931412543553951, guid: b6ad3c655c3ca274192a68e69459a6ce,
-        type: 3}
-      propertyPath: gOEquipmentSlots.Array.data[0].gObodyPart
-      value: 
-      objectReference: {fileID: 1034308527}
-    - target: {fileID: 5115931412543553951, guid: b6ad3c655c3ca274192a68e69459a6ce,
-        type: 3}
-      propertyPath: weapon
-      value: 
-      objectReference: {fileID: 11400000, guid: c7214f4439627e44b8f03d55d4ec8236,
-        type: 2}
-    - target: {fileID: 5115931412543553951, guid: b6ad3c655c3ca274192a68e69459a6ce,
-        type: 3}
-      propertyPath: gOEquipmentSlots.Array.data[0].equipSlot
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 8848904184021815386, guid: b6ad3c655c3ca274192a68e69459a6ce,
         type: 3}
-      propertyPath: maxHealth
-      value: 5
+      propertyPath: damage.baseValue
+      value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8848904184021815386, guid: b6ad3c655c3ca274192a68e69459a6ce, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b6ad3c655c3ca274192a68e69459a6ce, type: 3}
 --- !u!1001 &696294535
 PrefabInstance:
@@ -498,9 +502,9 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 916792628}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1034308527 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5732260748298605385, guid: b6ad3c655c3ca274192a68e69459a6ce,
+--- !u!95 &946187045 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5115931413133287913, guid: b6ad3c655c3ca274192a68e69459a6ce,
     type: 3}
   m_PrefabInstance: {fileID: 668019134}
   m_PrefabAsset: {fileID: 0}

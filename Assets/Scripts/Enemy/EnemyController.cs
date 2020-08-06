@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.AI;
 using System.Linq;
 
+[RequireComponent(typeof(EnemyCombat))]
 public class EnemyController : MonoBehaviour, IInstantiateEquipment
 {
 
@@ -13,21 +14,35 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
     [System.NonSerialized]
     public GameObject instWeapon;
 
-    Transform target;
+    [System.NonSerialized]
     NavMeshAgent agent;
+
+    Transform target;
+    EnemyCombat combat;
+
+    public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instEquipment);
+    public OnEquipmentChanged onEquipmentChangedCallback;
 
     // Use this for initialization
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
         target = PlayerManager.instance.player.transform;
-        if(weapon != null)
+        combat = GetComponent<EnemyCombat>();
+        if (weapon != null)
+        {
             instWeapon = InstantiateEquipmentOnCharacter(weapon);
+            if(onEquipmentChangedCallback != null)
+                onEquipmentChangedCallback.Invoke(weapon, null, null);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (combat.animationLocked)
+            return;
+
         float distance = Vector3.Distance(target.position, transform.position);
         if(distance <= lookRadius)
         {
@@ -37,6 +52,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
             {
                 FaceTarget();
                 //to attack, start animation, have box collider on attacking part, register a hit and cause animation on enemy
+                combat.Attack();
 
             }
 

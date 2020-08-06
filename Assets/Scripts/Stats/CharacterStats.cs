@@ -23,6 +23,9 @@ public class CharacterStats : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (currentHealth <= 0)
+            return;
+
         damage -= armour.GetValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
@@ -40,6 +43,20 @@ public class CharacterStats : MonoBehaviour
         Debug.Log(transform.name + " dies");
         //Play death animation
         animator.SetTrigger("Death");
+    }
 
+    public void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instItem)
+    {
+        if (newItem != null)
+        {
+            armour.AddModifier(newItem.armourMod);
+            damage.AddModifier(newItem.damageMod);
+        }
+
+        if (oldItem != null)
+        {
+            armour.RemoveModifier(oldItem.armourMod);
+            damage.RemoveModifier(oldItem.damageMod);
+        }
     }
 }

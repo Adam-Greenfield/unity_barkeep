@@ -8,11 +8,10 @@ using UnityEngine.AI;
 public class EnemyMotor : MonoBehaviour
 {
 
-    NavMeshAgent agent;
     public LayerMask movementMask;
-
-
     public GameObject goal;
+
+    NavMeshAgent agent;
     Vector3 target;
 
     // Start is called before the first frame update

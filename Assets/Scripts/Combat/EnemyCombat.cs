@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(EnemyController))]
 [RequireComponent(typeof(EnemyMotor))]
 public class EnemyCombat : Combat
 {
     EnemyController controller;
-    EnemyMotor motor;
-    public GOEquipmentSlot[] gOEquipmentSlots;
+    NavMeshAgent agent;
     Weapon weapon;
     GameObject instWeapon;
 
@@ -16,10 +16,10 @@ public class EnemyCombat : Combat
     protected override void Start()
     {
         base.Start();
-        EnemyController controller = GetComponent<EnemyController>();
-        EnemyMotor motor = GetComponent<EnemyMotor>();
-        weapon = controller.weapon;
-        instWeapon = controller.instWeapon;
+        controller = GetComponent<EnemyController>();
+        agent = GetComponent<NavMeshAgent>();
+
+        //TODO this should be made a proper delegate
     }
 
     // Update is called once per frame
@@ -30,15 +30,24 @@ public class EnemyCombat : Combat
 
     public override void Attack()
     {
+        weapon = controller.weapon;
+        instWeapon = controller.instWeapon;
         Debug.Log("ememy attacking");
-        motor.DisableMoving();
+        DisableMoving();
 
         StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
     }
 
+    public void DisableMoving()
+    {
+        agent.isStopped = true;
+        agent.ResetPath();
+        agent.velocity = Vector3.zero;
+    }
+
     void ResumeMoving()
     {
-        motor.EnableMoving();
+        agent.isStopped = false;
     }
 
     protected override void SetStats()

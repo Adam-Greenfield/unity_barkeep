@@ -649,7 +649,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1646559453}
-  stats: {fileID: 1318897177}
 --- !u!114 &1318897177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -662,7 +661,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8aae8f56266628246a8d2574464a31ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  animator: {fileID: 1646559453}
+  maxHealth: 10
   armour:
     baseValue: 0
   damage:
