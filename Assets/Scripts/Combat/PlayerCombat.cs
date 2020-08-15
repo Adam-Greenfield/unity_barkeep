@@ -31,10 +31,19 @@ public class PlayerCombat : Combat
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Attack"))
         {
             Debug.Log("Weapon is " + weapon);
             if(!animationLocked && weapon != null)
+                Attack();
+        }
+
+        if (Input.GetButtonDown("Block"))
+        {
+            Debug.Log("blocking with something, presumably");
+            //check player manager to see if there's shield equipped
+            //if not, block with weapon
+            if (!animationLocked && weapon != null)
                 Attack();
         }
     }
@@ -56,6 +65,14 @@ public class PlayerCombat : Combat
         motor.FaceMouse();
 
         StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
+    }
+
+    public override void Block()
+    {
+        motor.DisableMoving();
+        motor.FaceMouse();
+
+        StartCoroutine(PlayDefendAnimation(weapon, animator, instWeapon, ResumeMoving));
     }
 
     protected override void SetStats()

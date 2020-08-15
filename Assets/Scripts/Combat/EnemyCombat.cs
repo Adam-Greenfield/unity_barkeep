@@ -36,6 +36,11 @@ public class EnemyCombat : Combat
         StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
     }
 
+    public override void Block()
+    {
+        throw new System.NotImplementedException();
+    }
+
     public void DisableMoving()
     {
         agent.isStopped = true;
@@ -53,4 +58,6 @@ public class EnemyCombat : Combat
         stats = GetComponent<CharacterStats>();
 
     }
+
+
 }
