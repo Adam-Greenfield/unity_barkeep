@@ -36,7 +36,7 @@ public abstract class Combat : MonoBehaviour
 
     protected delegate void OnFinishDelegate();
 
-    protected IEnumerator PlayAttackAnimation(Weapon weapon, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
+    protected void PlayAttackAnimation(Weapon weapon, GameObject instWeapon, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
         hitTargetInAnimation = false;
@@ -48,19 +48,7 @@ public abstract class Combat : MonoBehaviour
 
         hitBox.onTriggerActivatedCallback += HitTarget;
 
-        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + weapon.attackAnimation))
-        {
-            yield return null;
-        }
-
-        float counter = 0;
-        float waitTime = animator.GetCurrentAnimatorStateInfo(0).length;
-
-        while (counter < (waitTime))
-        {
-            counter += Time.deltaTime;
-            yield return null;
-        }
+        StartCoroutine(EnumerateAnimation(weapon.attackAnimation));
 
         animationLocked = false;
 
@@ -68,19 +56,21 @@ public abstract class Combat : MonoBehaviour
             OnFinish.Invoke();
     }
 
-    protected IEnumerator PlayDefendAnimation(Weapon weapon, Animator animator, GameObject instWeapon, OnFinishDelegate OnFinish = null)
+    protected void PlayDefendAnimation(Equipment equipment, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
-        hitTargetInAnimation = false;
 
-        animator.SetTrigger(weapon.attackAnimation);
+        StartCoroutine(EnumerateAnimation(equipment.blockAnimation));
 
-        //turn on hitbox
-        HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
+        animationLocked = false;
 
-        hitBox.onTriggerActivatedCallback += HitTarget;
+        if (OnFinish != null)
+            OnFinish.Invoke();
+    }
 
-        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." + weapon.attackAnimation))
+    private IEnumerator EnumerateAnimation(string animationLayer)
+    {
+        while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." +  animationLayer))
         {
             yield return null;
         }
@@ -93,22 +83,31 @@ public abstract class Combat : MonoBehaviour
             counter += Time.deltaTime;
             yield return null;
         }
-
-        animationLocked = false;
-
-        if (OnFinish != null)
-            OnFinish.Invoke();
     }
 
     void HitTarget(Collider entity)
     {
         if (!hitTargetInAnimation)
         {
-            Debug.Log(stats.damage.GetValue());
+            //figure out if we've hit a target or a block
+            Debug.Log(stats.damage.GetValue());            
             Combat entityCombat = entity.GetComponent<Combat>();
-            entityCombat.RecieveHit(stats.damage.GetValue());
+
+            if(entityCombat != null)
+            {
+                entityCombat.RecieveHit(stats.damage.GetValue());
+                hitTargetInAnimation = true;
+            }
+
+            BlockBox entityBlockBox = entity.GetComponent<BlockBox>();
+
+            if(entityBlockBox != null)
+            {
+                //have we hit a block or a parry?
+                Debug.Log("Something has blocked our attack!");
+                hitTargetInAnimation = true;
+            }
         }
-        hitTargetInAnimation = true;
     }
 
     public void RecieveHit(int damage)

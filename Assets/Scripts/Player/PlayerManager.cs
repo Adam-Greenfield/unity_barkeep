@@ -31,10 +31,12 @@ public class PlayerManager : MonoBehaviour
 
     }
 
-    public Weapon GetWeapon()
+    public Weapon ProvideWeapon()
     {
         return equippedWeapon;
     }
+
+    public Equipment Get
 
 
 }

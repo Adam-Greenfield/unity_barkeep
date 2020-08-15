@@ -64,7 +64,7 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        StartCoroutine(PlayAttackAnimation(weapon, animator, instWeapon, ResumeMoving));
+        PlayAttackAnimation(weapon, instWeapon, ResumeMoving);
     }
 
     public override void Block()
@@ -72,7 +72,7 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        StartCoroutine(PlayDefendAnimation(weapon, animator, instWeapon, ResumeMoving));
+        PlayDefendAnimation(defendingEquipment, ResumeMoving);
     }
 
     protected override void SetStats()

@@ -98,6 +98,17 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         return currentEquipment[slot];
     }
 
+    public Equipment GetDefendingWeapon()
+    {
+        int slot = (int)EquipmentSlot.Shield;
+        Equipment shield = currentEquipment[slot];
+        if (shield != null)
+            return shield;
+
+        slot = (int)EquipmentSlot.Weapon;
+        return currentEquipment[slot];
+    }
+
     public GameObject GetInstWeapon()
     {
         int slot = (int)EquipmentSlot.Weapon;
