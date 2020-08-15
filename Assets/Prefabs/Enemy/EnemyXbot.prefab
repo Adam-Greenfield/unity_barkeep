@@ -29,12 +29,13 @@ GameObject:
   m_Component:
   - component: {fileID: 5115931412543553893}
   - component: {fileID: 5115931412543553890}
+  - component: {fileID: 9179641687613376995}
   - component: {fileID: 5115931412543553891}
   - component: {fileID: 5115931412543553888}
   - component: {fileID: 5115931412543553950}
   - component: {fileID: 5115931412543553951}
   - component: {fileID: 5115931412543553948}
-  - component: {fileID: 8848904184021815386}
+  - component: {fileID: 6604955940077982668}
   m_Layer: 0
   m_Name: EnemyXbot
   m_TagString: Untagged
@@ -79,6 +80,22 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &9179641687613376995
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115931412543553949}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!136 &5115931412543553891
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -148,8 +165,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 5115931413133287913}
-  gOEquipmentSlots: []
---- !u!114 &8848904184021815386
+--- !u!114 &6604955940077982668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +174,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5115931412543553949}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 633095c22cca5194ba5f7c5c43b06b36, type: 3}
+  m_Script: {fileID: 11500000, guid: 0bdca4dde4f4b5047bd6fbd5edacafe1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 5115931413133287913}
+  animator: {fileID: 0}
   maxHealth: 5
   armour:
     baseValue: 2

@@ -232,6 +232,22 @@ MonoBehaviour:
     baseValue: 1
   damage:
     baseValue: 1
+--- !u!54 &275411106
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275411104}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &404608225 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4750492154551420175, guid: ba85a4bc55337a743b8c0d23624af86f,
@@ -329,8 +345,7 @@ PrefabInstance:
       propertyPath: damage.baseValue
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 8848904184021815386, guid: b6ad3c655c3ca274192a68e69459a6ce, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b6ad3c655c3ca274192a68e69459a6ce, type: 3}
 --- !u!1001 &696294535
 PrefabInstance:

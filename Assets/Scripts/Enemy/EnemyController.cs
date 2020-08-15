@@ -31,7 +31,6 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
         agent = GetComponent<NavMeshAgent>();
         target = playerManager.player.transform;
         combat = GetComponent<EnemyCombat>();
-        Debug.Log(combat);
         if (weapon != null)
         {
             instWeapon = InstantiateEquipmentOnCharacter(weapon);

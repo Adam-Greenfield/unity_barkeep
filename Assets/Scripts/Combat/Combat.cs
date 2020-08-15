@@ -69,7 +69,7 @@ public abstract class Combat : MonoBehaviour
     {
         if (!hitTargetInAnimation)
         {
-            Debug.Log(stats);
+            Debug.Log(stats.damage.GetValue());
             Combat entityCombat = entity.GetComponent<Combat>();
             entityCombat.RecieveHit(stats.damage.GetValue());
         }
