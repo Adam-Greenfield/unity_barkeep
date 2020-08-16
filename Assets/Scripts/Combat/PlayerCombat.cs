@@ -40,18 +40,20 @@ public class PlayerCombat : Combat
 
         if (Input.GetButtonDown("Block"))
         {
-            Debug.Log("blocking with something, presumably");
             //check player manager to see if there's shield equipped
             //if not, block with weapon
-            if (!animationLocked && weapon != null)
-                Attack();
+            if (!animationLocked)
+                Block();
         }
     }
 
     void UpdateWeapon(Equipment newWeapon, Equipment oldItem, GameObject newInstWeapon)
     {
-        weapon = (Weapon)newWeapon;
-        instWeapon = newInstWeapon;
+        if(newWeapon.GetType().Equals(typeof(Weapon)))
+        {
+            weapon = (Weapon)newWeapon;
+            instWeapon = newInstWeapon;
+        }
     }
 
     void ResumeMoving()
@@ -72,7 +74,9 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        PlayDefendAnimation(defendingEquipment, ResumeMoving);
+        Equipment blockingEquipment = equipmentManager.GetBlockingWeapon();
+
+        PlayDefendAnimation(blockingEquipment, ResumeMoving);
     }
 
     protected override void SetStats()

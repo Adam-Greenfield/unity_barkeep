@@ -60,6 +60,8 @@ public abstract class Combat : MonoBehaviour
     {
         animationLocked = true;
 
+        Debug.Log("defending coroutine");
+
         StartCoroutine(EnumerateAnimation(equipment.blockAnimation));
 
         animationLocked = false;

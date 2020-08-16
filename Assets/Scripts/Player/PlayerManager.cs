@@ -36,7 +36,7 @@ public class PlayerManager : MonoBehaviour
         return equippedWeapon;
     }
 
-    public Equipment Get
+
 
 
 }

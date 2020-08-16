@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 864827246466551113}
   - component: {fileID: 1443231748334649194}
   - component: {fileID: 7448012312483394459}
-  - component: {fileID: 539199750710122235}
   m_Layer: 0
   m_Name: Body
   m_TagString: Untagged
@@ -80,19 +79,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &539199750710122235
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2663920593328666786}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6100147711899868932
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,6 +90,7 @@ GameObject:
   - component: {fileID: 388908176720295648}
   - component: {fileID: 7077092000838217374}
   - component: {fileID: 7498387937982111602}
+  - component: {fileID: 1927376756}
   m_Layer: 0
   m_Name: BasicShield
   m_TagString: Untagged
@@ -120,7 +107,7 @@ Transform:
   m_GameObject: {fileID: 6100147711899868932}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 2.4043937, z: 3.2385492}
-  m_LocalScale: {x: 1.1659, y: 1, z: 1}
+  m_LocalScale: {x: 0.1432095, y: 0.18706354, z: 0.069503404}
   m_Children:
   - {fileID: 864827246466551113}
   m_Father: {fileID: 0}
@@ -152,5 +139,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactionTransform: {fileID: 388908176720295648}
-  radius: 4
+  radius: 1.5
   item: {fileID: 11400000, guid: d78aba0065cc06343803671dbfc792dc, type: 2}
+--- !u!65 &1927376756
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6100147711899868932}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

@@ -98,7 +98,7 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         return currentEquipment[slot];
     }
 
-    public Equipment GetDefendingWeapon()
+    public Equipment GetBlockingWeapon()
     {
         int slot = (int)EquipmentSlot.Shield;
         Equipment shield = currentEquipment[slot];
@@ -123,6 +123,13 @@ public class EquipmentManager : MonoBehaviour, IInstantiateEquipment
         if (equipment.prefab != null)
         {
             GOEquipmentSlot equipSlot = playerController.gOEquipmentSlots.FirstOrDefault(x => x.equipSlot == equipment.equipSlot);
+
+            if(equipSlot == null)
+            {
+                Debug.Log("No equip slot for item " + equipment.name + " on player");
+                return null;
+            }
+
 
             instEquipment = Instantiate(equipment.prefab);
             instEquipment.transform.SetParent(equipSlot.gObodyPart.transform, false);
