@@ -56,13 +56,13 @@ public abstract class Combat : MonoBehaviour
             OnFinish.Invoke();
     }
 
-    protected void PlayDefendAnimation(Equipment equipment, OnFinishDelegate OnFinish = null)
+    protected void PlayDefendAnimation(IBlocker blockingEquipment, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
         Debug.Log("defending coroutine");
 
-        StartCoroutine(EnumerateAnimation(equipment.blockAnimation));
+        StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
 
         animationLocked = false;
 

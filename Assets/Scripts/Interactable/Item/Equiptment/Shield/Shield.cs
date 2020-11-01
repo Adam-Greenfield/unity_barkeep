@@ -2,7 +2,7 @@
 using System.Collections;
 
 [CreateAssetMenu(fileName = "New Shield", menuName = "Inventory/Equipment/Shield")]
-public class Shield : Equipment
+public class Shield : Equipment, IBlocker
 {
-    public string blockAnimation;
+    public string blockAnimation { get; set; }
 }

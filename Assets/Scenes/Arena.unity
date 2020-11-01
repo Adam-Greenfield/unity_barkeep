@@ -186,8 +186,14 @@ PrefabInstance:
     - target: {fileID: 6100147711899868932, guid: 913bfe65b45721c49a2fecf7d409a4ef,
         type: 3}
       propertyPath: m_Name
-      value: BasicShield (1)
+      value: BasicShield
       objectReference: {fileID: 0}
+    - target: {fileID: 7498387937982111602, guid: 913bfe65b45721c49a2fecf7d409a4ef,
+        type: 3}
+      propertyPath: item
+      value: 
+      objectReference: {fileID: 11400000, guid: 76934cc48be3dab42ab2f799c591cc71,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 913bfe65b45721c49a2fecf7d409a4ef, type: 3}
 --- !u!1001 &146951962

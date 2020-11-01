@@ -6,7 +6,6 @@ public class Equipment : Item
 {
     public GameObject prefab;
     public EquipmentSlot equipSlot;
-    public string blockAnimation;
 
     public int armourMod;
     public int damageMod;

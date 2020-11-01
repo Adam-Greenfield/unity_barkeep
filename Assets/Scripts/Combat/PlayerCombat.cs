@@ -74,7 +74,7 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        Equipment blockingEquipment = equipmentManager.GetBlockingWeapon();
+        IBlocker blockingEquipment = equipmentManager.GetBlockingEquipment();
 
         PlayDefendAnimation(blockingEquipment, ResumeMoving);
     }
