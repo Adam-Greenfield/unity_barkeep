@@ -66,7 +66,7 @@ public abstract class Combat : MonoBehaviour
 
         yield return StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
 
-        animationLocked = false;
+
 
         if (OnFinish != null)
             OnFinish.Invoke();
@@ -75,6 +75,8 @@ public abstract class Combat : MonoBehaviour
     protected void StopDefendAnimation(IBlocker blockingEquipment)
     {
         animator.ResetTrigger(blockingEquipment.blockAnimation);
+
+        animationLocked = false;
     }
 
     private IEnumerator EnumerateAnimation(string animationLayer)

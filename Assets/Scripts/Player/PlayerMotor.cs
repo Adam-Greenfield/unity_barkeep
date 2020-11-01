@@ -21,7 +21,12 @@ public class PlayerMotor : MonoBehaviour
     // Update is called once per frame 
     void Update()
     {
-        if(target != null)
+        if(agent.isStopped)
+        {
+            Debug.Log("agent is stopped");
+        }
+        
+        if(target != null && !agent.isStopped)
         {
             agent.SetDestination(target.position);
             FaceTarget();
@@ -50,12 +55,12 @@ public class PlayerMotor : MonoBehaviour
     public void DisableMoving()
     {
         agent.isStopped = true;
-        agent.ResetPath();
         agent.velocity = Vector3.zero;
     }
 
     public void EnableMoving()
     {
+        agent.ResetPath();
         agent.isStopped = false;
     }
 

@@ -33,8 +33,6 @@ public class PlayerCombat : Combat
     {
         if (Input.GetButtonDown("Attack"))
         {
-            Debug.Log("Weapon is " + weapon);
-            Debug.Log(animationLocked);
             if(!animationLocked && weapon != null)
                 Attack();
         }
@@ -64,6 +62,7 @@ public class PlayerCombat : Combat
 
     void ResumeMoving()
     {
+        Debug.Log("enabling moving");
         motor.EnableMoving();
     }
 
@@ -82,7 +81,7 @@ public class PlayerCombat : Combat
 
         IBlocker blockingEquipment = equipmentManager.GetBlockingEquipment();
 
-        PlayDefendAnimation(blockingEquipment, ResumeMoving);
+        StartCoroutine(PlayDefendAnimation(blockingEquipment, ResumeMoving));
     }
 
     public override void StopBlocking()

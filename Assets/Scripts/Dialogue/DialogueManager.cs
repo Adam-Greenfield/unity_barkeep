@@ -97,8 +97,6 @@ public class DialogueManager : MonoBehaviour
     {
         continueButton.SetActive(false);
 
-
-
         foreach (Subject subject in this_dialogue.subjects)
         {
             GameObject goButton = CreateButton();
