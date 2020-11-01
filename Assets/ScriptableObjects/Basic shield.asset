@@ -16,7 +16,6 @@ MonoBehaviour:
   icon: {fileID: 0}
   prefab: {fileID: 6100147711899868932, guid: 913bfe65b45721c49a2fecf7d409a4ef, type: 3}
   equipSlot: 4
-  blockAnimation: Block_shield
   armourMod: 3
   damageMod: 0
-  blockAnimation: 
+  _blockingAnimation: Block_shield

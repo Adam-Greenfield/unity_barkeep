@@ -59,5 +59,8 @@ public class EnemyCombat : Combat
 
     }
 
-
+    public override void StopBlocking()
+    {
+        throw new System.NotImplementedException();
+    }
 }

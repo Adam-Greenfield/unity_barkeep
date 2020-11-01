@@ -45,6 +45,11 @@ public class PlayerCombat : Combat
             if (!animationLocked)
                 Block();
         }
+
+        if (Input.GetButtonUp("Block"))
+        {
+            StopBlocking();
+        }
     }
 
     void UpdateWeapon(Equipment newWeapon, Equipment oldItem, GameObject newInstWeapon)
@@ -77,6 +82,13 @@ public class PlayerCombat : Combat
         IBlocker blockingEquipment = equipmentManager.GetBlockingEquipment();
 
         PlayDefendAnimation(blockingEquipment, ResumeMoving);
+    }
+
+    public override void StopBlocking()
+    {
+        IBlocker blockingEquipment = equipmentManager.GetBlockingEquipment();
+
+        StopDefendAnimation(blockingEquipment);
     }
 
     protected override void SetStats()

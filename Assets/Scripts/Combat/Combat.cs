@@ -30,6 +30,8 @@ public abstract class Combat : MonoBehaviour
 
     public abstract void Block();
 
+    public abstract void StopBlocking();
+
 
     //get stats depending on class
     protected abstract void SetStats();
@@ -62,6 +64,8 @@ public abstract class Combat : MonoBehaviour
 
         Debug.Log("defending coroutine");
 
+        animator.SetTrigger(blockingEquipment.blockAnimation);
+
         StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
 
         animationLocked = false;
@@ -70,8 +74,14 @@ public abstract class Combat : MonoBehaviour
             OnFinish.Invoke();
     }
 
+    protected void StopDefendAnimation(IBlocker blockingEquipment)
+    {
+        animator.ResetTrigger(blockingEquipment.blockAnimation);
+    }
+
     private IEnumerator EnumerateAnimation(string animationLayer)
     {
+        //this function waits untill the animation starts, and then waits the length of the animations running time to finish
         while (animator.GetCurrentAnimatorStateInfo(0).fullPathHash != Animator.StringToHash("Base Layer." +  animationLayer))
         {
             yield return null;
