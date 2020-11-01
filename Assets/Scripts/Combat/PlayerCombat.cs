@@ -34,6 +34,7 @@ public class PlayerCombat : Combat
         if (Input.GetButtonDown("Attack"))
         {
             Debug.Log("Weapon is " + weapon);
+            Debug.Log(animationLocked);
             if(!animationLocked && weapon != null)
                 Attack();
         }
@@ -71,7 +72,7 @@ public class PlayerCombat : Combat
         motor.DisableMoving();
         motor.FaceMouse();
 
-        PlayAttackAnimation(weapon, instWeapon, ResumeMoving);
+        StartCoroutine(PlayAttackAnimation(weapon, instWeapon, ResumeMoving));
     }
 
     public override void Block()

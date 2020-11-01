@@ -38,19 +38,19 @@ public abstract class Combat : MonoBehaviour
 
     protected delegate void OnFinishDelegate();
 
-    protected void PlayAttackAnimation(Weapon weapon, GameObject instWeapon, OnFinishDelegate OnFinish = null)
+    protected IEnumerator PlayAttackAnimation(Weapon weapon, GameObject instWeapon, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
         hitTargetInAnimation = false;
 
         animator.SetTrigger(weapon.attackAnimation);
 
-        //turn on hitbox
+        //aquire and enable hitbox
         HitBox hitBox = instWeapon.GetComponentInChildren<HitBox>();
 
         hitBox.onTriggerActivatedCallback += HitTarget;
 
-        StartCoroutine(EnumerateAnimation(weapon.attackAnimation));
+        yield return StartCoroutine(EnumerateAnimation(weapon.attackAnimation));
 
         animationLocked = false;
 
@@ -58,15 +58,13 @@ public abstract class Combat : MonoBehaviour
             OnFinish.Invoke();
     }
 
-    protected void PlayDefendAnimation(IBlocker blockingEquipment, OnFinishDelegate OnFinish = null)
+    protected IEnumerator PlayDefendAnimation(IBlocker blockingEquipment, OnFinishDelegate OnFinish = null)
     {
         animationLocked = true;
 
-        Debug.Log("defending coroutine");
-
         animator.SetTrigger(blockingEquipment.blockAnimation);
 
-        StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
+        yield return StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
 
         animationLocked = false;
 
