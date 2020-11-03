@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(CharacterAnimator))]
 public abstract class Combat : MonoBehaviour
 {
 
-    public Animator animator;
+    protected Animator animator;
 
     [System.NonSerialized]
     public bool animationLocked = false;
@@ -16,6 +17,7 @@ public abstract class Combat : MonoBehaviour
     protected virtual void Start()
     {
         SetStats();
+        animator = GetComponent<CharacterAnimator>().animator;
     }
 
     // Update is called once per frame

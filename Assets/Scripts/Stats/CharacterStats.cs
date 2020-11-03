@@ -1,9 +1,10 @@
 ﻿using System.Dynamic;
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterAnimator))]
 public class CharacterStats : MonoBehaviour
 {
-    public Animator animator;
+    protected Animator animator;
 
     public int maxHealth = 100;
     public int currentHealth { get; private set; }
@@ -14,6 +15,11 @@ public class CharacterStats : MonoBehaviour
     void Awake()
     {
         currentHealth = maxHealth;
+    }
+
+    void Start()
+    {
+        animator = GetComponent<CharacterAnimator>().animator;
     }
 
     void Update()

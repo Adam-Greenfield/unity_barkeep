@@ -48,6 +48,7 @@ public class PlayerCombat : Combat
         if (Input.GetButtonUp("Block"))
         {
             StopBlocking();
+            ResumeMoving();
         }
     }
 
@@ -62,7 +63,6 @@ public class PlayerCombat : Combat
 
     void ResumeMoving()
     {
-        Debug.Log("enabling moving");
         motor.EnableMoving();
     }
 
@@ -81,7 +81,7 @@ public class PlayerCombat : Combat
 
         IBlocker blockingEquipment = equipmentManager.GetBlockingEquipment();
 
-        StartCoroutine(PlayDefendAnimation(blockingEquipment, ResumeMoving));
+        StartCoroutine(PlayDefendAnimation(blockingEquipment));
     }
 
     public override void StopBlocking()

@@ -9,7 +9,9 @@ public class CharacterAnimator : MonoBehaviour
     const float locomotionAnimationSmoothTime = .1f;
 
     NavMeshAgent agent;
-    Animator animator;
+
+    [System.NonSerialized]
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
