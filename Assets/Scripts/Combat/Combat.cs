@@ -2,13 +2,15 @@
 using System.Collections;
 
 [RequireComponent(typeof(CharacterAnimator))]
-public abstract class Combat : MonoBehaviour
+public abstract class Combat : MonoBehaviour, IHittable
 {
-
-    protected Animator animator;
 
     [System.NonSerialized]
     public bool animationLocked = false;
+
+    public BlockBox blockBox;
+
+    protected Animator animator;
 
     protected bool hitTargetInAnimation;
 
@@ -17,7 +19,7 @@ public abstract class Combat : MonoBehaviour
     protected virtual void Start()
     {
         SetStats();
-        animator = GetComponent<CharacterAnimator>().animator;
+        animator = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -28,7 +30,6 @@ public abstract class Combat : MonoBehaviour
 
 
     public abstract void Attack();
-
 
     public abstract void Block();
 
@@ -45,6 +46,7 @@ public abstract class Combat : MonoBehaviour
         animationLocked = true;
         hitTargetInAnimation = false;
 
+        Debug.Log(weapon.attackAnimation);
         animator.SetTrigger(weapon.attackAnimation);
 
         //aquire and enable hitbox
@@ -66,8 +68,9 @@ public abstract class Combat : MonoBehaviour
 
         animator.SetTrigger(blockingEquipment.blockAnimation);
 
-        yield return StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
+        blockBox.active = true;
 
+        yield return StartCoroutine(EnumerateAnimation(blockingEquipment.blockAnimation));
 
 
         if (OnFinish != null)
@@ -77,6 +80,8 @@ public abstract class Combat : MonoBehaviour
     protected void StopDefendAnimation(IBlocker blockingEquipment)
     {
         animator.ResetTrigger(blockingEquipment.blockAnimation);
+
+        blockBox.active = false;
 
         animationLocked = false;
     }
@@ -101,6 +106,7 @@ public abstract class Combat : MonoBehaviour
 
     void HitTarget(Collider entity)
     {
+        Debug.Log(entity);
         if (!hitTargetInAnimation)
         {
             //figure out if we've hit a target or a block
@@ -109,18 +115,24 @@ public abstract class Combat : MonoBehaviour
 
             if(entityCombat != null)
             {
-                entityCombat.RecieveHit(stats.damage.GetValue());
+                BlockBox entityBlockBox = entity.GetComponent<BlockBox>();
+
+                if (entityBlockBox != null && entityBlockBox.active)
+                {
+                    //have we hit a block or a parry?
+                    Debug.Log("Attack blocked!");
+                } else
+                {
+                    entityCombat.RecieveHit(stats.damage.GetValue());
+                    Debug.Log("Attack went through!");
+
+                }
+
                 hitTargetInAnimation = true;
+
             }
 
-            BlockBox entityBlockBox = entity.GetComponent<BlockBox>();
 
-            if(entityBlockBox != null)
-            {
-                //have we hit a block or a parry?
-                Debug.Log("Something has blocked our attack!");
-                hitTargetInAnimation = true;
-            }
         }
     }
 

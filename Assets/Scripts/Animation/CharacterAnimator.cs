@@ -10,8 +10,7 @@ public class CharacterAnimator : MonoBehaviour
 
     NavMeshAgent agent;
 
-    [System.NonSerialized]
-    public Animator animator;
+    Animator animator;
 
     // Start is called before the first frame update
     void Start()

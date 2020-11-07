@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlockBox : MonoBehaviour
+public class BlockBox : MonoBehaviour, IHittable
 {
     public bool active;
     // Start is called before the first frame update
@@ -17,8 +17,18 @@ public class BlockBox : MonoBehaviour
         
     }
 
-    void RegisterHit()
+    void OnDrawGizmos()
     {
-        Debug.Log("I am the blocking box, and I'm about to register");
+        if (active)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.matrix = transform.localToWorldMatrix;
+            Gizmos.DrawWireCube(Vector3.zero, transform.localScale);
+        }
+    }
+
+    public void RecieveHit(int damage)
+    {
+        throw new System.NotImplementedException();
     }
 }

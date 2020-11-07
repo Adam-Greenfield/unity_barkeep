@@ -6,7 +6,7 @@ public class EnemyStats : CharacterStats
 {
     EnemyController enemyController;
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
         enemyController = GetComponent<EnemyController>();
         enemyController.onEquipmentChangedCallback += OnEquipmentChanged;

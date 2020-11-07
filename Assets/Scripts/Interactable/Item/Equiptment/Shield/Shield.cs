@@ -2,7 +2,6 @@
 using System.Collections;
 
 [CreateAssetMenu(fileName = "New Shield", menuName = "Inventory/Equipment/Shield")]
-[RequireComponent(typeof(BlockBox))]
 public class Shield : Equipment, IBlocker
 {
     [SerializeField]

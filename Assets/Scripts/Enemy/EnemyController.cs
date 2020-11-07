@@ -77,7 +77,6 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
 
     public GameObject InstantiateEquipmentOnCharacter(Equipment equipment)
     {
-        Debug.Log("Creating equipment as " + equipment.name);
         GameObject instEquipment = null;
 
         if (equipment.prefab != null)

@@ -5,8 +5,10 @@ public class PlayerStats : CharacterStats
 {
     EquipmentManager equipmentManager;
     // Use this for initialization
-    void Start()
+    protected override void Start()
     {
+        base.Start();
+
         equipmentManager = EquipmentManager.instance;
         equipmentManager.onEquipmentChangedCallback += OnEquipmentChanged;
     }

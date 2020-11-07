@@ -33,7 +33,7 @@ public class EnemyCombat : Combat
 
         DisableMoving();
 
-        PlayAttackAnimation(weapon, instWeapon, ResumeMoving);
+        StartCoroutine(PlayAttackAnimation(weapon, instWeapon, ResumeMoving));
     }
 
     public override void Block()

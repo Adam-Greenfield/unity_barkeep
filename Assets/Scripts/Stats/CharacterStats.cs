@@ -17,9 +17,9 @@ public class CharacterStats : MonoBehaviour
         currentHealth = maxHealth;
     }
 
-    void Start()
+    protected virtual void Start()
     {
-        animator = GetComponent<CharacterAnimator>().animator;
+        animator = GetComponentInChildren<Animator>();
     }
 
     void Update()
