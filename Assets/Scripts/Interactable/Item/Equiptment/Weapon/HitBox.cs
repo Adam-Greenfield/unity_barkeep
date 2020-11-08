@@ -20,12 +20,14 @@ public class HitBox : MonoBehaviour
 
     void OnTriggerEnter(Collider entity)
     {
-        if (entity is IHittable && onTriggerActivatedCallback != null)
+        IHittable hittableComponent = (IHittable)entity.GetComponent(typeof(IHittable));
+
+        if (hittableComponent != null && onTriggerActivatedCallback != null)
         {
             //if collider is a block box, check if it's active
             BlockBox blockBox = entity.GetComponent<BlockBox>();
 
-            if (blockBox && blockBox.active)
+            if (!blockBox || (blockBox && blockBox.active))
             {
                 onTriggerActivatedCallback.Invoke(entity);
                 onTriggerActivatedCallback = delegate { };

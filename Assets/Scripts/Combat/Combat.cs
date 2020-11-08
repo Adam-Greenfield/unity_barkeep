@@ -106,32 +106,23 @@ public abstract class Combat : MonoBehaviour, IHittable
 
     void HitTarget(Collider entity)
     {
-        Debug.Log(entity);
         if (!hitTargetInAnimation)
         {
-            //figure out if we've hit a target or a block
-            Debug.Log(stats.damage.GetValue());            
-            Combat entityCombat = entity.GetComponent<Combat>();
+            BlockBox blockBox = entity.GetComponent<BlockBox>();
 
-            if(entityCombat != null)
+            if (blockBox)
             {
-                BlockBox entityBlockBox = entity.GetComponent<BlockBox>();
-
-                if (entityBlockBox != null && entityBlockBox.active)
-                {
-                    //have we hit a block or a parry?
-                    Debug.Log("Attack blocked!");
-                } else
-                {
-                    entityCombat.RecieveHit(stats.damage.GetValue());
-                    Debug.Log("Attack went through!");
-
-                }
-
-                hitTargetInAnimation = true;
-
+                blockBox.RecieveHit(stats.damage.GetValue());
             }
+            else
+            {
+                Combat entityCombat = entity.GetComponent<Combat>();
 
+                if (entityCombat)
+                    entityCombat.RecieveHit(stats.damage.GetValue());
+            }
+            
+            hitTargetInAnimation = true;
 
         }
     }

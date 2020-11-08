@@ -29,6 +29,6 @@ public class BlockBox : MonoBehaviour, IHittable
 
     public void RecieveHit(int damage)
     {
-        throw new System.NotImplementedException();
+        Debug.Log("Attack blocked!");
     }
 }
