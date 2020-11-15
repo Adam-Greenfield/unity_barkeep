@@ -11,6 +11,8 @@ public class CharacterStats : MonoBehaviour
 
     public Stat armour;
     public Stat damage;
+
+    public bool isDead = false;
     // Start is called before the first frame update
     void Awake()
     {
@@ -47,8 +49,10 @@ public class CharacterStats : MonoBehaviour
     public virtual void Die()
     {
         Debug.Log(transform.name + " dies");
-        //Play death animation
+
         animator.SetTrigger("Death");
+
+        isDead = true;
     }
 
     public void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instItem)

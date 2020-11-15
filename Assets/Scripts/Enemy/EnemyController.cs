@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
 
     Transform target;
     EnemyCombat combat;
+    EnemyStats enemyStats;
     PlayerManager playerManager;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem, GameObject instEquipment);
@@ -31,6 +32,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
         agent = GetComponent<NavMeshAgent>();
         target = playerManager.player.transform;
         combat = GetComponent<EnemyCombat>();
+        enemyStats = GetComponent<EnemyStats>();
         if (weapon != null)
         {
             instWeapon = InstantiateEquipmentOnCharacter(weapon);
@@ -42,7 +44,7 @@ public class EnemyController : MonoBehaviour, IInstantiateEquipment
     // Update is called once per frame
     void Update()
     {
-        if (combat.animationLocked)
+        if (combat.animationLocked || enemyStats.isDead)
             return;
 
         float distance = Vector3.Distance(target.position, transform.position);

@@ -113,6 +113,8 @@ public abstract class Combat : MonoBehaviour, IHittable
             if (blockBox)
             {
                 blockBox.RecieveHit(stats.damage.GetValue());
+
+
             }
             else
             {

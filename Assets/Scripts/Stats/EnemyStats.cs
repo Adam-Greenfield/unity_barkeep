@@ -8,6 +8,8 @@ public class EnemyStats : CharacterStats
     // Use this for initialization
     protected override void Start()
     {
+        base.Start();
+
         enemyController = GetComponent<EnemyController>();
         enemyController.onEquipmentChangedCallback += OnEquipmentChanged;
     }
