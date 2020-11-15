@@ -31,6 +31,13 @@ public class PlayerCombat : Combat
     // Update is called once per frame
     void Update()
     {
+        if (playerManager.isDead)
+        {
+            StopBlocking();
+            return;
+        }
+            
+
         if (Input.GetButtonDown("Attack"))
         {
             if(!animationLocked && weapon != null)
@@ -39,7 +46,7 @@ public class PlayerCombat : Combat
 
         if (Input.GetButtonDown("Block"))
         {
-            //check player manager to see if there's shield equipped
+            //check player manager to see if there's shield equipped, also check if player is alive or not
             //if not, block with weapon
             if (!animationLocked)
                 Block();
